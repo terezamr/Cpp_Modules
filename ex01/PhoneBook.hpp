@@ -7,12 +7,16 @@ class PhoneBook {
 	private:
 		Contact ct[8];
 		int		current;
+
+		std::string nome;
+
 	public:
-		int		getCurrent();
-		void	setCurrent(int a);
-		void	addContact(int current);
-		void	searchContact();
-		std::string printWord(std::string str);
+		int			addContact(int current);
+		int			getCurrent();
+		void		setCurrent(int a);
+		void		searchContact();
+		int			searchIndex();
+		std::string cutWord(std::string str);
 };
 
 #endif

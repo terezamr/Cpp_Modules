@@ -9,13 +9,17 @@
 class Contact {
 	private:
 		std::string	firstName;
-	public:
 		std::string	lastName;
 		std::string	nickName;
-  		int			phoneNumber;
+  		//int			phoneNumber;
 		std::string	DarkestSecret;
+	public:
 		std::string	getFirst();
-		std::string	setFirst();
+		std::string	getLast();
+		std::string	getNick();
+		void		setFirst(std::string);
+		void		setLast(std::string);
+		void		setNick(std::string);
 	//std::string printWord(std::string str);
 };
 

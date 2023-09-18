@@ -5,14 +5,22 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm -f
 
-SRC = PhoneBook.cpp
+SRC = PhoneBook.cpp Contact.cpp
 
-all:	$(NAME)
+OBJS = $(SRC:.cpp=.o)
 
-$(NAME):	$(SRC)
+all:	$(NAME) $(OBJS)
+
+$(NAME):	$(OBJS)
 			$(CC) $(SRC) $(CFLAGS) -o $(NAME)
 
+%.o: %.c
+		$(CC) $(FLAGS) -c $< -o $@
+
 clean:
+		$(RM) $(OBJS)
+	
+fclean:	clean
 		$(RM) $(NAME)
 
-re:	clean all
+re:	fclean all
