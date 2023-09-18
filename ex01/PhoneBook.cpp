@@ -93,6 +93,12 @@ void	PhoneBook::searchContact()
 	std::cout << "Nickname: " << ct[id].getNick() << "\n";
 }
 
+// Falta:
+// inserir numro de telemovel
+// inserir darkest secret
+// validar numero de telemovel
+// validar numero do index (se se puser letras da erro)
+
 int	main(void)
 {
 	PhoneBook book;
