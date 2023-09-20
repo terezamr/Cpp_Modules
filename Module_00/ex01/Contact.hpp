@@ -11,15 +11,19 @@ class Contact {
 		std::string	firstName;
 		std::string	lastName;
 		std::string	nickName;
-  		//int			phoneNumber;
-		std::string	DarkestSecret;
+  		std::string	phoneNumber;
+		std::string	darkestSecret;
 	public:
 		std::string	getFirst();
 		std::string	getLast();
 		std::string	getNick();
+		std::string	getSecret();
+		std::string	getNumber();
 		void		setFirst(std::string);
 		void		setLast(std::string);
 		void		setNick(std::string);
+		void		setSecret(std::string);
+		void		setNumber(std::string);
 	//std::string printWord(std::string str);
 };
 
