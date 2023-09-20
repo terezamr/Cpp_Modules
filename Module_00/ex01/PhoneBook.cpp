@@ -20,73 +20,89 @@ std::string PhoneBook::cutWord(std::string str)
 	return (str);
 }
 
-int	check_number(std::string str)
+std::string	check_number(std::string str)
 {
-	int	i = 0;
-	int j = str.length();
-	while (i < j && str[i] == ' ')
-		i++;
-	if (str[i] == '+' || str[i] == '-')
-		i++;
-	while (str[i])
+	int	j = str.length();
+	for (int i = 0; i < j; i++)
 	{
 		if (str[i] < '0' || str[i] > '9')
-			return (1);
-		i++;
+			return ("");
 	}
-	return (0);
+	return (str);
+}
+
+std::string	trimSpaces(std::string str)
+{
+	std::string spaces = " \n\r\t\f\v";
+	int	i = str.find_first_not_of(spaces);
+	str = str.erase(0, i);
+
+	int j = str.find_last_not_of(spaces) + 1;
+	str = str.erase(j);
+	return (str);
 }
 
 int	PhoneBook::addContact(int current)
 {
 	std::cin.ignore();
 	std::string str;
+
 	std::cout << "First Name: ";
-    getline(std::cin, str);
-	ct[current].setFirst(str);
+	while (ct[current].getFirst().empty())
+	{
+		getline(std::cin, str);
+		if (str.empty())
+			std::cout << "Please enter a non empty parameter.\n\nFirst Name: ";
+		else
+			ct[current].setFirst(trimSpaces(str));
+	}
 
 	std::cout << "Last Name: ";
-    getline(std::cin, str);
-	ct[current].setLast(str);
-
+	while (ct[current].getLast().empty())
+	{
+		getline(std::cin, str);
+		if (str.empty())
+			std::cout << "Please enter a non empty parameter.\n\nLast Name: ";
+		else
+			ct[current].setLast(trimSpaces(str));
+	}
+	
 	std::cout << "Nickname: ";
-    getline(std::cin, str);
-	ct[current].setNick(str);
+	while (ct[current].getNick().empty())
+	{
+		getline(std::cin, str);
+		if (str.empty())
+			std::cout << "Please enter a non empty parameter.\n\nNickname: ";
+		else
+			ct[current].setNick(trimSpaces(str));
+	}
 
 	std::cout << "Darkest Secret: ";
-    getline(std::cin, str);
-	ct[current].setSecret(str);
+	while (ct[current].getSecret().empty())
+	{
+		getline(std::cin, str);
+		if (str.empty())
+			std::cout << "Please enter a non empty parameter.\n\nDarkest Secret: ";
+		else
+			ct[current].setSecret(trimSpaces(str));;
+	}
 
 	std::cout << "Phone Number: ";
-    getline(std::cin, str);
-	if (check_number(str) == 1)
+	while (ct[current].getNumber().empty())
 	{
-		ct[current].setNumber("");
-		std::cout << "Not a valid number.\n";
+		getline(std::cin, str);
+		if (str.empty())
+			std::cout << "Please enter a non empty parameter.\n\nPhone Number: ";
+		else if (!str.empty() && check_number(trimSpaces(str)) == "")
+		{
+			ct[current].setNumber("");
+			std::cout << "Please enter valid number.\n\nPhone Number: \n";
+		}
+		else
+			ct[current].setNumber(trimSpaces(str));
 	}
-	// else
-	// {
-	// 	std::cout << "Not a valid number.\n";
-	// 	ct[current].setNumber("");
-	// }
-	if (ct[current].getFirst().empty() || ct[current].getLast().empty() || ct[current].getNick().empty() || ct[current].getSecret().empty() || ct[current].getNumber().empty())
-	{
-		if (!ct[current].getFirst().empty())
-			ct[current].setFirst("");
-		if (!ct[current].getLast().empty())
-			ct[current].setLast("");
-		if (!ct[current].getNick().empty())
-			ct[current].setNick("");
-		if (!ct[current].getSecret().empty())
-			ct[current].setSecret("");
-		std::cout << "Contacted not added. Please make sure you fill all parameters.\n\n";
-		return (1);
-	}
-	else
-	{
-		std::cout << "Contact added!\n\n";
-		return (0);
-	}
+	std::cout << "Contact added!\n\n";
+	return (0);
 }
 
 int	PhoneBook::searchIndex()
@@ -95,9 +111,17 @@ int	PhoneBook::searchIndex()
 	std::cout << std::right;
 	std::cout << "Index of the contact: ";
     std::cin >> id;
-	if (id >= 8 || id < 0 || ct[id].getFirst().empty())
-		return (-1);
-	return (id);
+	if (id < 8 && id >= 0 && std::cin.good() && !ct[id].getFirst().empty())
+		return (id);
+	return (-1);
+
+	// std::string str;
+	// std::cout << std::right;
+	// std::cout << "Index of the contact: ";
+    // std::cin >> str;
+	// if (str.empty() || check_number(trimSpaces(str)) == "")
+	// 	return (-1);
+	// id = stoi(str, 0, 10);
 }
 
 void	PhoneBook::searchContact()
@@ -127,40 +151,5 @@ void	PhoneBook::searchContact()
 	std::cout << "Last Name: " << ct[id].getLast() << "\n";
 	std::cout << "Nickname: " << ct[id].getNick() << "\n";
 	std::cout << "Darkest Secret: " << ct[id].getSecret() << "\n";
-}
-
-// Falta:
-// inserir numro de telemovel
-// validar numero de telemovel
-// validar numero do index (se se puser letras da erro)
-
-int	main(void)
-{
-	PhoneBook book;
-	std::string com;
-	std::cout << "> ";
-	std::cin >> com;
-	book.setCurrent(0);
-	while (com != "EXIT")
-	{
-		if (com == "ADD")
-		{
-			if (book.addContact(book.getCurrent()) == 0)
-			{
-				book.setCurrent(book.getCurrent() + 1);
-				if (book.getCurrent() == 8)
-					book.setCurrent(0);
-			}
-		}
-		else if (com == "SEARCH")
-			book.searchContact();
-		else if (com == "EXIT")
-			break ;
-		else
-			std::cout << "Not a valid command\n";
-		std::cout << "> ";
-		std::cin >> com;
-	}
-	std::cout << "Exiting...\n\n";
-	return (0);
+	std::cout << "Phone Number: " << ct[id].getNumber() << "\n";
 }
