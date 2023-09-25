@@ -4,7 +4,6 @@
 
 // Falta:
 // testar comandos gerais com espacos (ADD)
-// validar numero do index (se se puser letras da erro)
 // testar numero de telemovel invalido e index negativo
 
 int	main(void)
@@ -13,7 +12,7 @@ int	main(void)
 	std::string com;
 	std::cout << "> ";
 	std::cin >> com;
-	book.setCurrent(0);
+	book.setCurrent(1);
 	while (com != "EXIT")
 	{
 		if (com == "ADD")
@@ -21,8 +20,8 @@ int	main(void)
 			if (book.addContact(book.getCurrent()) == 0)
 			{
 				book.setCurrent(book.getCurrent() + 1);
-				if (book.getCurrent() == 8)
-					book.setCurrent(0);
+				if (book.getCurrent() == 9)
+					book.setCurrent(1);
 			}
 		}
 		else if (com == "SEARCH")

@@ -48,6 +48,7 @@ int	PhoneBook::addContact(int current)
 	std::string str;
 
 	std::cout << "First Name: ";
+	ct[current].setFirst("");
 	while (ct[current].getFirst().empty())
 	{
 		getline(std::cin, str);
@@ -57,6 +58,7 @@ int	PhoneBook::addContact(int current)
 			ct[current].setFirst(trimSpaces(str));
 	}
 
+	ct[current].setLast("");
 	std::cout << "Last Name: ";
 	while (ct[current].getLast().empty())
 	{
@@ -67,6 +69,7 @@ int	PhoneBook::addContact(int current)
 			ct[current].setLast(trimSpaces(str));
 	}
 	
+	ct[current].setNick("");
 	std::cout << "Nickname: ";
 	while (ct[current].getNick().empty())
 	{
@@ -77,6 +80,7 @@ int	PhoneBook::addContact(int current)
 			ct[current].setNick(trimSpaces(str));
 	}
 
+	ct[current].setSecret("");
 	std::cout << "Darkest Secret: ";
 	while (ct[current].getSecret().empty())
 	{
@@ -87,6 +91,7 @@ int	PhoneBook::addContact(int current)
 			ct[current].setSecret(trimSpaces(str));;
 	}
 
+	ct[current].setNumber("");
 	std::cout << "Phone Number: ";
 	while (ct[current].getNumber().empty())
 	{
@@ -105,33 +110,13 @@ int	PhoneBook::addContact(int current)
 	return (0);
 }
 
-int	PhoneBook::searchIndex()
-{
-	int	id;
-	std::cout << std::right;
-	std::cout << "Index of the contact: ";
-    std::cin >> id;
-	if (id < 8 && id >= 0 && std::cin.good() && !ct[id].getFirst().empty())
-		return (id);
-	return (-1);
-
-	// std::string str;
-	// std::cout << std::right;
-	// std::cout << "Index of the contact: ";
-    // std::cin >> str;
-	// if (str.empty() || check_number(trimSpaces(str)) == "")
-	// 	return (-1);
-	// id = stoi(str, 0, 10);
-}
-
 void	PhoneBook::searchContact()
 {
-	int f = 0;
-	int	id;
+	int f = 1;
 	std::cout << std::right;
 	if (ct[f].getFirst().empty())
 		return ;
-	while (!ct[f].getFirst().empty())
+	while (f <= 8 && !ct[f].getFirst().empty())
 	{
 		std::cout <<
 			std::setw(10) << f << std::setw(1) << "|" << std::setw(1) << std::setw(10) <<
@@ -140,16 +125,23 @@ void	PhoneBook::searchContact()
 			cutWord(ct[f].getNick()) << '\n';
 		f++;
 	}
-	id = searchIndex();
-	while (id == -1)
+	int id;
+	std::string error;
+	std::cout << "Index of the contact: ";
+	std::cin >> error;
+    const char *z = error.c_str();
+    id = std::atoi(z);
+    if (id < 1 || id > 8)
+        std::cout << "You inserted an index out of bounds" << std::endl;
+	else if (!ct[id].getFirst().empty())
 	{
-		std::cout << "Index out of range\n\n";
-		id = searchIndex();
+		std::cout << "Index: " << id << std::endl;
+		std::cout << "First Name: " << ct[id].getFirst() << std::endl;
+		std::cout << "Last Name: " << ct[id].getLast() << std::endl;
+		std::cout << "Nickname: " << ct[id].getNick() << std::endl;
+		std::cout << "Darkest Secret: " << ct[id].getSecret() << std::endl;
+		std::cout << "Phone Number: " << ct[id].getNumber() << std::endl;
 	}
-	std::cout << "Index: " << id << "\n";
-	std::cout << "First Name: " << ct[id].getFirst() << "\n";
-	std::cout << "Last Name: " << ct[id].getLast() << "\n";
-	std::cout << "Nickname: " << ct[id].getNick() << "\n";
-	std::cout << "Darkest Secret: " << ct[id].getSecret() << "\n";
-	std::cout << "Phone Number: " << ct[id].getNumber() << "\n";
+	else
+		std::cout << "This contact doesn't exist" << std::endl;
 }
