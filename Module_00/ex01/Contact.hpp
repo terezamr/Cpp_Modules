@@ -24,7 +24,6 @@ class Contact {
 		void		setNick(std::string);
 		void		setSecret(std::string);
 		void		setNumber(std::string);
-	//std::string printWord(std::string str);
 };
 
 #endif
