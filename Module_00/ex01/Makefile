@@ -1,7 +1,7 @@
 NAME = phonebook
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
 RM = rm -f
 
@@ -12,10 +12,7 @@ OBJS = $(SRC:.cpp=.o)
 all:	$(NAME) $(OBJS)
 
 $(NAME):	$(OBJS)
-			$(CC) $(SRC) $(CFLAGS) -o $(NAME)
-
-%.o: %.c
-		$(CC) $(FLAGS) -c $< -o $@
+			$(CC) $(FLAGS) -o $(NAME) $(OBJS)
 
 clean:
 		$(RM) $(OBJS)

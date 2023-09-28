@@ -1,7 +1,7 @@
 NAME = megaphone
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
 RM = rm -rf
 
@@ -9,13 +9,10 @@ SRC = megaphone.cpp
 
 OBJS = $(SRC:.cpp=.o)
 
-all:	$(NAME) $(OBJS)
+all:	$(NAME)
 
 $(NAME):	$(OBJS)
-			$(CC) $(SRC) $(FLAGS) -o $(NAME)
-
-%.o: %.c
-		$(CC) $(FLAGS) -c $< -o $@
+			$(CC) $(FLAGS) -o $(NAME) $(OBJS)
 
 clean:
 		$(RM) $(OBJS)
