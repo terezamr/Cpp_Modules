@@ -9,7 +9,6 @@ Weapon::~Weapon()
 {
 }
 
-
 void	Weapon::setType(std::string t)
 {
 	this->type = t;
