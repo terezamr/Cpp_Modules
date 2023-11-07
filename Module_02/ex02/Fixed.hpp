@@ -37,6 +37,16 @@ class Fixed {
 
 		bool    operator>(const Fixed &rhs) const;
 		bool	operator<(const Fixed &rhs) const;
+		bool    operator>=(const Fixed &rhs) const;
+		bool	operator<=(const Fixed &rhs) const;
+		bool    operator==(const Fixed &rhs) const;
+		bool	operator!=(const Fixed &rhs) const;
+
+	// A static member function can be called even if no objects of the class exist
+		static Fixed&			min(Fixed &a, Fixed &b);
+		static const Fixed&	min(const Fixed &a, const Fixed &b);
+		static Fixed&			max(Fixed &a, Fixed &b);
+		static const Fixed&	max(const Fixed &a, const Fixed &b);
 };
 
 std::ostream & operator<<( std::ostream & o, Fixed const & i );
