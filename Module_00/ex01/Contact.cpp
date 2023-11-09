@@ -45,7 +45,6 @@ void	Contact::setSecret(std::string str)
 	this->darkestSecret = str;
 }
 
-
 void	Contact::setNumber(std::string str)
 {
 	this->phoneNumber = str;

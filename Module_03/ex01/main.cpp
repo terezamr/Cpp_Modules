@@ -2,11 +2,10 @@
 
 int main()
 {
-	ScavTrap("tinta");
+	ScavTrap a("maria");
+	ScavTrap b("joao");
 
-	// ClapTrap a("tinta");
-	// ClapTrap b("pepi");
-	// a.attack("pepi");
-	// b.takeDamage(a.getAttackDamage());
-	// b.beRepaired(a.getAttackDamage());
+	a.attack("joao");
+	b.takeDamage(a.getAttackDamage());
+	a.guardGate();
 }

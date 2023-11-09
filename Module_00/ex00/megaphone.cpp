@@ -10,12 +10,9 @@ int	main(int argc, char **argv)
 	{
 		for (int i = 1; i < argc; i++)
 		{
-			std::string str = std::string(argv[i]);
+			std::string str = argv[i];
 			for (int f = 0; f < str.size(); f++)
-			{
-				char c = toupper(str[f]);
-				std::cout << c;
-			}
+				std::cout << toupper(str[f]);
 		}
 		std::cout << "\n";
 	}

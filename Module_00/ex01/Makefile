@@ -5,7 +5,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
 RM = rm -f
 
-SRC = main.cpp PhoneBook.cpp Contact.cpp
+SRC = main.cpp PhoneBook.cpp Contact.cpp aux.cpp
 
 OBJS = $(SRC:.cpp=.o)
 

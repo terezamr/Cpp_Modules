@@ -8,18 +8,18 @@
 
 class PhoneBook {
 	private:
-		Contact ct[9];
-		int		current;
-
-		std::string nome;
-
+		Contact		ct[8];
+		int			current;
 	public:
-		int			addContact(int current);
 		int			getCurrent();
 		void		setCurrent(int a);
+
+		int			addContact(int current);
 		void		searchContact();
-		int			searchIndex();
-		std::string cutWord(std::string str);
 };
 
+std::string	cutWord(std::string str);
+int			check_number(std::string str);
+std::string	trimSpaces(std::string str);
+void		cleanContact(Contact* ct, int current);
 #endif
