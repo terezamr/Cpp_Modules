@@ -17,9 +17,9 @@ int	PhoneBook::addContact(int current)
 	std::cout << "First Name: ";
 	ct[current].setFirst("");
 	getline(std::cin, str);
-	if (str.empty())
+	if (trimSpaces(str).empty())
 	{
-		std::cout << "Please enter a non empty parameter.\n" << std::endl;
+		std::cout << "Enter a non empty parameter.\n" << std::endl;
 		return 1;
 	}
 	else
@@ -28,9 +28,9 @@ int	PhoneBook::addContact(int current)
 	ct[current].setLast("");
 	std::cout << "Last Name: ";
 	getline(std::cin, str);
-	if (str.empty())
+	if (trimSpaces(str).empty())
 	{
-		std::cout << "Please enter a non empty parameter.\n" << std::endl;
+		std::cout << "Enter a non empty parameter.\n" << std::endl;
 		cleanContact(ct, current);
 		return 1;
 	}
@@ -40,9 +40,9 @@ int	PhoneBook::addContact(int current)
 	ct[current].setNick("");
 	std::cout << "Nickname: ";
 	getline(std::cin, str);
-	if (str.empty())
+	if (trimSpaces(str).empty())
 	{
-		std::cout << "Please enter a non empty parameter.\n" << std::endl;
+		std::cout << "Enter a non empty parameter.\n" << std::endl;
 		cleanContact(ct, current);
 		return 1;
 	}
@@ -52,9 +52,9 @@ int	PhoneBook::addContact(int current)
 	ct[current].setSecret("");
 	std::cout << "Darkest Secret: ";
 	getline(std::cin, str);
-	if (str.empty())
+	if (trimSpaces(str).empty())
 	{
-		std::cout << "Please enter a non empty parameter.\n" << std::endl;
+		std::cout << "Enter a non empty parameter.\n" << std::endl;
 		cleanContact(ct, current);
 		return 1;
 	}
@@ -64,16 +64,16 @@ int	PhoneBook::addContact(int current)
 	ct[current].setNumber("");
 	std::cout << "Phone Number: ";
 	getline(std::cin, str);
-	if (str.empty())
+	if (trimSpaces(str).empty())
 	{
 		cleanContact(ct, current);
-		std::cout << "Please enter a non empty parameter.\n" << std::endl;
+		std::cout << "Enter a non empty parameter.\n" << std::endl;
 		return 1;
 	}
 	else if (check_number(trimSpaces(str)) == 0)
 	{
 		cleanContact(ct, current);
-		std::cout << "Please enter valid number.\n" << std::endl;
+		std::cout << "Enter a valid number.\n" << std::endl;
 		return 1;
 	}
 	else
@@ -104,14 +104,14 @@ void	PhoneBook::searchContact()
 	getline(std::cin, nb);
 	if (check_number(trimSpaces(nb)) == 0)
 	{
-		std::cout << "Please enter valid number.\n" << std::endl;
+		std::cout << "Please enter a valid number.\n" << std::endl;
 		return ;
 	}
 
     const char *z = nb.c_str();
     int id = std::atoi(z);
     if (id < 1 || id > 8)
-        std::cout << "You inserted an index out of bounds.\n" << std::endl;
+        std::cout << "Index out of bounds.\n" << std::endl;
 	else if (!ct[id - 1].getFirst().empty())
 	{
 		std::cout << "\nIndex: " << id << std::endl;

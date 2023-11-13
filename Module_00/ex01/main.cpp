@@ -9,10 +9,10 @@ int	main(void)
 	std::cout << "Please insert one of the following commands: ADD, SEARCH or EXIT.\n> ";
 	getline(std::cin, com);
 	book.setCurrent(0);
-	
-	while (com != "EXIT" && com != "exit")
+	com = trimSpaces(com);
+	while (com != "EXIT")
 	{
-		if (com == "ADD" || com == "add")
+		if (com == "ADD")
 		{
 			if (book.addContact(book.getCurrent()) == 0)
 			{
@@ -21,15 +21,16 @@ int	main(void)
 					book.setCurrent(0);
 			}
 		}
-		else if (com == "SEARCH" || com == "search")
+		else if (com == "SEARCH")
 			book.searchContact();
-		else if (com == "EXIT" || com == "exit")
+		else if (com == "EXIT")
 			break ;
 		else
 			std::cout << "Not a valid command.\n" << std::endl;
 
 		std::cout << "> ";
 		getline(std::cin, com);
+		com = trimSpaces(com);
 	}
 	std::cout << "Exiting...\n" << std::endl;
 	return (0);

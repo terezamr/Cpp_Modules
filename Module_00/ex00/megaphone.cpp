@@ -12,7 +12,7 @@ int	main(int argc, char **argv)
 		{
 			std::string str = argv[i];
 			for (int f = 0; f < str.size(); f++)
-				std::cout << toupper(str[f]);
+				std::cout << (char)toupper(str[f]);
 		}
 		std::cout << "\n";
 	}
