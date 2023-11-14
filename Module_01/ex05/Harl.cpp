@@ -29,7 +29,7 @@ void    Harl::complain(std::string level)
         i++;
     if (level != levels[i])
     {
-        std::cout << "Please choose the level, from one to four" << std::endl;
+        std::cout << "Please choose the level" << std::endl;
         return ;
     }
     int f = 0;

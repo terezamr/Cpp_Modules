@@ -9,7 +9,7 @@ SRC = main.cpp
 
 OBJS = $(SRC:.cpp=.o)
 
-all:	$(NAME) $(OBJS)
+all:	$(NAME)
 
 $(NAME):	$(OBJS)
 			$(CC) $(FLAGS) -o $(NAME) $(OBJS)
@@ -18,5 +18,16 @@ clean:
 	
 fclean:	clean
 		$(RM) $(NAME)
+
+git: fclean
+	@git add .
+	@git commit
+	@git push
+	@clear
+	@echo "|                                                 |"
+	@echo "|                                                 |"
+	@echo "|      -------{ Commited and Pushed }-------      |"
+	@echo "|                                                 |"
+	@echo "|                                                 |"
 
 re:	fclean all
