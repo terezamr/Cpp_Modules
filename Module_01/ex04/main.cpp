@@ -26,13 +26,26 @@ int main(int argc, char **argv)
 	std::string a = argv[2];
 	std::string b = argv[3];
 	file.open(argv[1]);
+	std::string line0;
 	if (!file) 
 	{
 		std::cout << "The file does not exist" << std::endl;
 		return (0);
 	}
+	getline(file, line0);
+	if (line0 == "\0")
+	{
+		std::cout << "Empty file" << std::endl;
+		file.close();
+		remove(strcat(argv[1],".replace"));
+		return (0);
+	}
 	strcat(argv[1],".replace");
 	file1.open(argv[1]);
+
+	line0 = replace_line(line0, a, b);
+	file1 << line0 << std::endl;
+
 	std::string line;
 	while (getline(file, line))
 	{

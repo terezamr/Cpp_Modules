@@ -9,10 +9,10 @@ SRC = main.cpp
 
 OBJS = $(SRC:.cpp=.o)
 
-all:	$(NAME) $(OBJS)
+all: $(NAME)
 
-$(NAME):	$(OBJS)
-			$(CC) $(SRC) $(FLAGS) -o $(NAME)
+$(NAME): $(OBJS)
+		 $(CC) $(SRC) $(FLAGS) -o $(NAME)
 
 %.o: %.c
 		$(CC) $(FLAGS) -c $< -o $@

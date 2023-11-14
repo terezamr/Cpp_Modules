@@ -9,7 +9,7 @@ SRC = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 
 OBJS = $(SRC:.cpp=.o)
 
-all:	$(NAME) $(OBJS)
+all:	$(NAME)
 
 $(NAME):	$(OBJS)
 			$(CC) $(SRC) $(FLAGS) -o $(NAME)
