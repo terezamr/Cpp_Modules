@@ -26,7 +26,7 @@ void    Harl::error(void)
 
 void    Harl::complain(std::string level)
 {
-    const char* levels[4] = {"debug", "info", "warning", "error"};
+    const char* levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
     t_func fc[4] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
     int i = 0;
     while (i < 4 && level != levels[i])

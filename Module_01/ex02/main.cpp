@@ -5,7 +5,7 @@
 
 int	main(void)
 {
-	std::string str = "HI THIS IS BRIAN";
+	std::string str = "HI THIS IS BRAIN";
 	// stringPTR - pointer variable, stores the address of str
 	std::string	*stringPTR = &str;
 	// stringREF - reference to str
