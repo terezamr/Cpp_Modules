@@ -9,10 +9,10 @@ SRC = main.cpp Harl.cpp
 
 OBJS = $(SRC:.cpp=.o)
 
-all:	$(NAME) $(OBJS)
+all: $(NAME) $(OBJS)
 
-$(NAME):	$(OBJS)
-			$(CC) $(FLAGS) -o $(NAME) $(OBJS)
+$(NAME): $(OBJS)
+		 $(CC) $(OBJS) $(CFLAGS) -o $(NAME)
 clean:
 		$(RM) $(OBJS)
 	
