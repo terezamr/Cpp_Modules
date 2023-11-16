@@ -16,13 +16,10 @@ int main(int argc, char **argv)
     switch(i) {
         case 0:
             joe->complain("DEBUG");
-            break;
         case 1:
             joe->complain("INFO");
-            break;
         case 2:
             joe->complain("WARNING");
-            break;
         case 3:
             joe->complain("ERROR");
             break;
