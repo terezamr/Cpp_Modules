@@ -9,13 +9,10 @@ SRC = main.cpp Fixed.cpp Operations.cpp
 
 OBJS = $(SRC:.cpp=.o)
 
-all:	$(NAME) $(OBJS)
+all: $(NAME)
 
-$(NAME):	$(OBJS)
-			$(CC) $(SRC) $(FLAGS) -o $(NAME)
-
-%.o: %.c
-		$(CC) $(FLAGS) -c $< -o $@
+$(NAME): $(OBJS)
+		 $(CC) $(OBJS) $(CFLAGS) -o $(NAME)
 
 clean:
 		$(RM) $(OBJS)
