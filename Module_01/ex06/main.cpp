@@ -5,7 +5,7 @@ int main(int argc, char **argv)
     Harl* joe;
     if (argc != 2)
 	{
-		std::cout << "Expected only one parameter." << std::endl;
+		std::cout << "Expected one parameter.\n" << std::endl;
         return (0);
 	}
     std::string input = argv[1];
@@ -27,7 +27,6 @@ int main(int argc, char **argv)
             joe->complain("ERROR");
             break;
         default:
-            std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
-    }   
-	//joe->complain(levels[i]);
+            std::cout << "[ Probably complaining about insignificant problems ]\n" << std::endl;
+    }
 }

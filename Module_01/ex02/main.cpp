@@ -9,12 +9,12 @@ int	main(void)
 	// stringPTR - pointer variable, stores the address of str
 	std::string	*stringPTR = &str;
 	// stringREF - reference to str
-	std::string stringREF = str;
+	std::string &stringREF = str;
 
 	// memory address of str
 	std::cout << &str << std::endl;
 	// memory addres stringPTR
-	std::cout << &stringPTR << std::endl;
+	std::cout << stringPTR << std::endl;
 	// memory addres stringREF
 	std::cout << &stringREF << std::endl;
 

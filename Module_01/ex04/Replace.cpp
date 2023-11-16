@@ -32,7 +32,6 @@ void	replace(int argc, char **argv)
 	{
 		std::cout << "Empty file" << std::endl;
 		file.close();
-		remove(strcat(argv[1],".replace"));
 		return ;
 	}
 	strcat(argv[1],".replace");

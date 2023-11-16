@@ -1,11 +1,8 @@
 #include "HumanA.hpp"
 
-// inicializacao feita ao mesmo tempo da declaracao, porque a referencia tem
-// sempre de se criada em relacao a uma variavel
 HumanA::HumanA(std::string str, Weapon &w) : wp(w)
 {
     this->name = str;
-    //this->wp = &w;
 }
 
 HumanA::~HumanA()
@@ -19,5 +16,9 @@ std::string HumanA::getName(void)
 
 void    HumanA::attack(void)
 {
-    std::cout << this->getName() << " attacks with their " << this->wp.getType() << std::endl;
+	if (this->wp.getType() != "")
+    	std::cout << this->getName() << " attacks with their " << this->wp.getType() << std::endl;
+	else
+		std::cout << this->getName() << " attacks with their empty weapon" << std::endl;
+    
 }
