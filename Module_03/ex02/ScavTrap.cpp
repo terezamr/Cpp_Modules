@@ -4,7 +4,7 @@ ScavTrap::ScavTrap(std::string str) : ClapTrap(str)
 {
 	this->setName(str);
 	this->setHitPoints(100);
-	this->setEnergyPoints(4);
+	this->setEnergyPoints(50);
 	this->setAttackDamage(20);
 	std::cout << "Scav "<< this->getName() << " constructor called" << std::endl;
 }

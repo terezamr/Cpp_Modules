@@ -9,7 +9,7 @@
 class Fixed {
 	private:
 		int					FixedPoint;
-		static const int	Bits = 9;
+		static const int	Bits = 8;
 	public:
 		Fixed();
     	~Fixed();

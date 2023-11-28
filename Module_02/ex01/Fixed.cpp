@@ -3,7 +3,7 @@
 Fixed::Fixed()
 {
 	std::cout << "Default constructor called" << std::endl;
-	this->FixedPoint = 0;
+	setRawBits(0);
 }
 
 Fixed::Fixed(const int nb)
@@ -21,7 +21,7 @@ Fixed::Fixed(const float nb)
 Fixed::Fixed(const Fixed& src)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	setRawBits(src.getRawBits());
+	this->setRawBits(src.getRawBits());
 }
 
 Fixed::~Fixed()
@@ -42,7 +42,6 @@ Fixed& Fixed::operator=(const Fixed& src)
 
 int	Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
 	return (this->FixedPoint);
 }
 
@@ -59,7 +58,7 @@ float   Fixed::toFloat(void) const
 
 // Converts fixed-point rep. into an integer rep.
 int     Fixed::toInt( void ) const {
-    return this->FixedPoint >> Bits;
+    return (this->getRawBits() >> Bits);
 }
 
 // Defines how an object of the Fixed class should be formatted when printed

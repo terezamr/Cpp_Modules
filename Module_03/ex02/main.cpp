@@ -1,10 +1,10 @@
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-//take damage n esta a funcionar, ver se e preciso
+// take damage nao estao a funcionar, verificar se e preciso
 int main()
 {
-	ScavTrap a("maria");
-	ScavTrap b("joao");
+	FragTrap a("maria");
+	FragTrap b("joao");
 
 	a.attack("joao");
 	b.takeDamage(a.getAttackDamage());
@@ -16,5 +16,9 @@ int main()
 	b.takeDamage(a.getAttackDamage());
 	a.attack("joao");
 	b.takeDamage(a.getAttackDamage());
-	a.guardGate();
+	a.attack("joao");
+	b.takeDamage(a.getAttackDamage());
+	a.attack("joao");
+	b.takeDamage(a.getAttackDamage());
+	a.highFivesGuys();
 }

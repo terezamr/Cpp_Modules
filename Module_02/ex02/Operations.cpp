@@ -74,7 +74,6 @@ bool    Fixed::operator!=(const Fixed &rhs) const {
 }
 
 // min max
-
 Fixed&	Fixed::min(Fixed &a, Fixed &b)
 {
 	if (a.getRawBits() < b.getRawBits())

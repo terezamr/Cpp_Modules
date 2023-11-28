@@ -3,7 +3,7 @@
 Fixed::Fixed()
 {
 	std::cout << "Default constructor called" << std::endl;
-	this->FixedPoint = 0;
+	this->setRawBits(0);
 }
 
 Fixed::~Fixed()
@@ -17,7 +17,7 @@ Fixed::Fixed(const Fixed& src)
 	this->setRawBits(src.getRawBits());
 }
 
-// he copy assignment operator takes a constant reference to
+// The copy assignment operator takes a constant reference to
 //another object of the same class
 // If they are the same, there's no need to proceed with the assignment, 
 //  deallocate any existing resources, allocate and copy the data members from the other
@@ -26,7 +26,7 @@ Fixed& Fixed::operator=(const Fixed& src)
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this == &src)
 		return *this;
-	this->FixedPoint = src.FixedPoint;
+	this->setRawBits(src.getRawBits());
 	return *this;
 }
 
