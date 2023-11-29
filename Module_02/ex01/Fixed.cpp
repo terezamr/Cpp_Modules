@@ -9,13 +9,15 @@ Fixed::Fixed()
 Fixed::Fixed(const int nb)
 {
 	std::cout << "Int constructor called" << std::endl;
-	setRawBits(nb << this->Bits);
+	int value;
+	value = nb << this->Bits;
 }
 
 Fixed::Fixed(const float nb)
 {
 	std::cout << "Float constructor called" << std::endl;
-	setRawBits(nb * ((double)(1 << this->Bits)));
+	float value_f;
+	value_f = nb * ((double)(1 << this->Bits));
 }
 
 Fixed::Fixed(const Fixed& src)
