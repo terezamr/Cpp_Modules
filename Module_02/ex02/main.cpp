@@ -15,6 +15,8 @@ int	main(void)
 	// std::cout << --a << std::endl;
 
 	std::cout << b << std::endl;
+	//std::cout << 5.05*2 << std::endl;
+
 	// if (a < b)
 	// 	std::cout << "a smaller than b" << std::endl;
 	// if (a > b)

@@ -18,9 +18,8 @@ Fixed::Fixed(const Fixed& src)
 }
 
 // The copy assignment operator takes a constant reference to
-//another object of the same class
-// If they are the same, there's no need to proceed with the assignment, 
-//  deallocate any existing resources, allocate and copy the data members from the other
+// another object of the same class
+// If they are the same, there's no need to proceed with the assignment. 
 Fixed& Fixed::operator=(const Fixed& src)
 {
 	std::cout << "Copy assignment operator called" << std::endl;

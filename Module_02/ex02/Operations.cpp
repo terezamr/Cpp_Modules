@@ -1,4 +1,5 @@
 #include "Fixed.hpp"
+
 // + - * /
 Fixed Fixed::operator+(Fixed const &a)
 {
@@ -48,7 +49,6 @@ Fixed Fixed::operator--(int nb)
 }
 
 // > < >= <= == !=
-
 bool    Fixed::operator>(const Fixed &rhs) const {
     return (this->getRawBits() > rhs.getRawBits());
 }

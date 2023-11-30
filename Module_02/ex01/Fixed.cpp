@@ -9,15 +9,13 @@ Fixed::Fixed()
 Fixed::Fixed(const int nb)
 {
 	std::cout << "Int constructor called" << std::endl;
-	int value;
-	value = nb << this->Bits;
+	this->setRawBits(nb << this->Bits);
 }
 
 Fixed::Fixed(const float nb)
 {
 	std::cout << "Float constructor called" << std::endl;
-	float value_f;
-	value_f = nb * ((double)(1 << this->Bits));
+	this->setRawBits(roundf(nb * ((1 << this->Bits))));
 }
 
 Fixed::Fixed(const Fixed& src)
@@ -55,12 +53,12 @@ void	Fixed::setRawBits(int const raw)
 // Converts fixed-point rep. into a floating-point rep.
 float   Fixed::toFloat(void) const
 {
-    return (float)(this->getRawBits()) / (1 << Bits);
+    return (float)(this->getRawBits()) / (1 << this->Bits);
 }
 
 // Converts fixed-point rep. into an integer rep.
-int     Fixed::toInt( void ) const {
-    return (this->getRawBits() >> Bits);
+int     Fixed::toInt(void) const {
+    return (this->getRawBits() >> this->Bits);
 }
 
 // Defines how an object of the Fixed class should be formatted when printed

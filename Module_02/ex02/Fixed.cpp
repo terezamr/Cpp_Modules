@@ -16,7 +16,7 @@ Fixed::Fixed(const int nb)
 Fixed::Fixed(const float nb)
 {
 	//std::cout << "Float constructor called" << std::endl;
-	setRawBits(nb * ((double)(1 << this->Bits)));
+	setRawBits(roundf(nb * ((double)(1 << this->Bits))));
 }
 
 Fixed::Fixed(const Fixed& src)
