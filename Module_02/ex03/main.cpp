@@ -1,15 +1,13 @@
 #include "Point.hpp"
 
-// problema : vetores perpendiculares
 int	main(void)
 {
 	Point const a;
-	Point const b(15,0);
-	Point const c(-1,15);
-	Point const d(1,1);
+	Point const b(-20,0);
+	Point const c(5,20);
+	Point const d(-4,4);
 
 	bool question = bsp(a, b, c, d);
-	std::cout << "final " << question << std::endl;
 	if (question == 1)
 		std::cout << "true" << std::endl;
 	else
