@@ -1,45 +1,48 @@
 #include "FragTrap.hpp"
 
+FragTrap::FragTrap() : ClapTrap()
+{
+	std::cout << "FragTrap default created." << std::endl;
+	this->name = "default";
+	this->hitPoints = 100;
+	this->energyPoints = 100;
+	this->attackDamage = 30;
+}
+
 FragTrap::FragTrap(std::string str) : ClapTrap(str)
 {
-	this->setName(str);
-	this->setHitPoints(100);
-	this->setEnergyPoints(100);
-	this->setAttackDamage(30);
-	std::cout << "Frag "<< this->getName() << " constructor called" << std::endl;
+	std::cout << "FragTrap " << str << " created." << std::endl;
+	this->name = str;
+	this->hitPoints = 100;
+	this->energyPoints = 50;
+	this->attackDamage = 20;
 }
 
 FragTrap::~FragTrap()
 {
-    std::cout << "Frag " << this->getName() << " Destructor called" << std::endl;
+    std::cout << "FragTrap " << this->name << " destroyed." << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap& src) : ClapTrap(src)
+FragTrap::FragTrap(const FragTrap& src) : ClapTrap()
 {
-	std::cout << "Frag Copy constructor called" << std::endl;
 	*this = src;
+	std::cout << "FragTrap " << this->name << " copied." << std::endl;
 }
 
 FragTrap& FragTrap::operator=(const FragTrap& src)
 {
-	std::cout << "Frag Copy assignment operator called" << std::endl;
-	if (this == &src)
-		return *this;
+	std::cout << "FragTrap copy assignment operator called" << std::endl;
+	if (this != &src)
+	{
+		this->name = src.name;
+		this->hitPoints = src.hitPoints;
+		this->energyPoints = src.energyPoints;
+		this->attackDamage = src.attackDamage;
+	}
 	return *this;
 }
 
 void	FragTrap::highFivesGuys()
 {
-	std::cout << "Frag " << this->getName() << " requests an high five" << std::endl;
-}
-
-void	FragTrap::attack(const std::string &target)
-{
-	if (this->getEnergyPoints() == 0 || this->getHitPoints() == 0)
-	{
-		std::cout << this->getName() << " has no energy left" <<std::endl;
-		return;
-	}
-	std::cout << "Frag " << this->getName() << " attacks " << target << ", causing " << this->getAttackDamage() << " points of damage! " << std::endl;
-	this->setEnergyPoints(getEnergyPoints() - 1);
+	std::cout << "FragTrap " << this->name << " requests an high five."<< std::endl;
 }

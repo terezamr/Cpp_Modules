@@ -8,9 +8,9 @@ int	main(void)
 	Point const d(-4,4);
 
 	bool question = bsp(a, b, c, d);
-	if (question == 1)
-		std::cout << "true" << std::endl;
+	if (question == true)
+		std::cout << "Point is in the triangle" << std::endl;
 	else
-		std::cout << "false" << std::endl;
+		std::cout << "Point isn't in the triangle" << std::endl;
 	return 0;
 }

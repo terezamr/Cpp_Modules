@@ -1,5 +1,5 @@
-#ifndef CLAPTRAP_HPP
-#define CLAPTRAP_HPP
+#ifndef CLAPTRAP_H
+#define CLAPTRAP_H
 
 #include <iostream>
 #include <string>
@@ -8,30 +8,28 @@
 #include <cmath>
 
 class ClapTrap {
-	private:
+	protected:
 		std::string	name;
 		int			hitPoints;
 		int			energyPoints;
 		int			attackDamage;
 	public:
+		ClapTrap();
 		ClapTrap(std::string str);
-    	~ClapTrap();
 		ClapTrap(const ClapTrap& src);
+    	~ClapTrap();
+		ClapTrap& operator=(const ClapTrap& src);
 
 		std::string	getName();
-		int		getHitPoints();
-		int		getEnergyPoints();
-		int		getAttackDamage();
-		void	setHitPoints(int nb);
-		void	setEnergyPoints(int nb);
-		void	setAttackDamage(int nb);
-		void	setName(std::string str);
+		int			getHitPoints();
+		int			getEnergyPoints();
+		int			getAttackDamage();
+		void		setHitPoints(int nb);
+		void		setEnergyPoints(int nb);
 
-		void	attack(const std::string &target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
-		
-		ClapTrap& operator=(const ClapTrap& src);	
+		void		attack(const std::string &target);
+		void		takeDamage(unsigned int amount);
+		void		beRepaired(unsigned int amount);
 };
 
 #endif

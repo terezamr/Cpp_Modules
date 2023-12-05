@@ -1,46 +1,59 @@
 #include "ScavTrap.hpp"
 
+ScavTrap::ScavTrap() : ClapTrap()
+{
+	std::cout << "ScavTrap default created." << std::endl;
+	this->name = "default";
+	this->hitPoints = 100;
+	this->energyPoints = 50;
+	this->attackDamage = 20;
+}
+
 ScavTrap::ScavTrap(std::string str) : ClapTrap(str)
 {
-	this->setName(str);
-	this->setHitPoints(100);
-	this->setEnergyPoints(4);
-	this->setAttackDamage(20);
-	std::cout << "Scav "<< this->getName() << " constructor called" << std::endl;
+	std::cout << "ScavTrap " << str << " created." << std::endl;
+	this->name = str;
+	this->hitPoints = 100;
+	this->energyPoints = 50;
+	this->attackDamage = 20;
 }
 
 ScavTrap::~ScavTrap()
 {
-    std::cout << "Scav " << this->getName() << " Destructor called" << std::endl;
+    std::cout << "ScavTrap " << this->name << " destroyed." << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& src) : ClapTrap(src)
+ScavTrap::ScavTrap(const ScavTrap& src) : ClapTrap()
 {
-	std::cout << "Scav Copy constructor called" << std::endl;
 	*this = src;
+	std::cout << "ScavTrap " << this->name << " copied." << std::endl;
 }
 
 ScavTrap& ScavTrap::operator=(const ScavTrap& src)
 {
-	std::cout << "Scav Copy assignment operator called" << std::endl;
-	if (this == &src)
-		return *this;
+	std::cout << "ScavTrap copy assignment operator called" << std::endl;
+	if (this != &src)
+	{
+		this->name = src.name;
+		this->hitPoints = src.hitPoints;
+		this->energyPoints = src.energyPoints;
+		this->attackDamage = src.attackDamage;
+	}
 	return *this;
 }
 
 void	ScavTrap::guardGate()
 {
-	std::cout << "Scav " << this->getName() << " is in Gate keeper mode. " << std::endl;
+	std::cout << "ScavTrap " << this->name << " is in gate keeper mode."<< std::endl;
 }
 
 void	ScavTrap::attack(const std::string &target)
 {
-	if (this->getEnergyPoints() == 0 || this->getHitPoints() == 0)
+	if (this->getEnergyPoints() <= 0)
 	{
-		std::cout << this->getName() << " has no energy left" <<std::endl;
+		std::cout << "ScavTrap " << this->getName() << " has no energy points left." <<std::endl;
 		return;
 	}
-	std::cout << "Scav " << this->getName() << " attacks " << target << ", causing " << this->getAttackDamage() << " points of damage! " << std::endl;
-	
+	std::cout << "ScavTrap " << this->getName() << " attacks " << target << ", causing " << this->getAttackDamage() << " points of damage! " << std::endl;
 	this->setEnergyPoints(getEnergyPoints() - 1);
 }

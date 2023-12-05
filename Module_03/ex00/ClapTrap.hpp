@@ -14,9 +14,10 @@ class ClapTrap {
 		int			energyPoints;
 		int			attackDamage;
 	public:
+		ClapTrap();
 		ClapTrap(std::string str);
-    	~ClapTrap();
 		ClapTrap(const ClapTrap& src);
+    	~ClapTrap();
 
 		std::string	getName();
 		int		getHitPoints();

@@ -1,20 +1,34 @@
 #include "ScavTrap.hpp"
 
-//take damage n esta a funcionar, ver se e preciso
 int main()
 {
-	ScavTrap a("maria");
-	ScavTrap b("joao");
+	std::cout << "-----Clap-----" << std::endl;
+	ClapTrap c;
+	ClapTrap a("a");
+	ClapTrap b("b");
+	std::cout << "\n";
 
-	a.attack("joao");
+	a.attack("b");
 	b.takeDamage(a.getAttackDamage());
-	a.attack("joao");
+	a.attack("b");
 	b.takeDamage(a.getAttackDamage());
-	a.attack("joao");
+	a.attack("b");
 	b.takeDamage(a.getAttackDamage());
-	a.attack("joao");
-	b.takeDamage(a.getAttackDamage());
-	a.attack("joao");
-	b.takeDamage(a.getAttackDamage());
-	a.guardGate();
+	b.beRepaired(2);
+	std::cout << "\n-----Scav-----" << std::endl;
+
+
+	ScavTrap d;
+	ScavTrap e("e");
+	ScavTrap f("f");
+	std::cout << "\n";
+
+	e.attack("f");
+	f.takeDamage(e.getAttackDamage());
+	e.attack("f");
+	f.takeDamage(e.getAttackDamage());
+	e.attack("f");
+	f.takeDamage(e.getAttackDamage());
+	f.beRepaired(2);
+	std::cout << "\n\n-----Dest-----" << std::endl;
 }
