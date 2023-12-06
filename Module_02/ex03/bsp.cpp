@@ -20,6 +20,8 @@ bool bsp(Point const a, Point const b, Point const c, Point const point)
 	A1 = cross_product(a, b, point) / 2;
 	A2 = cross_product(a, point, c) / 2;
 	A3 = cross_product(point, b, c) / 2;
+	if (A1 == 0 || A2 == 0 || A3 == 0)
+		return false;
 	if (A1 + A2 + A3 == A)
 		return true;
 	return (false);
