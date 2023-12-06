@@ -6,7 +6,7 @@ ClapTrap::ClapTrap()
 	this->name = "default";
 	this->hitPoints = 10;
 	this->energyPoints = 10;
-	this->attackDamage = 5;
+	this->attackDamage = 0;
 }
 
 ClapTrap::ClapTrap(std::string str)
@@ -15,7 +15,7 @@ ClapTrap::ClapTrap(std::string str)
 	this->name = str;
 	this->hitPoints = 10;
 	this->energyPoints = 10;
-	this->attackDamage = 5;
+	this->attackDamage = 0;
 }
 
 ClapTrap::~ClapTrap()
@@ -74,9 +74,14 @@ void	ClapTrap::setEnergyPoints(int nb)
 
 void	ClapTrap::attack(const std::string &target)
 {
-	if (this->getEnergyPoints() <= 0 || this->getHitPoints() <= 0)
+	if (this->getEnergyPoints() <= 0)
 	{
-		std::cout << "Claptrap " << this->getName() << " has no energy or hit points left." << std::endl;
+		std::cout << "Claptrap " << this->getName() << " has no energy points left." << std::endl;
+		return;
+	}
+	if (this->getHitPoints() <= 0)
+	{
+		std::cout << "Claptrap " << this->getName() << " has no hit points left." << std::endl;
 		return;
 	}
 	std::cout << "Claptrap " << this->getName() << " attacks " << target << ", causing " << this->getAttackDamage() << " points of damage! " << std::endl;

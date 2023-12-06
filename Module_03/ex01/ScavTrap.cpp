@@ -3,7 +3,6 @@
 ScavTrap::ScavTrap() : ClapTrap()
 {
 	std::cout << "ScavTrap default created." << std::endl;
-	this->name = "default";
 	this->hitPoints = 100;
 	this->energyPoints = 50;
 	this->attackDamage = 20;
@@ -12,7 +11,6 @@ ScavTrap::ScavTrap() : ClapTrap()
 ScavTrap::ScavTrap(std::string str) : ClapTrap(str)
 {
 	std::cout << "ScavTrap " << str << " created." << std::endl;
-	this->name = str;
 	this->hitPoints = 100;
 	this->energyPoints = 50;
 	this->attackDamage = 20;
@@ -52,6 +50,11 @@ void	ScavTrap::attack(const std::string &target)
 	if (this->getEnergyPoints() <= 0)
 	{
 		std::cout << "ScavTrap " << this->getName() << " has no energy points left." <<std::endl;
+		return;
+	}
+	if (this->getHitPoints() <= 0)
+	{
+		std::cout << "ScavTrap " << this->getName() << " has no hit points left." << std::endl;
 		return;
 	}
 	std::cout << "ScavTrap " << this->getName() << " attacks " << target << ", causing " << this->getAttackDamage() << " points of damage! " << std::endl;
