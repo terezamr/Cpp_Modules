@@ -2,7 +2,6 @@
 
 Point::Point()
 {
-	//std::cout << "Default constructor called" << std::endl;
 	(Fixed) x = 0;
 	(Fixed) y = 0;
 }
