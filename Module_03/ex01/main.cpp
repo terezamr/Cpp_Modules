@@ -17,18 +17,21 @@ int main()
 	// b.beRepaired(2);
 	std::cout << "\n-----Scav-----" << std::endl;
 
-
 	ScavTrap d;
 	ScavTrap e("e");
 	ScavTrap f("f");
 	std::cout << "\n";
 
-	e.attack("f");
-	f.takeDamage(e.getAttackDamage());
-	e.attack("f");
-	f.takeDamage(e.getAttackDamage());
-	e.attack("f");
-	f.takeDamage(e.getAttackDamage());
-	f.beRepaired(2);
+	for (int i = 0; i <= 50; i++)
+	{
+		std::cout << i << std::endl;
+		e.attack("f");
+		f.takeDamage(e.getAttackDamage());
+	}
+	std::cout << "\n";
+	f.attack("e");
+	f.beRepaired(10);
+	f.attack("e");
+	f.guardGate();
 	std::cout << "\n\n-----Dest-----" << std::endl;
 }
