@@ -1,0 +1,23 @@
+NAME = animal
+
+CC = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+
+RM = rm -rf
+
+SRC = main.cpp Animal.cpp
+
+OBJS = $(SRC:.cpp=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+		 $(CC) $(OBJS) $(CXXFLAGS) -o $(NAME)
+
+clean:
+		$(RM) $(OBJS)
+	
+fclean:	clean
+		$(RM) $(NAME)
+
+re:	fclean all
