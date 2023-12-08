@@ -18,19 +18,13 @@ class ClapTrap {
 		ClapTrap(std::string str);
 		ClapTrap(const ClapTrap& src);
     	~ClapTrap();
-
-		std::string	getName();
-		int		getHitPoints();
-		int		getEnergyPoints();
-		int		getAttackDamage();
-		void	setHitPoints(int nb);
-		void	setEnergyPoints(int nb);
-
-		void		attack(const std::string &target);
-		void		takeDamage(unsigned int amount);
-		void		beRepaired(unsigned int amount);
-		
 		ClapTrap& operator=(const ClapTrap& src);	
+
+		int		getAttackDamage();
+
+		void	attack(const std::string &target);
+		void	takeDamage(unsigned int amount);
+		void	eRepaired(unsigned int amount);
 };
 
 #endif
