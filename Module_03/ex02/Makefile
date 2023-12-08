@@ -1,7 +1,7 @@
 NAME = frag
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm -rf
 
@@ -12,7 +12,7 @@ OBJS = $(SRC:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-		 $(CC) $(OBJS) $(CFLAGS) -o $(NAME)
+		 $(CC) $(OBJS) $(CXXFLAGS) -o $(NAME)
 
 clean:
 		$(RM) $(OBJS)
