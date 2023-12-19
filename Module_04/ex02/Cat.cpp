@@ -4,14 +4,16 @@ Cat::Cat()
 {
     std::cout << "Cat was created." << std::endl;
     this->type = "Cat";
+    this->br = new Brain;
 }
 
 Cat::~Cat()
 {
     std::cout << "Cat was destroyed." << std::endl;
+    delete this->br;
 }
 
-Cat::Cat(const Cat& src) : Animal(src)
+Cat::Cat(const Cat& src) : Aanimal(src)
 {
     std::cout << "Cat copied." << std::endl;
     *this = src;

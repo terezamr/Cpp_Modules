@@ -1,14 +1,17 @@
 #include "Dog.hpp"
+#include "Brain.hpp"
 
 Dog::Dog()
 {
     std::cout << "Dog was created." << std::endl;
     this->type = "Dog";
+    this->br = new Brain;
 }
 
 Dog::~Dog()
 {
     std::cout << "Dog was destroyed." << std::endl;
+    delete this->br;
 }
 
 Dog::Dog(const Dog& src) : Animal(src)
