@@ -11,7 +11,7 @@ int main()
     std::cout << i->getType() << std::endl;
     std::cout << j->getType() << std::endl;
     meta->makeSound();
-    i->makeSound(); //will output the cat sound!
+    i->makeSound();
     j->makeSound();
 
     std::cout << "\nWrong" << std::endl;
@@ -20,4 +20,7 @@ int main()
     h->makeSound();
 
     delete h;
+    delete meta;
+    delete i;
+    return 0;
 }

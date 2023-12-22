@@ -17,7 +17,7 @@ Dog::~Dog()
 Dog::Dog(const Dog& src) : Animal(src)
 {
     std::cout << "Dog copied." << std::endl;
-    *this = src;
+    this->type = src.type;
 }
 
 Dog& Dog::operator=(const Dog& src)

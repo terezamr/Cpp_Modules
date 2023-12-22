@@ -14,7 +14,7 @@ Cat::~Cat()
 Cat::Cat(const Cat& src) : Animal(src)
 {
     std::cout << "Cat copied." << std::endl;
-    *this = src;
+    this->type = src.type;
 }
 
 Cat& Cat::operator=(const Cat& src)

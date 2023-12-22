@@ -14,7 +14,7 @@ WrongCat::~WrongCat()
 WrongCat::WrongCat(const WrongCat& src) : WrongAnimal(src)
 {
     std::cout << "WrongCat copied." << std::endl;
-    *this = src;
+    this->type = src.type;
 }
 
 WrongCat& WrongCat::operator=(const WrongCat& src)
