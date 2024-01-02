@@ -3,28 +3,32 @@
 
 Dog::Dog()
 {
-    std::cout << "Dog was created." << std::endl;
     this->type = "Dog";
     this->br = new Brain;
+    std::cout << "Dog was created." << std::endl;
 }
 
 Dog::~Dog()
 {
-    std::cout << "Dog was destroyed." << std::endl;
     delete this->br;
+    std::cout << "Dog was destroyed." << std::endl;
 }
 
 Dog::Dog(const Dog& src) : Animal(src)
 {
-    std::cout << "Dog copied." << std::endl;
     this->type = src.type;
+    this->br = src.br;
+    std::cout << "Dog copied." << std::endl;
 }
 
 Dog& Dog::operator=(const Dog& src)
 {
-    std::cout << "Dog copied assigment." << std::endl;
     if (this != &src)
+    {
         this->type = src.type;
+        this->br = src.br;
+    }
+    std::cout << "Dog copied assigment." << std::endl;
     return (*this);
 }
 

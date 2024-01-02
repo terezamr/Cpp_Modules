@@ -3,7 +3,7 @@
 
 int main()
 {
-    int n = 6;
+    int n = 2;
     Animal* list[n];
     int i = 0;
     while (i < n / 2)

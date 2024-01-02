@@ -21,5 +21,6 @@ int main()
     delete h;
     delete meta;
     delete i;
+    delete j;
     return 0;
 }
