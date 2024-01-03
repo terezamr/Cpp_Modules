@@ -12,7 +12,7 @@ class Cat : public Animal
 		Cat& operator=(const Cat& src);
 
         std::string getType() const;
-        void makeSound() const;
+        void        makeSound() const;
 };
 
 #endif
