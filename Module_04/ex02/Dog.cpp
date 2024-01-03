@@ -18,13 +18,18 @@ Dog::Dog(const Dog& src)
 {
     std::cout << "Dog copied." << std::endl;
     this->type = src.type;
+    this->br = src.br;
 }
 
 Dog& Dog::operator=(const Dog& src)
 {
     std::cout << "Dog copied assigment." << std::endl;
     if (this != &src)
+    {
         this->type = src.type;
+        delete this->br;
+        this->br = new Brain(*src.br);
+    }
     return (*this);
 }
 

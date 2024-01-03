@@ -3,21 +3,21 @@
 
 int main()
 {
-    int n = 6;
-    Aanimal* list[n];
-    int i = 0;
-    while (i < n / 2)
-    {
-        list[i] = new Dog;
-        i++;
-    }
+    // Aanimal x;
+
+    Aanimal* a;
+    a = new Dog;
+    a->makeSound();
+
     std::cout << std::endl;
-    while (i < n)
-    {
-        list[i] = new Cat;
-        i++;
-    }
+
+    Aanimal* b;
+    b = new Cat;
+    b->makeSound();
+
     std::cout << std::endl;
-    for (int f = 0; f < n; f++)
-        delete list[f];
+    delete a;
+    std::cout << std::endl;
+    delete b;
+    std::cout << std::endl;
 }
