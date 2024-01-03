@@ -11,7 +11,7 @@ class Aanimal
         std::string type;
         Aanimal();
     public:
-        ~Aanimal();
+        virtual ~Aanimal();
         Aanimal(const Aanimal& src);
 		Aanimal& operator=(const Aanimal& src);
 

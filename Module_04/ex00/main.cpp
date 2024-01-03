@@ -18,9 +18,11 @@ int main()
     std::cout << std::endl << h->getType() << std::endl;
     h->makeSound();
 
+    std::cout << std::endl;
     delete h;
     delete meta;
     delete i;
     delete j;
+    std::cout << std::endl;
     return 0;
 }

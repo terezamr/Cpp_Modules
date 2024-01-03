@@ -14,7 +14,7 @@ Dog::~Dog()
     std::cout << "Dog was destroyed." << std::endl;
 }
 
-Dog::Dog(const Dog& src) : Animal(src)
+Dog::Dog(const Dog& src)
 {
     this->type = src.type;
     this->br = src.br;
@@ -26,7 +26,8 @@ Dog& Dog::operator=(const Dog& src)
     if (this != &src)
     {
         this->type = src.type;
-        this->br = src.br;
+        delete this->br;
+        this->br = new Brain(*src.br);
     }
     std::cout << "Dog copied assigment." << std::endl;
     return (*this);

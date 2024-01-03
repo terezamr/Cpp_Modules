@@ -13,7 +13,7 @@ Cat::~Cat()
     std::cout << "Cat was destroyed." << std::endl;
 }
 
-Cat::Cat(const Cat& src) : Animal(src)
+Cat::Cat(const Cat& src)
 {
     this->type = src.type;
     this->br = src.br;
