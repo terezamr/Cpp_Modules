@@ -18,7 +18,7 @@ Dog::Dog(const Dog& src)
 {
     std::cout << "Dog copied." << std::endl;
     this->type = src.type;
-    this->br = src.br;
+    this->br = new Brain(*src.br);
 }
 
 Dog& Dog::operator=(const Dog& src)

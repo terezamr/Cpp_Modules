@@ -4,6 +4,8 @@
 
 int main()
 {
+    //Animal x;
+
     const Animal* meta = new Animal();
     std::cout << "type: " << meta->getType() << std::endl;
     meta->makeSound();

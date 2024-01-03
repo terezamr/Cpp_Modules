@@ -20,4 +20,7 @@ int main()
     std::cout << std::endl;
     for (int f = 0; f < n; f++)
         delete list[f];
+
+    // Cat c;
+    // Cat d = c;
 }

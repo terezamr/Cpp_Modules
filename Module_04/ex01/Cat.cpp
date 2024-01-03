@@ -16,7 +16,7 @@ Cat::~Cat()
 Cat::Cat(const Cat& src)
 {
     this->type = src.type;
-    this->br = src.br;
+    this->br = new Brain(*src.br);
     std::cout << "Cat copied." << std::endl;
 }
 
@@ -25,7 +25,8 @@ Cat& Cat::operator=(const Cat& src)
     if (this != &src)
     {
         this->type = src.type;
-        this->br = src.br;
+        delete this->br;
+        this->br = new Brain(*src.br);
     }
     std::cout << "Cat copied assigment." << std::endl;
     return (*this);

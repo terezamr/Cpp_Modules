@@ -11,7 +11,7 @@ class WrongAnimal
         std::string type;
     public:
         WrongAnimal();
-        ~WrongAnimal();
+        virtual ~WrongAnimal();
         WrongAnimal(const WrongAnimal& src);
 		WrongAnimal& operator=(const WrongAnimal& src);
 

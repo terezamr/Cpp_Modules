@@ -17,7 +17,7 @@ Cat::Cat(const Cat& src)
 {
     std::cout << "Cat copied." << std::endl;
     this->type = src.type;
-    this->br = src.br;
+    this->br = new Brain(*src.br);
 }
 
 Cat& Cat::operator=(const Cat& src)
