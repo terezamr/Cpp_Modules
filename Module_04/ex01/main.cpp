@@ -21,6 +21,7 @@ int main()
     for (int f = 0; f < n; f++)
         delete list[f];
 
+    // std::cout << std::endl;
     // Cat c;
     // Cat d = c;
 }

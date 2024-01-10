@@ -10,7 +10,7 @@ class Dog : public Animal
         Brain*  br;
     public:
         Dog();
-        ~Dog();
+        virtual ~Dog();
         Dog(const Dog& src);
 		Dog& operator=(const Dog& src);
 
