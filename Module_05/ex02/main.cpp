@@ -66,6 +66,8 @@ int main()
     ShrubberyCreationForm f4("alien");
     std::cout << f4;
     f4.beSigned(a);
+    std::cout << "------------" << std::endl;
+    std::cout << f4;
     try
     {
         a.executeForm(f4);

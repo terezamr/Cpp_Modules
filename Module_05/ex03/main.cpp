@@ -13,6 +13,7 @@ int main()
     AForm* b;
     AForm* c;
     a = someRandomIntern.makeForm("robotomy request", "Bender");
+    std::cout << *a;
     std::cout << "------------" << std::endl;
     try
     {

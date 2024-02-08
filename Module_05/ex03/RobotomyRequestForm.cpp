@@ -32,7 +32,10 @@ void    RobotomyRequestForm::execute(Bureaucrat const & executor) const
     std::cout << "Some driling noises" << std::endl;
     std::cout << this->getTarget() << " has been robotomized successfully 50% of the time. " << std::endl;
 
-    if (std::rand() % 2 == 0)
+    // random number - time in seconds
+    std::time_t result = std::time(nullptr);
+
+    if (result % 2 == 0)
         std::cout << "Robotomy was successful!" << std::endl;
     else
         std::cout << "Robotomy failed." << std::endl;
