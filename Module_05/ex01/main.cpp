@@ -1,21 +1,45 @@
+
 #include "Form.hpp"
 
-int main(void)
+int main()
 {
-    Form f1("f1", 30, 2);
-    std::cout << f1;
+    std::cout << "------------" << std::endl;
+    Form f1("f1", 20, 2);
+    std::cout << f1 << std::endl;
+
+    try
+    {
+        Form f2("f2", 0, 26);
+    }
+    catch(const std::exception& error)
+    {
+        std::cout << error.what() << std::endl;
+    }
+    std::cout << "------------" << std::endl;
+
+    Bureaucrat a("A", 5);
+    Bureaucrat b("B", 50);
+
+    try
+    {
+        f1.beSigned(a);
+    }
+    catch(const std::exception& error)
+    {
+        std::cout << error.what() << '\n';
+    }
+    a.signForm(f1.getName(), f1.getSignGrade());
     std::cout << std::endl;
 
-    Form f2("f2", 3, 2);
-    std::cout << f1;
-    std::cout << std::endl;
-
-    Bureaucrat b("bu", 5);
-    f1.beSigned(b);
-    b.signForm(f1.getName(), f1.getSign());
-
-    std::cout << std::endl;
-
-    f2.beSigned(b);
-    b.signForm(f2.getName(), f2.getSign());
+    try
+    {
+        f1.beSigned(b);
+    }
+    catch(const std::exception& error)
+    {
+        std::cout << error.what() << '\n';
+    }
+    b.signForm(f1.getName(), f1.getSignGrade());
+    std::cout << "------------" << std::endl;
+    return (0);
 }

@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(const std::string str, int number) : name(str), grade (number)
 {
@@ -26,12 +27,12 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs)
     return *this;
 }
 
-const std::string   Bureaucrat::getName()
+std::string   Bureaucrat::getName() const
 {
     return (this->name);
 }
 
-int Bureaucrat::getGrade()
+int   Bureaucrat::getGrade() const
 {
     return (this->grade);
 }
@@ -52,7 +53,29 @@ void    Bureaucrat::decrementGrade()
         throw(GradeTooLowException());
 }
 
-std::ostream & operator<<(std::ostream & o, Bureaucrat b) {
+void    Bureaucrat::signForm(const std::string str, const int sg)
+{
+    if (this->grade <= sg)
+        std::cout << this->getName() << " signed " << str << std::endl;
+    else
+        std::cout << this->getName() << " couldnt sign " << str << " because the grade was too low." << std::endl;
+}
+
+std::ostream & operator<<(std::ostream & o, Bureaucrat &b) {
    std::cout << b.getName() << ", bureaucrat grade " << b.getGrade() << std::endl;
    return o;
 }
+
+void    Bureaucrat::executeForm(AForm const & form)
+{
+    try
+    {
+        form.check_execution(*this);
+        std::cout << this->getName() << " executed " << form.getName() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << this->getName() << " couldnt execute " << form.getName() << " because " << e.what() << std::endl;
+    }
+}
+ 

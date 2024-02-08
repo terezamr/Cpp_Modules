@@ -6,6 +6,8 @@
 #include <cstring>
 #include <iomanip>
 
+class AForm;
+
 class Bureaucrat {
     private:
         const std::string   name;
@@ -16,12 +18,15 @@ class Bureaucrat {
         Bureaucrat(const Bureaucrat& src);
         Bureaucrat& operator=(const Bureaucrat& rhs);
         
-        const std::string   getName();
-        int                 getGrade();
+        std::string   getName() const;
+        int           getGrade() const;
 
-        void                incrementGrade();
-        void                decrementGrade();
-        
+        void          incrementGrade();
+        void          decrementGrade();
+
+        void          signForm(const std::string str, const int sg);
+        void          executeForm(AForm const & form);
+
         // Exception Classes
         class GradeTooHighException : public std::exception
         {
@@ -34,9 +39,8 @@ class Bureaucrat {
         public:
             virtual const char* what() const throw() {return "Grade too low";}
         };
-        
 };
 
-std::ostream & operator<<(std::ostream & o, Bureaucrat b);
+std::ostream & operator<<(std::ostream & o, Bureaucrat &b);
 
 #endif

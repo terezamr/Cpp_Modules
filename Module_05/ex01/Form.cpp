@@ -1,9 +1,30 @@
 #include "Form.hpp"
 
-Form::Form(const std::string str, const int g1, const int g2) : name(str), sign_grade(g1), execute_grade(g2)
+Form::Form(const std::string str, const int sg, const int eg) : name(str), sign_grade(sg), execute_grade(eg)
 {
-    std::cout << "Form was created." << std::endl;
-    this->sign = false;
+    //std::cout << "Form created." << std::endl;
+    if (sg < 1 || eg < 1)
+        throw(GradeTooHighException());
+    else if (sg > 150 || eg > 150)
+        throw(GradeTooLowException());
+    this->sign = 0; 
+}
+
+Form::Form(const Form& src) : name(src.name), sign_grade(src.sign_grade), execute_grade(src.execute_grade)
+{
+    //std::cout << "Copy assigment." << std::endl;
+}
+
+Form::~Form()
+{
+    //std::cout << "Form destroyed." << std::endl;
+}
+
+Form& Form::operator=(const Form& rhs)
+{
+    if (this != &rhs)
+        this->sign = rhs.sign;
+    return *this;
 }
 
 const std::string   Form::getName()
@@ -11,29 +32,19 @@ const std::string   Form::getName()
     return (this->name);
 }
 
-bool   Form::getSign()
+bool    Form::getSign()
 {
     return (this->sign);
 }
 
-const int   Form::getSignGrade()
+const int Form::getSignGrade()
 {
     return (this->sign_grade);
 }
 
-const int   Form::getExecuteGrade()
+const int Form::getExecuteGrade()
 {
     return (this->execute_grade);
-}
-
-void    Form::GradeTooLowException()
-{
-    std::cout << "Grade too low" << std::endl;
-}
-
-void    Form::GradeTooHighException()
-{
-    std::cout << "Grade too high" << std::endl;
 }
 
 void    Form::beSigned(Bureaucrat b)
@@ -41,13 +52,13 @@ void    Form::beSigned(Bureaucrat b)
     if (b.getGrade() <= this->sign_grade)
         this->sign = 1;
     else
-        Form::GradeTooLowException();
+        throw(GradeTooLowException());
 }
 
-std::ostream & operator<<(std::ostream & o, Form f) {
+std::ostream & operator<<(std::ostream & o, Form &f) {
    std::cout << "Form name: " << f.getName();
-   std::cout << "; signed: " << f.getSign();
-   std::cout << "; sign grade: " << f.getSignGrade();
-   std::cout << "; execute grade: " << f.getExecuteGrade() << "." << std::endl;
+   std::cout << "\nsigned: " << f.getSign();
+   std::cout << "\nsign grade: " << f.getSignGrade();
+   std::cout << "\nexecute grade: " << f.getExecuteGrade() << std::endl;
    return o;
 }
