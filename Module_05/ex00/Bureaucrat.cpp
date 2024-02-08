@@ -1,6 +1,6 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(const std::string str, int number) : name(str), grade (number)
+Bureaucrat::Bureaucrat(const std::string str, int number) : name(str), grade(number)
 {
     //std::cout << "Bureaucrat created." << std::endl;
     if (number < 1)

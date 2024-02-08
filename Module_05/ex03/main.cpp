@@ -25,5 +25,8 @@ int main()
         std::cout << e.what() << '\n';
     }
     std::cout << "------------" << std::endl;
+
+    delete a;
+    delete b;
     return (0);
 }

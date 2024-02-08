@@ -12,85 +12,79 @@ int main()
     Bureaucrat              b("B", 100);
     try
     {
-        f1.execute(b);
+        b.executeForm(f1);
     }
     catch(const std::exception& error)
     {
         std::cout << error.what() << std::endl;
     }
-    b.executeForm(f1);
     std::cout << "------------" << std::endl;
 
     f1.beSigned(a);
     try
     {
-        f1.execute(a);
+        a.executeForm(f1);
     }
     catch(const std::exception& error)
     {
         std::cout << error.what() << std::endl;
     }
-    a.executeForm(f1);
     std::cout << "------------" << std::endl;
 
     try
     {
-        f1.execute(b);
+        b.executeForm(f1);
     }
     catch(const std::exception& error)
     {
         std::cout << error.what() << std::endl;
     }
-    b.executeForm(f1);
     std::cout << "------------" << std::endl;
 
     RobotomyRequestForm  f3("car");
     f3.beSigned(a);
     try
     {
-        f3.execute(b);
+        b.executeForm(f3);
     }
     catch(const std::exception& error)
     {
         std::cout << error.what() << std::endl;
     }
-    b.executeForm(f3);
     std::cout << "------------" << std::endl;
 
     try
     {
-        f3.execute(a);
+        a.executeForm(f3);
     }
     catch(const std::exception& error)
     {
         std::cout << error.what() << std::endl;
     }
-    a.executeForm(f3);
     std::cout << "------------" << std::endl;
 
-    ShrubberyCreationForm f4("boat");
+    ShrubberyCreationForm f4("alien");
+    std::cout << f4;
     f4.beSigned(a);
     try
     {
-        f4.execute(a);
+        a.executeForm(f4);
     }
     catch(const std::exception& error)
     {
         std::cout << error.what() << std::endl;
     }
-    a.executeForm(f4);
     std::cout << "------------" << std::endl;
 
     Bureaucrat c("C", 140);
     try
     {
-        f4.execute(c);
+        c.executeForm(f4);
     }
     catch(const std::exception& error)
     {
         std::cout << error.what() << std::endl;
     }
-    c.executeForm(f4);
     std::cout << "------------" << std::endl;
     return (0);
 }

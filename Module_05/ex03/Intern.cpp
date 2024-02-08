@@ -30,21 +30,24 @@ AForm*    Intern::createPres(std::string target)
 
 AForm*    Intern::createRobot(std::string target)
 {
-    return new PresidentialPardonForm(target);
+    return new RobotomyRequestForm(target);
 }
 
 AForm*    Intern::createShrub(std::string target)
 {
-    return new PresidentialPardonForm(target);
+    return new ShrubberyCreationForm(target);
 }
 
 AForm*    Intern::makeForm(std::string name, std::string target)
 {
+    // alias (different name for a data type) of a pointer for a function in the
+    // intern class
+    // (returns a pointer to form and has as argument a string)
     typedef AForm* (Intern::*FormFunctionPtr)(std::string);
 
     std::string names[] = {"presidential pardon", "robotomy request", "shruberry creation"};
     FormFunctionPtr functions[] = {&Intern::createPres, &Intern::createRobot, &Intern::createShrub};
-	//AForm* (Intern::*fc[3])() = {&Intern::createPres(target), &Intern::createRobot(target), &Intern::createShrub(target)};
+	
     int i = 0;
     while (i < 3 && name != names[i])
         i++;

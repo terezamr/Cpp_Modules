@@ -1,11 +1,11 @@
-NAME = aform
+NAME = intern
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 
 
 RM = rm -rf
 
-SRC = main.cpp Bureaucrat.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
+SRC = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
 
 OBJS = $(SRC:.cpp=.o)
 
