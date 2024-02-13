@@ -33,11 +33,10 @@ class ScalarConverter {
     private:
         ScalarConverter();
         ScalarConverter(const ScalarConverter &src);
+        ScalarConverter& operator=(const ScalarConverter& src);
     public:
         ~ScalarConverter();
-        ScalarConverter& operator=(const ScalarConverter& src);
-        
-        static void    convert(std::string str);
+        static void convert(std::string str);
 };
 
 #endif

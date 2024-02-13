@@ -1,9 +1,5 @@
 #include "ScalarConverter.hpp"
 
-// check: com caracter ? aparecer 63.0f e 63.0
-// nao pode ser inicilizado nenhum objeto da classe
-// check deixar construtores
-
 int main(int argc, char *argv[])
 {
     if (argc != 2)

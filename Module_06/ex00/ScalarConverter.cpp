@@ -102,7 +102,7 @@ bool    isSpecial(std::string str)
 // Printing functions
 void    printChar(std::string str, char c, int i)
 {
-    if (!c || (i < 33 || i > 126))
+    if (!c || (i < 32 || i > 126))
         std::cout << "Char: Non displayable" << std::endl;
     else
         std::cout << "Char: '" << c << "'" << std::endl;
@@ -110,9 +110,9 @@ void    printChar(std::string str, char c, int i)
 
 void    printI(std::string str, int i, float f, double d)
 {
-    if (isDouble(str) && (d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max()))
+    if (isDouble(str) && (d < -std::numeric_limits<int>::max() || d > std::numeric_limits<int>::max()))
         std::cout << "Int: inf" << std::endl;
-    else if (isFloat(str) && (f < std::numeric_limits<int>::min() || f > std::numeric_limits<int>::max()))
+    else if (isFloat(str) && (f < -std::numeric_limits<int>::max() || f > std::numeric_limits<int>::max()))
         std::cout << "Int: inf" << std::endl;
     else
         std::cout << "Int: " << i << std::endl;
@@ -123,13 +123,7 @@ void    printFloat(std::string str, float f, double d)
     int p = 0;
     int i = 0;
 
-    // if (str == "nanf" || str == "nan")
-    //     std::cout << "Float: nan" << std::endl;
-    // else if (str == "-inf" || str == "-inff")
-    //     std::cout << "Float: -inff" << std::endl; 
-    // else if (str == "+inf" || str == "+inff")
-    //     std::cout << "Float: +inff" << std::endl; 
-    if (isDouble(str) && (d < std::numeric_limits<float>::min() || d > std::numeric_limits<float>::max()))
+    if (isDouble(str) && (d < -std::numeric_limits<float>::max() || d > std::numeric_limits<float>::max()))
         std::cout << "Float: inf" << std::endl;
     else if (f - static_cast< int > (f) == 0)
         std::cout << "Float: " << f << ".0f" << std::endl;
@@ -142,12 +136,6 @@ void    printDouble(std::string str, double d)
     int p = 0;
     int i = 0;
 
-    // if (str == "nanf" || str == "nan")
-    //     std::cout << "Double: nan" << std::endl;
-    // else if (str == "-inf" || str == "-inff")
-    //     std::cout << "Double: -inf" << std::endl; 
-    // else if (str == "+inf" || str == "+inff")
-    //     std::cout << "Double: +inf" << std::endl; 
     if (d - static_cast< int > (d) == 0)
         std::cout << "Double: " << d << ".0" << std::endl;
     else
@@ -167,7 +155,7 @@ void    printSpecial(std::string str)
     std::cout << "Char: impossible" << std::endl;
     std::cout << "Int: impossible" << std::endl;
     if (str == "nanf" || str == "nan")
-        std::cout << "Float: nan" << std::endl;
+        std::cout << "Float: nanf" << std::endl;
     else if (str == "-inf" || str == "-inff")
         std::cout << "Float: -inff" << std::endl; 
     else if (str == "+inf" || str == "+inff")
