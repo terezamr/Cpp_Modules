@@ -1,21 +1,8 @@
 #include "ScalarConverter.hpp"
 
-// int check_str(char *str)
-// {
-//     if (!strcmp(str, "-inf") || !strcmp(str, "+inf") || !strcmp(str, "nan")
-//         || !strcmp(str, "-inff") || !strcmp(str, "+inff"))
-//         return (0);
-//     return (1);
-// }
-
-// void    IntConverter(char *str)
-// {
-//     int i = 0;
-//     while (str[i] >= '0' && str[i] <= '9')
-//         i++;
-//     std::strtol(str, nullptr, 10);
-//     std::cout << str << std::endl;
-// }
+// check: com caracter ? aparecer 63.0f e 63.0
+// nao pode ser inicilizado nenhum objeto da classe
+// check deixar construtores
 
 int main(int argc, char *argv[])
 {
@@ -24,7 +11,16 @@ int main(int argc, char *argv[])
         std::cout << "Wrong number of arguments.\n";
         return 0;
     }
-    ScalarConverter a(argv[1]);
-    a.convert();
+
+    //ScalarConverter a;
+    try
+    {
+        ScalarConverter::convert(argv[1]);
+    }
+    catch (std::exception &error)
+    {
+        std::cout << error.what() << std::endl;
+    }
+
     return 0;
 }

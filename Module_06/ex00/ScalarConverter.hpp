@@ -5,30 +5,39 @@
 #include <string>
 #include <cstring>
 #include <iomanip>
+#include <limits>
+
+// Check data type
+bool    isInt(std::string str);
+bool    isChar(std::string str);
+bool    isFloat(std::string str);
+bool    isDouble(std::string str);
+bool    isSpecial(std::string str);
+
+// Case functions
+void    caseInt(std::string str);
+void    caseChar(std::string str);
+void    caseFloat(std::string str);
+void    caseDouble(std::string str);
+
+// Printing functions
+void    printChar(std::string str, char c, int i);
+void    printI(std::string str, int i, float f, double d);
+void    printFloat(std::string str, float f, double d);
+void    printDouble(std::string str, double d);
+void    printValue(std::string str, int i, float f, double d, char c);
+void    printSpecial(std::string str);
+
 
 class ScalarConverter {
     private:
-        std::string name;
-        char        c;
-        int         i;
-        float       f;
-        double      d;
-    public:
-    // no need of an instance in order to use a static method 
-        ScalarConverter(void);
-        ScalarConverter(std::string str);
+        ScalarConverter();
         ScalarConverter(const ScalarConverter &src);
-        ~ScalarConverter(void);
+    public:
+        ~ScalarConverter();
         ScalarConverter& operator=(const ScalarConverter& src);
         
-        char    getC() const;
-        int     getI() const;
-        float   getF() const;
-        double  getD() const;
-
-        void    convert(void);
+        static void    convert(std::string str);
 };
-
-std::ostream & operator<<(std::ostream & o, ScalarConverter b);
 
 #endif
