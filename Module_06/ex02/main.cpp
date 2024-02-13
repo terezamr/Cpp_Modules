@@ -37,7 +37,9 @@ void    identify(Base* p)
 
 void    identify(Base& p)
 {
+    // if the cast fails with references, it throws an exception of type std::bad_cast rather than returning a null reference.
     std::cout << "Identify 2: ";
+
     try
     {
         A& a = dynamic_cast<A&>(p);

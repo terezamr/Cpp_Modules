@@ -10,7 +10,7 @@
 /*template <typename T>
 T max(T& a, T& b);*/
 
-template <typename T>
+template <class T>
 class Array {
     private:
         unsigned int    len;
@@ -18,6 +18,13 @@ class Array {
     public:
         Array(void);
         Array(unsigned int n);
+        T &operator [](int n);
+
+        class IndexNotValid : public std::exception
+        {
+        public:
+            virtual const char* what() const throw() {return "Index not valid.";}
+        };
 };
 
 #include "Array.tpp"
