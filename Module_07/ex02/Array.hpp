@@ -7,18 +7,21 @@
 #include <cstring>
 #include <iomanip>
 
-/*template <typename T>
-T max(T& a, T& b);*/
-
 template <class T>
 class Array {
     private:
         unsigned int    len;
         T               *arr;
     public:
-        Array(void);
+        Array();
+        ~Array();
         Array(unsigned int n);
+        Array(const Array& src);
+        Array&  operator=(const Array& src);
+
         T &operator [](int n);
+
+        int size();
 
         class IndexNotValid : public std::exception
         {
