@@ -24,7 +24,7 @@ template <class T>
 Array<T>::Array(const Array& src) : len(src.len)
 {
     //std::cout << "Copy assigment." << std::endl;
-    this->arr = new T[len];
+    this->arr = new T[src.len];
     for (int i = 0; i < this->len; i++)
         this->arr[i] = src.arr[i];
 }
