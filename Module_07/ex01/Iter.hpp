@@ -17,26 +17,14 @@ void    print_value(T a)
     std::cout << a << std::endl;
 }
 
-template <typename T>
-void    increment(T a)
-{
-    a = a + 1;
-}
-
-// evaluation test
+// evaluation
 // class Awesome 
 // {
 //     private:
 //         int _n;
 //     public:
-//         Awesome(void): _n(42)
-//         {
-//             return;
-//         }
-//         int get(void) const
-//         {
-//             return this->_n;
-//         }
+//         Awesome(void): _n(42) { return; }
+//         int get(void) const { return this->_n; }
 // };
 
 // std::ostream & operator<<(std::ostream & o, Awesome const & rhs) { o << rhs.get(); return o;}
@@ -47,6 +35,5 @@ void    increment(T a)
 //     std::cout << x << std::endl;
 //     return;
 // }
-
 
 #endif

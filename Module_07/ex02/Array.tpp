@@ -6,14 +6,14 @@
 template <class T>
 Array<T>::Array(void) : len(0), arr(nullptr)
 {
-    std::cout << "Array constructor called" << std::endl;
+    //std::cout << "Array constructor called" << std::endl;
 }
 
 // construction with int n as parameter
 template <class T>
 Array<T>::Array(unsigned int n) : len(n)
 {
-    std::cout << "Array constructor called" << std::endl;
+    //std::cout << "Array constructor called" << std::endl;
     this->arr = new T[n];
     for (int i = 0; i < n; ++i)
         this->arr[i] = T(); // Default initialization for type T
@@ -23,7 +23,7 @@ Array<T>::Array(unsigned int n) : len(n)
 template <class T>
 Array<T>::Array(const Array& src) : len(src.len)
 {
-    std::cout << "Copy assigment." << std::endl;
+    //std::cout << "Copy assigment." << std::endl;
     this->arr = new T[len];
     for (int i = 0; i < this->len; i++)
         this->arr[i] = src.arr[i];
@@ -33,7 +33,7 @@ Array<T>::Array(const Array& src) : len(src.len)
 template <class T>
 Array<T>& Array<T>::operator=(const Array& src)
 {
-    std::cout << "Copy assigment operator." << std::endl;
+    //std::cout << "Copy assigment operator." << std::endl;
     if (!this->arr)
         this->arr = new T[src.len];
     if (this != &src)
@@ -49,8 +49,9 @@ Array<T>& Array<T>::operator=(const Array& src)
 template <class T>
 Array<T>::~Array(void)
 {
-    std::cout << "Array destructor called" << std::endl;
-    delete this->arr;
+    //std::cout << "Array destructor called" << std::endl;
+    if (this->arr)
+        delete [] this->arr;
 }
 
 template <class T>

@@ -11,17 +11,7 @@ int main(void)
         std::cout << "a: " << a << ", b: " << b << std::endl;
         std::cout << "max: " << max(a, b) << std::endl;
         std::cout << "min: " << min(a, b) << std::endl;
-        std::cout << "-------------" << std::endl;
-
-        float   c = -2.4;
-        float   d = -2.5;
-        std::cout << "c: " << c << ", d: " << d << std::endl;
-        swap(c, d);
-
-        std::cout << "c: " << c << ", d: " << d << std::endl;
-        std::cout << "max: " << max(c, d) << std::endl;
-        std::cout << "min: " << min(c, d) << std::endl;
-
+    
         std::cout << "-------------" << std::endl;
         std::string e = "apple";
         std::string f = "banana";
@@ -32,20 +22,27 @@ int main(void)
         std::cout << "max: " << max(f, e) << std::endl;
         std::cout << "min: " << min(f, e) << std::endl;
     }
-    {
-        std::cout << "\n\nMAIN SUBJECT \n" << std::endl;
-        int a = 2;
-        int b = 3;
-        ::swap( a, b );
-        std::cout << "a = " << a << ", b = " << b << std::endl;
-        std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
-        std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
-        std::string c = "chaine1";
-        std::string d = "chaine2";
-        ::swap(c, d);
-        std::cout << "c = " << c << ", d = " << d << std::endl;
-        std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-        std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
-    }
+    // {
+    //     std::cout << "\n\nMAIN SUBJECT \n" << std::endl;
+    //     int a = 2;
+    //     int b = 3;
+    //     ::swap( a, b );
+    //     std::cout << "a = " << a << ", b = " << b << std::endl;
+    //     std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
+    //     std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
+    //     std::string c = "chaine1";
+    //     std::string d = "chaine2";
+    //     ::swap(c, d);
+    //     std::cout << "c = " << c << ", d = " << d << std::endl;
+    //     std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
+    //     std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
+    // }
+    // {
+    //     Awesome a(2), b(4);
+    //     swap(a, b);
+    //     std::cout << a << " " << b << std::endl;
+    //     std::cout << max(a, b) << std::endl;
+    //     std::cout << min(a, b) << std::endl;
+    // }
     return 0;
 }
