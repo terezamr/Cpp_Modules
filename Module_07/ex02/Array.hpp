@@ -7,7 +7,7 @@
 #include <cstring>
 #include <iomanip>
 
-template <class T>
+template <typename T>
 class Array {
     private:
         unsigned int    len;

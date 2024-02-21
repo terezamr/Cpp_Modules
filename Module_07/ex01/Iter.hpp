@@ -17,7 +17,7 @@ void    print_value(T a)
     std::cout << a << std::endl;
 }
 
-// evaluation
+// evaluation sheet
 // class Awesome 
 // {
 //     private:

@@ -1,6 +1,11 @@
 #include <iostream>
 #include "Array.hpp"
 
+struct Point {
+    int x;
+    int y;
+};
+
 #define MAX_VAL 750
 int main(int, char**)
 {
@@ -50,6 +55,14 @@ int main(int, char**)
 
         std::cout << "size n: " << numb.size() << std::endl;
         std::cout << "size a: " << a.size() << std::endl;
+
+        std::cout << "----------" << std::endl;
+
+        Array<Point> p(2);
+        p[0] = {1, 2};
+        p[1] = {3, 4};
+        for (int i = 0; i < 2; i++)
+            std::cout << "p: " << p[i].x << ", " << p[i].y << std::endl;
     }
     // {
     //     std::cout << "\n-----MAIN FROM SUBJECT-----\n" << std::endl;
