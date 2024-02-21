@@ -5,6 +5,7 @@
 #include <string>
 #include <cstring>
 #include <iomanip>
+#include <stdlib.h>
 
 class Bureaucrat;
 

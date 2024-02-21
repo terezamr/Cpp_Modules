@@ -11,7 +11,7 @@ AForm::AForm(const std::string str, const int sg, const int eg, const std::strin
     this->sign = 0; 
 }
  
-AForm::AForm(const AForm& src) : name(src.name), sign_grade(src.sign_grade), execute_grade(src.execute_grade), target(target)
+AForm::AForm(const AForm& src) : name(src.name), sign_grade(src.sign_grade), execute_grade(src.execute_grade), target(src.target)
 {
     //std::cout << "Copy assigment." << std::endl;
 }

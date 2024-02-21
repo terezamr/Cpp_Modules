@@ -19,14 +19,14 @@ class Array {
         Array(const Array& src);
         Array&  operator=(const Array& src);
 
-        T &operator [](int n);
+        T &operator [](unsigned int n);
 
         int size();
 
-        class IndexNotValid : public std::exception
+        class NotValid : public std::exception
         {
         public:
-            virtual const char* what() const throw() {return "Index not valid.";}
+            virtual const char* what() const throw() {return "Not valid.";}
         };
 };
 

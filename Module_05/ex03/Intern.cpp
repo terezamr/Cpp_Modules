@@ -11,6 +11,7 @@ Intern::Intern()
 Intern::Intern(const Intern& src)
 {
     //std::cout << "Copy assigment." << std::endl;
+    (void)src;
 }
 
 Intern::~Intern()
@@ -20,6 +21,7 @@ Intern::~Intern()
 
 Intern& Intern::operator=(const Intern& rhs)
 {
+    (void)rhs;
     return *this;
 }
 

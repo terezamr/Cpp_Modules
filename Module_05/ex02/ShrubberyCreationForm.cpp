@@ -29,7 +29,14 @@ const std::string   ShrubberyCreationForm::getTarget() const
 void    ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
     check_execution(executor);
-    std::ofstream a(this->getTarget()+"_shrubbery");
+    std::ofstream	a;
+	std::string		new_file;
+	new_file = this->target+ "_shrubbery";
+
+	a.open(new_file.c_str(), std::ios::in | std::ios::app);
+	if (!a)
+		std::cout << "Not able to create the file" << std::endl;
+
     a << "                              # #### ####             " << std::endl;
     a << "                           ###///#|### |/####         " << std::endl;
     a << "                           ##//#///||/##/_/##/_#      " << std::endl;

@@ -14,10 +14,12 @@ int main()
     AForm* c;
     a = someRandomIntern.makeForm("robotomy request", "Bender");
     std::cout << *a;
+    delete a;
     std::cout << "------------" << std::endl;
     try
     {
         b = someRandomIntern.makeForm("presidential pardon", "Bender");
+        delete b;
         c = someRandomIntern.makeForm("berry creation", "Bender");
         a = someRandomIntern.makeForm("robotomy request", "Bender");
     }
@@ -26,8 +28,8 @@ int main()
         std::cout << e.what() << '\n';
     }
     std::cout << "------------" << std::endl;
+    (void)c;
+    (void)b;
 
-    delete a;
-    delete b;
     return (0);
 }

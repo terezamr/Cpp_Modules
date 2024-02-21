@@ -8,6 +8,7 @@ ScalarConverter::ScalarConverter(void)
 ScalarConverter::ScalarConverter(const ScalarConverter& src)
 {
     //std::cout << "Copy assigment." << std::endl;
+    (void)src;
 }
 
 ScalarConverter::~ScalarConverter()
@@ -17,6 +18,7 @@ ScalarConverter::~ScalarConverter()
 
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter& src)
 {
+    (void)src;
     return *this;
 }
 
@@ -44,8 +46,8 @@ bool    isChar(std::string str)
 
 bool    isFloat(std::string str)
 {
-    int i = 0;
-    int p = 0;
+    long unsigned int i = 0;
+    long unsigned int p = 0;
     if (str[i] == '-' || str[i] == '+')
         i++;
     while (str[i] && i < str.length() - 1)
@@ -100,7 +102,7 @@ bool    isSpecial(std::string str)
 }
 
 // Printing functions
-void    printChar(std::string str, char c, int i)
+void    printChar(char c, int i)
 {
     if (!c || (i < 32 || i > 126))
         std::cout << "Char: Non displayable" << std::endl;
@@ -120,9 +122,6 @@ void    printI(std::string str, int i, float f, double d)
 
 void    printFloat(std::string str, float f, double d)
 {
-    int p = 0;
-    int i = 0;
-
     if (isDouble(str) && (d < -std::numeric_limits<float>::max() || d > std::numeric_limits<float>::max()))
         std::cout << "Float: inf" << std::endl;
     else if (f - static_cast< int > (f) == 0)
@@ -131,11 +130,8 @@ void    printFloat(std::string str, float f, double d)
         std::cout << "Float: " << f << "f" << std::endl;
 }
 
-void    printDouble(std::string str, double d)
+void    printDouble(double d)
 {
-    int p = 0;
-    int i = 0;
-
     if (d - static_cast< int > (d) == 0)
         std::cout << "Double: " << d << ".0" << std::endl;
     else
@@ -144,10 +140,10 @@ void    printDouble(std::string str, double d)
 
 void    printValue(std::string str, int i, float f, double d, char c)
 {
-    printChar(str, c, i);
+    printChar(c, i);
     printI(str, i, f, d);
     printFloat(str, f, d);
-    printDouble(str, d);
+    printDouble(d);
 }
 
 void    printSpecial(std::string str)

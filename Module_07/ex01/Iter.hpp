@@ -7,7 +7,7 @@
 template <typename T>
 void    iter(T *a, unsigned int len, void (*func)(T const&))
 {
-    for (int i = 0; i < len; i++)
+    for (unsigned int i = 0; i < len; i++)
         func(a[i]);
 }
 

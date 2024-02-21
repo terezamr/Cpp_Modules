@@ -21,10 +21,10 @@ void    caseFloat(std::string str);
 void    caseDouble(std::string str);
 
 // Printing functions
-void    printChar(std::string str, char c, int i);
+void    printChar(char c, int i);
 void    printI(std::string str, int i, float f, double d);
 void    printFloat(std::string str, float f, double d);
-void    printDouble(std::string str, double d);
+void    printDouble(double d);
 void    printValue(std::string str, int i, float f, double d, char c);
 void    printSpecial(std::string str);
 

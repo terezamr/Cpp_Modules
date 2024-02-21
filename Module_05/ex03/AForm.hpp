@@ -5,6 +5,7 @@
 #include <string>
 #include <cstring>
 #include <iomanip>
+#include <stdlib.h>
 
 class Bureaucrat;
 
@@ -18,7 +19,7 @@ class AForm
         const std::string   target;
     public:
         AForm(const std::string str, const int sg, const int eg, const std::string target);
-        ~AForm();
+        virtual ~AForm();
         AForm(const AForm& src);
         AForm& operator=(const AForm& rhs);
 

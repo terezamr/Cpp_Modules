@@ -29,8 +29,7 @@ int main(int, char**)
             numb[f] = f + 1;
 
         Array<int> a(numb);
-        Array<int> b;
-        b = numb;
+        Array<int> b = numb;
         for (int i = 0; i < 3; i++)
         {
             std::cout << "a: " << a[i] << std::endl;
@@ -59,8 +58,10 @@ int main(int, char**)
         std::cout << "----------" << std::endl;
 
         Array<Point> p(2);
-        p[0] = {1, 2};
-        p[1] = {3, 4};
+        p[0].x = 1;
+        p[0].y = 2;
+        p[1].x = 3;
+        p[1].y = 4;
         for (int i = 0; i < 2; i++)
             std::cout << "p: " << p[i].x << ", " << p[i].y << std::endl;
     }

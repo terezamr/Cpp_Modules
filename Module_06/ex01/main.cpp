@@ -1,5 +1,6 @@
 #include "Serializer.hpp"
 
+#include <cstdint>
 int main(void)
 {
     Data    *a = new Data;
@@ -10,8 +11,7 @@ int main(void)
 
     std::cout << "---------------" << std::endl;
 
-    uintptr_t b;
-    b = Serializer::serialize(a);
+    uintptr_t b = Serializer::serialize(a);
 
     Data *c;
     c = Serializer::deserialize(b);
