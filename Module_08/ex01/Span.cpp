@@ -10,7 +10,7 @@ void    Span::addNumber(int a)
     if (used < N)
     {
         this->vec.push_back(a);
-        std::cout << "Added " << a << std::endl;
+        // std::cout << "Added " << a << std::endl;
         used++;
     }
     else
@@ -19,26 +19,11 @@ void    Span::addNumber(int a)
 
 int Span::longestSpan()
 {
-    int min;
-    int max;
     if (this->used <= 1)
         throw(NotValid());
-    std::vector<int>::iterator i;
 
-    min = *this->vec.begin();
-    for (i = this->vec.begin(); i != this->vec.end(); i++)
-    {
-        if (min > *i)
-            min = *i;
-    }
-
-    max = *this->vec.begin();
-    for (i = this->vec.begin(); i != this->vec.end(); i++)
-    {
-        if (max < *i)
-            max = *i;
-    }
-    return (abs(max - min));
+    std::sort(this->vec.begin(), this->vec.end());
+    return (abs(this->vec[0] - this->vec[used - 1]));
 }
 
 int Span::shortestSpan()
@@ -46,33 +31,30 @@ int Span::shortestSpan()
     if (this->used <= 1)
         throw(NotValid());
 
-    std::vector<int>::iterator i;
-    std::vector<int>::iterator aux;
-    i = this->vec.begin();
-    aux = i;
-    i++;
-    
-    int min = abs(vec[1] - vec[0]);
     int diff;
-    for (i; i < this->vec.end(); i++)
+    int aux;
+
+    std::sort(this->vec.begin(), this->vec.end());
+    diff = abs(this->vec[0] - this->vec[1]);
+
+    for (unsigned int i = 1; i < used - 1; i++)
     {
-        diff = abs(*i - *aux);
-        if (diff < min)
-            min = diff;
-        aux = i;
+        aux = abs(this->vec[i] - this->vec[i + 1]);
+        if (aux < diff)
+            diff = aux;
     }
-    return (min);
+    return (diff);
 }
 
-void    Span::addNumbers(int a)
+void    Span::addNumbers(unsigned int a)
 {
     if (a < N - used)
     {
-        for (int i = 0; i < a; i++)
+        for (unsigned int i = 0; i < a; i++)
         {
-            int random_value = std::rand();
+            int random_value = rand();
             this->vec.push_back(random_value);
-            std::cout << "Added " << random_value << std::endl;
+            // std::cout << "Added " << random_value << std::endl;
             used++;
         }
     }

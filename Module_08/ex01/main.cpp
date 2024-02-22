@@ -12,6 +12,7 @@ int main(void)
         a.addNumber(10);
         a.addNumber(-18);
         std::cout << "Longest span: " << a.longestSpan() << std::endl;
+        std::cout << "Shortest span: " << a.shortestSpan() << std::endl;
         a.addNumber(1);
         std::cout << "Longest span: " << a.longestSpan() << std::endl;
     }
@@ -22,9 +23,15 @@ int main(void)
 
     std::cout << "-------------" << std::endl;
 
+    Span b(4);
     try
     {
-        std::cout << "Shortest span: " << a.shortestSpan() << std::endl;
+        b.addNumber(6);
+        b.addNumber(11);
+        b.addNumber(1);
+        b.addNumber(10);
+        std::cout << "Longest span: " << b.longestSpan() << std::endl;
+        std::cout << "Shortest span: " << b.shortestSpan() << std::endl;
     }
     catch (std::exception &error)
     {
@@ -33,14 +40,16 @@ int main(void)
 
     std::cout << "-------------" << std::endl;
 
-    Span b(10000);
+    Span c(10000);
     try
     {
-        b.addNumbers(10);
-        //b.addNumbers(10000);
+        c.addNumbers(10);
+        c.addNumbers(10000);
     }
     catch (std::exception &error)
     {
         std::cout << error.what() << std::endl;
     }
+
+    return (0);
 }

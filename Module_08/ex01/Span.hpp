@@ -3,13 +3,15 @@
 
 #include <vector>
 #include <iostream>
+#include <cmath>
+#include <stdlib.h>
+#include <bits/stdc++.h> 
 
 class NotValid : public std::exception
 {
 public:
     virtual const char* what() const throw() {return "Out of bounds.";}
 };
-
 
 class Span
 {
@@ -22,7 +24,7 @@ class Span
         void    addNumber(int a);
         int     longestSpan();
         int     shortestSpan();
-        void    addNumbers(int a);
+        void    addNumbers(unsigned int a);
 };
 
 #endif

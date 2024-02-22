@@ -1,7 +1,6 @@
 #ifndef ARRAY_TPP
 #define ARRAY_TPP
 
-
 // construction with no parameter
 template <typename T>
 Array<T>::Array(void) : len(0), arr(0)
