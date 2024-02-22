@@ -1,6 +1,6 @@
 #include "Form.hpp"
 
-Form::Form(const std::string str, const int sg, const int eg) : name(str), sign_grade(sg), execute_grade(eg), sign(false)
+Form::Form(const std::string str, const int sg, const int eg) : name(str), sign(false), sign_grade(sg), execute_grade(eg)
 {
     //std::cout << "Form created." << std::endl;
     if (sg < 1 || eg < 1)

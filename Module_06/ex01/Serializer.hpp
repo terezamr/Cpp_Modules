@@ -5,7 +5,7 @@
 #include <string>
 #include <cstring>
 #include <iomanip>
-#include <cstdint>
+#include <stdint.h>
 
 struct Data {
     std::string name;

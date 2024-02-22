@@ -176,6 +176,8 @@ void    caseInt(std::string str)
         i = std::stoi(str);
     }
     catch (std::exception &error)
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
     {
         std::cout << "Conversion makes no sense." << std::endl;
         return ;

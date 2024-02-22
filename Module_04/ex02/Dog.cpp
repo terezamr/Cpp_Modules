@@ -14,7 +14,7 @@ Dog::~Dog()
     delete this->br;
 }
 
-Dog::Dog(const Dog& src)
+Dog::Dog(const Dog& src) : Aanimal()
 {
     std::cout << "Dog copied." << std::endl;
     this->type = src.type;

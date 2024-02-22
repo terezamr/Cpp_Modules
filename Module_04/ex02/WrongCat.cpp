@@ -11,7 +11,7 @@ WrongCat::~WrongCat()
     std::cout << "WrongCat was destroyed." << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat& src)
+WrongCat::WrongCat(const WrongCat& src) : WrongAnimal()
 {
     std::cout << "WrongCat copied." << std::endl;
     this->type = src.type;

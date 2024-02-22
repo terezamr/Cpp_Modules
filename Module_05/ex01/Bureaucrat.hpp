@@ -9,7 +9,7 @@
 class Bureaucrat {
     private:
         const std::string   name;
-        const int           grade;
+        int                 grade;
     public:
         Bureaucrat(const std::string str, int number);
         ~Bureaucrat();
@@ -17,7 +17,7 @@ class Bureaucrat {
         Bureaucrat& operator=(const Bureaucrat& rhs);
         
         const std::string   getName();
-        const int           getGrade();
+        int                 getGrade();
 
         void                incrementGrade();
         void                decrementGrade();

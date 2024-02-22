@@ -11,7 +11,7 @@ Cat::~Cat()
     std::cout << "Cat was destroyed." << std::endl;
 }
 
-Cat::Cat(const Cat& src)
+Cat::Cat(const Cat& src) : Animal()
 {
     std::cout << "Cat copied." << std::endl;
     this->type = src.type;

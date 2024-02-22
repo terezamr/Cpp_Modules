@@ -1,6 +1,5 @@
 #include "Serializer.hpp"
 
-#include <cstdint>
 int main(void)
 {
     Data    *a = new Data;

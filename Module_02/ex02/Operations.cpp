@@ -32,6 +32,7 @@ Fixed Fixed::operator++(int nb)
 {
     Fixed tmp(*this);
     ++this->FixedPoint;
+    (void)nb;
     return (tmp);
 }
 
@@ -45,6 +46,7 @@ Fixed Fixed::operator--(int nb)
 {
     Fixed tmp(*this);
     --this->FixedPoint;
+    (void)nb;
     return (tmp);
 }
 

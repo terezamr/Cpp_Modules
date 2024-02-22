@@ -48,4 +48,5 @@ void	replace(int argc, char **argv)
 	}
 	file.close();
 	file1.close();
+	(void)argc;
 }

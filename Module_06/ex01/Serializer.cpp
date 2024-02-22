@@ -1,6 +1,6 @@
 #include "Serializer.hpp"
 
-Serializer::Serializer(void)
+Serializer::Serializer()
 {
     //std::cout << "Serializer created." << std::endl;
 }
@@ -8,6 +8,7 @@ Serializer::Serializer(void)
 Serializer::Serializer(const Serializer& src)
 {
     //std::cout << "Copy assigment." << std::endl;
+    *this = src;
 }
 Serializer::~Serializer()
 {
@@ -16,6 +17,7 @@ Serializer::~Serializer()
 
 Serializer& Serializer::operator=(const Serializer& src)
 {
+    (void)src;
     return *this;
 }
 

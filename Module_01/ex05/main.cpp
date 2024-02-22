@@ -2,11 +2,11 @@
 
 int main(void)
 {
-    Harl*	joe;
+    Harl	joe;
 
-    joe->complain("DEBUG");
-	joe->complain("INFO");
-	joe->complain("WARNING");
-	joe->complain("ERROR");
-	joe->complain("random");
+    joe.complain("DEBUG");
+	joe.complain("INFO");
+	joe.complain("WARNING");
+	joe.complain("ERROR");
+	joe.complain("random");
 }

@@ -13,7 +13,7 @@ Cat::~Cat()
     delete this->br;
 }
 
-Cat::Cat(const Cat& src)
+Cat::Cat(const Cat& src) : Aanimal()
 {
     std::cout << "Cat copied." << std::endl;
     this->type = src.type;

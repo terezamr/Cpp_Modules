@@ -1,7 +1,7 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-AForm::AForm(const std::string str, const int sg, const int eg) : name(str), sign_grade(sg), execute_grade(eg)
+AForm::AForm(const std::string str, const int sg, const int eg) : name(str), sign(false), sign_grade(sg), execute_grade(eg)
 {
     //std::cout << "AForm created." << std::endl;
     if (sg < 1 || eg < 1)
