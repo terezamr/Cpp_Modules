@@ -80,6 +80,10 @@ int main(int, char**)
         {
             std::cout << error.what() << '\n';
         }
+        std::cout << "----------" << std::endl;
+        
+        const Array<std::string> s2(s);
+        std::cout << s2[0] << std::endl;
     }
     // {
     //     std::cout << "\n-----MAIN FROM SUBJECT-----\n" << std::endl;
