@@ -72,7 +72,7 @@ int Array<T>::size()
 
 // [] Operator
 template <typename T>
-T &Array<T>::operator [](unsigned int n)
+T &Array<T>::operator [](unsigned int n) const
 {
     if (n < this->len)
         return arr[n];
