@@ -64,6 +64,22 @@ int main(int, char**)
         p[1].y = 4;
         for (int i = 0; i < 2; i++)
             std::cout << "p: " << p[i].x << ", " << p[i].y << std::endl;
+
+        std::cout << "----------" << std::endl;
+        try
+        {
+            Array<std::string> s(3);
+            s[0] = "a";
+            s[1] = "b";
+            s[2] = "c";
+            for (int i = 0; i < 3; i++)
+                std::cout << "str: " << s[i] << std::endl;
+            std::cout << "str: " << s[3] << std::endl;
+        }
+        catch(const std::exception& error)
+        {
+            std::cout << error.what() << '\n';
+        }
     }
     // {
     //     std::cout << "\n-----MAIN FROM SUBJECT-----\n" << std::endl;
