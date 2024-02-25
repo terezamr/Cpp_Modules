@@ -20,10 +20,15 @@ class Span
         unsigned int        used;
         std::vector <int>   vec;
     public:
+        Span();
+        ~Span();
         Span(unsigned int n);
+        Span(const Span &src);
+        Span &operator=(const Span &src);
+
         void    addNumber(int a);
-        int     longestSpan();
-        int     shortestSpan();
+        long    longestSpan();
+        long    shortestSpan();
         void    addNumbers(unsigned int a);
 };
 

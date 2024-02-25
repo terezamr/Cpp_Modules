@@ -1,8 +1,41 @@
 #include "Span.hpp"
 
-Span::Span(unsigned int n) : N(n), used(0)
+Span::Span() : N(0), used(0), vec(0)
+{
+    // std::cout << "Default Constructor" << std::endl;
+}
+
+Span::~Span()
+{
+    // std::cout << "Destructor" << std::endl;
+}
+
+Span::Span(unsigned int n) : N(n), used(0), vec(0)
 {
     // std::cout << "Constructor" << std::endl;
+}
+
+Span::Span(const Span &src)
+{
+    // std::cout << "Copy assignment" << std::endl;
+    if (this != &src)
+    {
+        this->N = src.N;
+        this->used = src.used;
+        this->vec = src.vec;
+    }
+}
+
+Span    &Span::operator=(const Span &src)
+{
+    // std::cout << "Copy assignment operator" << std::endl;
+    if (this != &src)
+    {
+        this->N = src.N;
+        this->used = src.used;
+        this->vec = src.vec;
+    }
+    return *this;
 }
 
 void    Span::addNumber(int a)
@@ -17,22 +50,25 @@ void    Span::addNumber(int a)
         throw(NotValid());
 }
 
-int Span::longestSpan()
+long    Span::longestSpan()
 {
     if (this->used <= 1)
         throw(NotValid());
 
     std::sort(this->vec.begin(), this->vec.end());
-    return (abs(this->vec[0] - this->vec[used - 1]));
+    long  min = this->vec[0];
+    long  max = this->vec[used - 1];
+
+    return (abs(max - min));
 }
 
-int Span::shortestSpan()
+long    Span::shortestSpan()
 {
     if (this->used <= 1)
         throw(NotValid());
 
-    int diff;
-    int aux;
+    long    diff;
+    long    aux;
 
     std::sort(this->vec.begin(), this->vec.end());
     diff = abs(this->vec[0] - this->vec[1]);

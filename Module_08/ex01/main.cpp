@@ -1,19 +1,19 @@
 #include "Span.hpp"
 
-// check se o span e entre consecutivos ou a menor diferenca
-// mesmo para o longest
+// a.addNumber(2147483649);
 
 int main(void)
 {
-    Span a(3);
+    Span a(4);
     try
     {
-        a.addNumber(5);
-        a.addNumber(10);
-        a.addNumber(-18);
+        a.addNumber(21);
+        a.addNumber(1);
+        a.addNumber(11);
+        a.addNumber(-21);
         std::cout << "Longest span: " << a.longestSpan() << std::endl;
         std::cout << "Shortest span: " << a.shortestSpan() << std::endl;
-        a.addNumber(1);
+        a.addNumber(4);
         std::cout << "Longest span: " << a.longestSpan() << std::endl;
     }
     catch (std::exception &error)
@@ -51,5 +51,15 @@ int main(void)
         std::cout << error.what() << std::endl;
     }
 
+    std::cout << "-------------" << std::endl;
+
+    Span d(a);
+    std::cout << "Longest span: " << a.longestSpan() << std::endl;
+    std::cout << "Shortest span: " << a.shortestSpan() << std::endl;
+
+    Span e;
+    e = b;
+    std::cout << "Longest span: " << e.longestSpan() << std::endl;
+    std::cout << "Shortest span: " << e.shortestSpan() << std::endl;
     return (0);
 }

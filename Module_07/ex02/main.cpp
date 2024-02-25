@@ -8,7 +8,7 @@ struct Point {
 
 int main(int, char**)
 {
-    {
+    {std::cout << "list: " << 
         Array<int> f;
         Array<int> numb(3);
         for (int i = 0; i < 3; i++)

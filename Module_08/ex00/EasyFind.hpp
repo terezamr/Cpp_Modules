@@ -9,16 +9,17 @@
 
 class NotFound : public std::exception
 {
-public:
-    virtual const char* what() const throw() {return "Not found.";}
+    public:
+        virtual const char* what() const throw() {return "Not found.";}
 };
 
 template <typename T>
-void    easyfind(T t, int b)
+int easyfind(T t, int b)
 {
-    if (std::find(t.begin(), t.end(), b) == t.end())
+    typename T::iterator it = std::find(t.begin(), t.end(), b);
+    if (it == t.end())
         throw(NotFound());
-    std::cout << b << std::endl;
+    return *it;
 }
 
 #endif
