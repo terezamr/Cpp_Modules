@@ -4,8 +4,9 @@
 #include <ostream>
 #include <iostream>
 
+
 template <typename T>
-void    iter(T *a, unsigned int len, void (*func)(T const&))
+void    iter(T *a, unsigned int len, void (func)(T const&))
 {
     for (unsigned int i = 0; i < len; i++)
         func(a[i]);
@@ -16,25 +17,6 @@ void    print_value(T a)
 {
     std::cout << a << std::endl;
 }
-
-/*template <typename T>
-void    iter(T *a, unsigned int len, void (func)(T&))
-{
-    for (unsigned int i = 0; i < len; i++)
-        func(a[i]);
-}
-
-template <typename T>
-void    print_value(T a)
-{
-    std::cout << a << std::endl;
-}
-
-template <typename T>
-void    fun(T &a)
-{
-    a = a + 1;
-} */
 
 // evaluation sheet
 // class Awesome 

@@ -6,6 +6,8 @@
 #include <string>
 #include <cstring>
 #include <iomanip>
+#include <cstdlib>
+	
 
 template <typename T>
 class Array {
@@ -19,7 +21,7 @@ class Array {
         Array(const Array& src);
         Array&  operator=(const Array& src);
 
-        T &operator [](unsigned int n);
+        T &operator [](unsigned int n) const;
 
         int size();
 

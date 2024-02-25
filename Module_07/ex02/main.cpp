@@ -6,18 +6,17 @@ struct Point {
     int y;
 };
 
-#define MAX_VAL 750
 int main(int, char**)
 {
     {
         Array<int> f;
-        Array<int> numb(4);
-        for (int i = 0; i < 2; i++)
+        Array<int> numb(3);
+        for (int i = 0; i < 3; i++)
             std::cout << "numb: " << numb[i] << std::endl;
         
         try
         {
-            numb[10];
+            std::cout << "numb: " << numb[10] << std::endl;
         }
         catch(const std::exception& error)
         {
@@ -29,7 +28,8 @@ int main(int, char**)
             numb[f] = f + 1;
 
         Array<int> a(numb);
-        Array<int> b = numb;
+        Array<int> b;
+        b = numb;
         for (int i = 0; i < 3; i++)
         {
             std::cout << "a: " << a[i] << std::endl;
@@ -66,12 +66,12 @@ int main(int, char**)
             std::cout << "p: " << p[i].x << ", " << p[i].y << std::endl;
 
         std::cout << "----------" << std::endl;
+        Array<std::string> s(3);
+        s[0] = "a";
+        s[1] = "b";
+        s[2] = "c";
         try
         {
-            Array<std::string> s(3);
-            s[0] = "a";
-            s[1] = "b";
-            s[2] = "c";
             for (int i = 0; i < 3; i++)
                 std::cout << "str: " << s[i] << std::endl;
             std::cout << "str: " << s[3] << std::endl;
@@ -90,10 +90,10 @@ int main(int, char**)
 
     //     Array<int> numbers(MAX_VAL);
     //     int* mirror = new int[MAX_VAL];
-    //     srand(time(NULL));
+    //     std::srand(time(NULL));
     //     for (int i = 0; i < MAX_VAL; i++)
     //     {
-    //         const int value = rand();
+    //         const int value = std::rand();
     //         numbers[i] = value;
     //         mirror[i] = value;
     //     }
@@ -131,7 +131,7 @@ int main(int, char**)
 
     //     for (int i = 0; i < MAX_VAL; i++)
     //     {
-    //         numbers[i] = rand();
+    //         numbers[i] = std::rand();
     //     }
     //     delete [] mirror;
     // }

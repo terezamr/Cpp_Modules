@@ -45,7 +45,7 @@ Array<T>& Array<T>::operator=(const Array& src)
     //std::cout << "Copy assigment operator." << std::endl;
     if (this != &src)
     {
-        if (this->array)
+        if (this->arr)
             delete [] this->arr;
         this->arr = new T[src.len];
         this->len = src.len;
