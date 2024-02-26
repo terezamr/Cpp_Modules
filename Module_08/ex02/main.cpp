@@ -38,8 +38,8 @@ int main(void)
     MutantStack<int>::iterator ie = mstack.end();
     while (i != ie)
     {
-    std::cout << *i << std::endl;
-    ++i;
+        std::cout << *i << std::endl;
+        ++i;
     }
 
     std::cout << "--------------" << std::endl;

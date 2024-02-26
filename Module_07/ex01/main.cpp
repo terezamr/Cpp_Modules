@@ -12,7 +12,7 @@ int main(void)
         float c[3] = {1.3, 2432.4, -56.94};
         iter(c, 3, print_value);
 
-        int d[3] = {'\0'};
+        const int d[3] = {};
         iter(d, 3, print_value);
     }
     // {
