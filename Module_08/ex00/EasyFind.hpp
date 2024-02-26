@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <vector>
 #include <list>
+#include <deque>
 
 class NotFound : public std::exception
 {

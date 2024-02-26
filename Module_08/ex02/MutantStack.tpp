@@ -1,7 +1,6 @@
 #ifndef MUTANTSTACK_TPP
 #define MUTANTSTACK_TPP
 
-
 template <typename T>
 MutantStack<T>::MutantStack() : std::stack<T>()
 {

@@ -15,13 +15,11 @@ class MutantStack : public std::stack<T>
 
         typedef typename std::stack<T>::container_type::iterator iterator;
 	
-        iterator begin()
-        {
+        iterator begin() {
             return iterator(this->c.begin());
         }
 
-        iterator end()
-        {
+        iterator end() {
             return iterator(this->c.end());
         }
 };
