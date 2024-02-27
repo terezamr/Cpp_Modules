@@ -47,13 +47,13 @@ void    Span::addNumber(int a)
         used++;
     }
     else
-        throw(NotValid());
+        throw(std::exception());
 }
 
 long    Span::longestSpan()
 {
     if (this->used <= 1)
-        throw(NotValid());
+        throw(std::exception());
 
     std::sort(this->vec.begin(), this->vec.end());
     long  min = this->vec[0];
@@ -65,7 +65,7 @@ long    Span::longestSpan()
 long    Span::shortestSpan()
 {
     if (this->used <= 1)
-        throw(NotValid());
+        throw(std::exception());
 
     long    diff;
     long    aux;
@@ -95,7 +95,7 @@ void    Span::addNumbers(unsigned int a)
         }
     }
     else
-        throw(NotValid());
+        throw(std::exception());
 }
 
 // std::ostream & operator<<(std::ostream & o, Span const & s)

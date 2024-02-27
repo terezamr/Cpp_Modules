@@ -6,20 +6,14 @@
 #include <algorithm>
 #include <vector>
 #include <list>
-#include <deque>
-
-class NotFound : public std::exception
-{
-    public:
-        virtual const char* what() const throw() {return "Not found.";}
-};
+#include <limits>
 
 template <typename T>
 int easyfind(T t, int b)
 {
     typename T::iterator it = std::find(t.begin(), t.end(), b);
     if (it == t.end())
-        throw(NotFound());
+        throw(std::exception());
     return *it;
 }
 

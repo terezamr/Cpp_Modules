@@ -1,9 +1,8 @@
 #include "Span.hpp"
 
-// a.addNumber(2147483649);
-
 int main(void)
 {
+    //Span sp(2);
     Span a(4);
     try
     {
@@ -44,7 +43,7 @@ int main(void)
     try
     {
         c.addNumbers(10);
-        c.addNumbers(10000);
+        c.addNumbers(9999);
     }
     catch (std::exception &error)
     {

@@ -7,12 +7,6 @@
 #include <stdlib.h>
 #include <bits/stdc++.h> 
 
-class NotValid : public std::exception
-{
-public:
-    virtual const char* what() const throw() {return "Out of bounds.";}
-};
-
 class Span
 {
     private:
