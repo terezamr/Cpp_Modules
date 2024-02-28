@@ -23,7 +23,7 @@ int main(void)
         ++it;
         ++it;
         --it;
-        std::cout << "Two steps forward: " << *it << std::endl;
+        std::cout << "One step forward: " << *it << std::endl;
 
         // end() returns the iterator which points to the 
         // (imaginary) element next to the last
@@ -58,7 +58,7 @@ int main(void)
         ++it;
         ++it;
         --it;
-        std::cout << "Two steps forward: " << *it << std::endl;
+        std::cout << "One step forward: " << *it << std::endl;
         
         std::list<int>::iterator ite = lst.end();
         --ite;
