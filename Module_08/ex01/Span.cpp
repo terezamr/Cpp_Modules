@@ -88,9 +88,9 @@ void    Span::addNumbers(unsigned int a)
     {
         for (unsigned int i = 0; i < a; i++)
         {
-            int random_value = rand();
-            this->vec.push_back(random_value);
-            // std::cout << "Added " << random_value << std::endl;
+            //int random_value = rand();
+            this->vec.push_back(i);
+            //std::cout << "Added " << i << std::endl;
             used++;
         }
     }

@@ -2,7 +2,6 @@
 
 int main(void)
 {
-    //Span sp(2);
     Span a(4);
     try
     {
@@ -42,8 +41,8 @@ int main(void)
     Span c(10000);
     try
     {
-        c.addNumbers(10);
-        c.addNumbers(9999);
+        c.addNumbers(9000);
+        c.addNumbers(2000);
     }
     catch (std::exception &error)
     {

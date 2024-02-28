@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <stack>
+#include <list>
 
 template <typename T>
 class MutantStack : public std::stack<T>
@@ -15,6 +16,9 @@ class MutantStack : public std::stack<T>
 
         typedef typename std::stack<T>::container_type::iterator iterator;
 	
+        // underlying container "c" refers to the actual data struct
+        // that holds the elements of the stack
+    
         iterator begin() {
             return iterator(this->c.begin());
         }
