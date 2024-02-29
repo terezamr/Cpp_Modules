@@ -1,5 +1,9 @@
 {
     "terminal.integrated.env.linux": {
         "LD_PRELOAD" : null,
+    },
+    "files.associations": {
+        "iosfwd": "cpp",
+        "iostream": "cpp"
     }
 }

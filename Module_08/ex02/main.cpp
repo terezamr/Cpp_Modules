@@ -1,5 +1,7 @@
 #include "MutantStack.hpp"
 
+// fix: addNUmbers manipulates range of iterators
+
 int main(void)
 {
     {

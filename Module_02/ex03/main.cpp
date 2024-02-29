@@ -1,5 +1,7 @@
 #include "Point.hpp"
 
+// fix: return false if the point is a vertex or edge
+
 int	main(void)
 {
 	Point const a;
