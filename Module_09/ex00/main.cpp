@@ -6,9 +6,6 @@
 // output - valor da btc para cada data (input 1 x 2)
 // se a data de 2 nao existir em 1, usar a + proxima (lower)
 
-
-// check se a linha 1 = data | value ?
-
 int check_input(int argc, char **argv)
 {
     if (argc != 2)
@@ -25,13 +22,6 @@ int check_input(int argc, char **argv)
     }
     return 1;
 }
-
-// popular map com database 1
-// verificar database 2
-// se a linha estiver correta:
-//      ir procurar o valor do input 1
-//      fazer conta e imprimir
-// se nao, imprimir erro
 
 int main(int argc, char **argv)
 {
