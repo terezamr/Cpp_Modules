@@ -6,6 +6,7 @@
 // output - valor da btc para cada data (input 1 x 2)
 // se a data de 2 nao existir em 1, usar a + proxima (lower)
 
+// missing: max int + forma canonica
 int check_input(int argc, char **argv)
 {
     if (argc != 2)
