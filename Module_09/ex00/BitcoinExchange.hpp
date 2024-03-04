@@ -7,10 +7,8 @@
 #include <ostream>
 #include <fstream>
 #include <sstream>
+#include <cmath>
 
-#define YEAR 1
-#define MONTH 2
-#define DAY 3
 #define INTM 2147483647
 
 class BitcoinExchange
