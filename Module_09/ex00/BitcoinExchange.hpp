@@ -8,6 +8,7 @@
 #include <fstream>
 #include <sstream>
 #include <cmath>
+#include <string.h>
 
 #define INTM 2147483647
 

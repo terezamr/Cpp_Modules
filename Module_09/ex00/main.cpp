@@ -6,7 +6,7 @@
 // output - valor da btc para cada data (input 1 x 2)
 // se a data de 2 nao existir em 1, usar a + proxima (lower)
 
-// missing: max int + forma canonica
+// missing: max int + forma canonica + first line
 int check_input(int argc, char **argv)
 {
     if (argc != 2)
@@ -14,13 +14,15 @@ int check_input(int argc, char **argv)
         std::cout << "Wrong number of arguments" << std::endl;
         return 0;
     }
-    std::ofstream f;
-    f.open(argv[1], std::ios::in);
-    if (!f)
-    {
-        std::cout << "Bad input" << std::endl;
-        return 0;
-    }
+    // std::ofstream f;
+    // f.open(argv[1], std::ios::in);
+    // if (!f)
+    // {
+    //     std::cout << "Bad input" << std::endl;
+    //     return 0;
+    // }
+    // std::cout << "check1" << std::endl;
+    (void)argv;
     return 1;
 }
 

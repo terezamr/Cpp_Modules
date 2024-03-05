@@ -30,14 +30,15 @@ float   ft_stof(std::string str)
             f++;
             if (!str[f] || !isdigit(str[f]))
                 throw(std::invalid_argument("Error: invalid rate => " + str));
-            while (str[f] >= '0' && str[f] <= '9')
+            while (str[f] && str[f] >= '0' && str[f] <= '9')
             {
+                if (str[f] == '.')
+                    throw(std::invalid_argument("Error: invalid rate => " + str));
                 m = m * 10 + (str[f] - '0');
                 d *= 10;
                 f++;
             }
-            if (str[f] == '.')
-                throw(std::invalid_argument("Error: invalid rate => " + str));
+            continue ;
         }
         f++;
     }
@@ -165,7 +166,7 @@ std::string ft_trim(std::string str, int opt)
     size_t start = str.find_first_not_of(" \t\v\f\r");
     size_t end = str.find_last_not_of(" \t\v\f\r");
 
-    if (!str[start])
+    if (start == std::string::npos)
         throw(std::invalid_argument("Error: empty field"));
     if (opt == 1 && start != 0)
         throw(std::invalid_argument("Error: invalid input"));
@@ -178,9 +179,21 @@ std::string ft_trim(std::string str, int opt)
     return final;
 }
 
+int isWS(std::string s)
+{
+    int i = 0;
+    while (s[i])
+    {
+        if (!std::isspace(static_cast<unsigned char>(s[i])))
+            return 0;
+        i++;
+    }
+    return 1;
+}
+
 std::pair<std::string, float> check_line(std::string str)
 {
-    if (!str[0])
+    if (str.empty() || isWS(str))
         throw(std::invalid_argument("Error: empty line"));
 
     size_t pos = str.find('|');
@@ -214,24 +227,29 @@ void    BitcoinExchange::showValues(void)
 
     std::ifstream   f;
     f.open(this->input.c_str(), std::ios::in);
+    if (!f) {
+        std::cout << "Error: could not open file" << std::endl;
+        return ;
+    }
+
     std::string aux;
     getline(f, aux);
 
     if (!aux[0]) {
         std::cout << "Error: empty file" << std::endl;
+        f.close();
         return ;
     }
-    if (aux != "date | value") {
-        std::cout << "Error: invalid file format => " << aux << std::endl;
-        return ;
-    }
-
+    // if (aux != "date | value") {
+    //     std::cout << "Error: invalid first line => " << aux << std::endl;
+    //     f.close();
+    //     return ;
+    // }
     int i = 1;
     while (getline(f, aux)) {
         try {
             std::pair<std::string, float> pr = check_line(aux);
             std::cout << pr.first << " => " << pr.second;
- 
             float closest_value = this->find_date(pr.first);
             std::cout << " = " << closest_value * pr.second << std::endl;
         }
@@ -243,4 +261,5 @@ void    BitcoinExchange::showValues(void)
         }
         i++;
     }
+    f.close();
 }
