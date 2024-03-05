@@ -6,8 +6,6 @@
 #include <ostream>
 #include <fstream>
 #include <sstream>
-//#include <cmath>
-//#include <algorithm>
 #include <stack>
 
 class RPN
@@ -17,6 +15,8 @@ class RPN
     public:
         RPN();
         ~RPN();
+        RPN(const RPN&src);
+        RPN&    operator=(const RPN& src);
 
         int     populate_st(std::string str);
         int     check_str(std::string str);

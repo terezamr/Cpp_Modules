@@ -1,13 +1,21 @@
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange()
-{
-    // std::cout << "Constructor" << std::endl;
-}
+BitcoinExchange::BitcoinExchange() {}
 
-BitcoinExchange::BitcoinExchange(std::string str) : input(str)
+BitcoinExchange::~BitcoinExchange() {}
+
+BitcoinExchange::BitcoinExchange(std::string str) : input(str) {}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) : mp(src.mp) , input(src.input) {}
+
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& src)
 {
-    // std::cout << "Constructor" << std::endl;
+    if (this != &src)
+    {
+        this->mp = src.mp;
+        this->input = src.input;
+    }
+    return *this;
 }
 
 float   ft_stof(std::string str)
@@ -43,11 +51,6 @@ float   ft_stof(std::string str)
         f++;
     }
     float final = (i + static_cast<float>(m)/d);
-    /*if (final > INT_MAX)
-    {
-        std::cout <<  "Error: too large number => ";
-        return -1;
-    }*/
     return (final);
 }
 
@@ -60,15 +63,12 @@ std::pair<std::string,std::string> split(std::string str, char c)
     return std::make_pair(s1, s2);
 }
 
-void    BitcoinExchange::populate(std::string str)
+int    BitcoinExchange::populate(std::string str)
 {
     std::ifstream   f;
     f.open(str.c_str(), std::ios::in);
     if (!f)
-    {
-        std::cout << "Can't open '" << str << "'. ";
-        throw(std:: exception());
-    }
+        return 0;
     
     std::string aux;
     getline(f, aux);
@@ -77,6 +77,7 @@ void    BitcoinExchange::populate(std::string str)
     std::map<std::string, std::string>::iterator it;
 
     f.close();
+    return 1;
 }
 
 float    check_rate(std::string str)
@@ -96,6 +97,8 @@ float    check_rate(std::string str)
     }
     s = str.substr(i - dig, dig);
     float f = ft_stof(s);
+    if (f > 1000)
+        throw(std::invalid_argument("Error: too large => " + s));
     return f;
 }
 
@@ -220,32 +223,51 @@ float  BitcoinExchange::find_date(std::string date)
     return (ft_stof(it->second));
 }
 
+#include <bits/stdc++.h>
+
+bool isPt(int i)
+{ 
+    if (isprint(i))
+        return 1;
+    return 0;
+}
+
 void    BitcoinExchange::showValues(void)
 {
     std::string str = "data.csv";
-    this->populate(str);
+    if (!this->populate(str))
+    {
+        std::cout << "Error: could not open database '" << str << "'" << std::endl;
+        return ;
+    }
 
     std::ifstream   f;
     f.open(this->input.c_str(), std::ios::in);
     if (!f) {
-        std::cout << "Error: could not open file" << std::endl;
+        std::cout << "Error: could not open file '" << this->input.c_str() << "'" << std::endl;
         return ;
     }
 
     std::string aux;
-    getline(f, aux);
+    std::string tmp;
 
+    getline(f, aux);
+    
     if (!aux[0]) {
         std::cout << "Error: empty file" << std::endl;
         f.close();
         return ;
     }
-    // if (aux != "date | value") {
-    //     std::cout << "Error: invalid first line => " << aux << std::endl;
-    //     f.close();
-    //     return ;
-    // }
-    int i = 1;
+
+    // deleting non printable char after aux
+    aux.erase(aux.size() - 1);
+    if (aux != "data | value")
+    {
+        std::cout << "Error: wrong first line => " << aux << std::endl;
+        f.close();
+        return ;
+    }   
+
     while (getline(f, aux)) {
         try {
             std::pair<std::string, float> pr = check_line(aux);
@@ -259,7 +281,6 @@ void    BitcoinExchange::showValues(void)
         catch(const std::exception& e) {
             std::cerr << e.what() << '\n';
         }
-        i++;
     }
     f.close();
 }

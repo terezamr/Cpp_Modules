@@ -1,8 +1,6 @@
 #include "RPN.hpp"
 
-// division by 0 
-// more than one space/tab
-// no space between chars
+// more than one space/tab + spaces at begin and end
 int main(int argc, char **argv)
 {
     if (argc != 2)
@@ -10,9 +8,17 @@ int main(int argc, char **argv)
         std::cout << "Wrong input" << std::endl;
         return 0;
     }
+
     RPN rpn;
     std::string s = argv[1];
-    rpn.run(s);
+    try
+    {
+        rpn.run(s);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
     return 0;
 }

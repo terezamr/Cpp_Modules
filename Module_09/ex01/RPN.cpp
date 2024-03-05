@@ -1,13 +1,16 @@
 #include "RPN.hpp"
 
-RPN::RPN()
-{
-    // std::cout << "Constructor" << std::endl;
-}
+RPN::RPN() {}
 
-RPN::~RPN()
+RPN::~RPN() {}
+
+RPN::RPN(const RPN& src) : st(src.st) {}
+
+RPN& RPN::operator=(const RPN& src)
 {
-    // std::cout << "Destructor" << std::endl;
+    if (this != &src)
+        this->st = src.st;
+    return *this;
 }
 
 int RPN::populate_st(std::string str)
@@ -32,7 +35,14 @@ float   ft_stof(std::string str)
     int m = 0;
     float i = 0;
     int d = 1;
-    
+    int sig = 1;
+
+    if (str[f] == '-' || str[f] == '+')
+    {
+        if (str[f] == '-')
+            sig = -1;
+        f++;
+    }
     while (str[f])
     {
         if (str[f] >= '0' && str[f] <= '9')
@@ -49,11 +59,12 @@ float   ft_stof(std::string str)
                 f++;
             }
             if (str[f] == '.')
-                return -1;
+                throw(std::invalid_argument("Error: bad input"));
+            continue ;
         }
         f++;
     }
-    float final = (i + static_cast<float>(m)/d);
+    float final = (i + static_cast<float>(m)/d) * sig;
     return (final);
 }
 
@@ -68,60 +79,64 @@ std::pair<std::string,std::string> split(std::string str)
 
 int isNum(std::string str)
 {
-    float nb = ft_stof(str);
-    if (nb < 0 || nb > 10)
-        return 0;
-    return 1;
+    if ((str[0] == '+' || str[0] == '-') && isdigit(str[1]))
+        return 1;
+    if (isdigit(str[0]))
+        return 1;
+
+    return 0;
 }
 
 int    RPN::calculate(std::string s)
 {
     if (st.size() < 2)
         return 0;
-    if (s[1])
-        return 0;
     float a = this->st.top();
     st.pop();
     float b = this->st.top();
     st.pop();
     if (s[0] == '+')
-        st.push(a + b);
+        st.push(b + a);
     else if (s[0] == '-')
         st.push(b - a);
     else if (s[0] == '*')
         st.push(b * a);
     else if (s[0] == '/')
-        st.push(b / a);
-    return 1;
-}
-
-int RPN::check_str(std::string str)
-{
-    std::string opt = "0123456789*/+- ";
-
-    std::string aux;
-	std::stringstream stream(str);
-	while(std::getline(stream, aux, ' '))
     {
-        if (aux[0] == '+' || aux[0] == '-' || aux[0] == '*' || aux[0] == '/')
-        {
-            if (!this->calculate(aux))
-                return 0;
-        }
-        else if (isNum(aux))
-        {
-            float nb = ft_stof(aux);
-            this->st.push(nb);
-        }
-        else
-            return 0;
+        if (a == 0)
+            throw(std::invalid_argument("Error: Division by zero"));
+        st.push(b / a);
     }
-    std::cout << "final: " << this->st.top() << std::endl;
+    // std::cout << "calc: " << st.top() << std::endl;
     return 1;
 }
 
 void    RPN::run(std::string str)
 {
-    if (!this->check_str(str))
-        std::cout << "Bad input: check" << std::endl;
+    if (!str[0] || str[0] == ' ')
+        throw(std::invalid_argument("Error: bad input"));
+
+    std::string aux;
+	std::stringstream stream(str);
+	while(std::getline(stream, aux, ' '))
+    {
+        std::cout << "aux:" << aux << "." << std::endl;
+        if (isNum(aux))
+        {
+            float nb = ft_stof(aux);
+            if (nb < -9 || nb > 9)
+                throw(std::invalid_argument("Error: bad input"));
+            this->st.push(nb);
+        }
+        else if ((aux[0] == '+' || aux[0] == '-' || aux[0] == '*' || aux[0] == '/') && !aux[1])
+        {
+            if (!this->calculate(aux))
+                throw(std::invalid_argument("Error: bad input"));
+        }
+        else
+            throw(std::invalid_argument("Error: bad input"));
+    }
+    if (this->st.size() != 1)
+        throw(std::invalid_argument("Error: bad input"));
+    std::cout << this->st.top() << std::endl;
 }

@@ -9,8 +9,8 @@
 #include <sstream>
 #include <cmath>
 #include <string.h>
-
-#define INTM 2147483647
+#include <climits>
+#include <limits>
 
 class BitcoinExchange
 {
@@ -20,8 +20,11 @@ class BitcoinExchange
     public:
         BitcoinExchange();
         BitcoinExchange(std::string str);
+        ~BitcoinExchange();
+        BitcoinExchange(const BitcoinExchange&src);
+        BitcoinExchange&    operator=(const BitcoinExchange& src);
 
-        void    populate(std::string str);
+        int    populate(std::string str);
         void    showValues(void);
         float    find_date(std::string date);
 };
