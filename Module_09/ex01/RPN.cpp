@@ -81,9 +81,8 @@ int isNum(std::string str)
 {
     if ((str[0] == '+' || str[0] == '-') && isdigit(str[1]))
         return 1;
-    if (isdigit(str[0]))
+    if (isdigit(str[0]) && !str[1])
         return 1;
-
     return 0;
 }
 
@@ -107,20 +106,18 @@ int    RPN::calculate(std::string s)
             throw(std::invalid_argument("Error: Division by zero"));
         st.push(b / a);
     }
-    // std::cout << "calc: " << st.top() << std::endl;
     return 1;
 }
 
 void    RPN::run(std::string str)
 {
-    if (!str[0] || str[0] == ' ')
+    if (!str[0])
         throw(std::invalid_argument("Error: bad input"));
 
     std::string aux;
 	std::stringstream stream(str);
-	while(std::getline(stream, aux, ' '))
+	while(stream >> aux)
     {
-        std::cout << "aux:" << aux << "." << std::endl;
         if (isNum(aux))
         {
             float nb = ft_stof(aux);

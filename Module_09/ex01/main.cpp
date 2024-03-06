@@ -1,6 +1,5 @@
 #include "RPN.hpp"
 
-// more than one space/tab + spaces at begin and end (try sstream)
 int main(int argc, char **argv)
 {
     if (argc != 2)
