@@ -20,25 +20,29 @@ int   ft_stoi(std::string str)
     return (i * sig);
 }
 
-void    PmergeMe::sortPairs()
+void    PmergeMe::sortPair()
 {
     int i = 0;
     while (this->vec[i])
     {
         if (this->vec[i + 1] && this->vec[i] > this->vec[i + 1])
             iter_swap(vec.begin() + i, vec.begin() + i + 1);
-        
         i = i + 2;
     }
-    
-    i = 0;
-    std::cout << "sorted pairs: ";
-    while(this->vec[i])
+}
+
+
+void    PmergeMe::sortPairs(size_t i0, size_t i1)
+{
+    if (i1 >= vec.size())
+        return ;
+    if (vec[i0] < vec[i1])
+        sortPairs(i1, i1 + 2);
+    else if (vec[i0] > vec[i1])
     {
-        std::cout << vec[i] << " ";
-        i++;
+        iter_swap(vec.begin() + i0, vec.begin() + i1);
+        iter_swap(vec.begin() + i0 - 1, vec.begin() + i1 - 1);
     }
-    std::cout << "\n";
 }
 
 // main chain vector: high values of each pair
@@ -51,19 +55,10 @@ std::vector<int>    PmergeMe::get_a()
         a.push_back(this->vec[i]);
         i = i + 2;
     }
-
-    size_t f = 0;
-    std::cout << "a: ";
-    while (f < a.size())
-    {
-        std::cout << a[f] << " ";
-        f++;
-    }
-    std::cout << "\n";
     return a;
 }
 
-// pend elements vecotr: low values of each pair
+// pend elements vector: low values of each pair
 std::vector<int>    PmergeMe::get_b()
 {
     std::vector<int> b;
@@ -73,15 +68,6 @@ std::vector<int>    PmergeMe::get_b()
         b.push_back(this->vec[i]);
         i = i + 2;
     }
-
-    size_t f = 0;
-    std::cout << "b: ";
-    while (f < b.size())
-    {
-        std::cout << b[f] << " ";
-        f++;
-    }
-    std::cout << "\n";
     return b;
 }
 
@@ -113,26 +99,72 @@ std::vector<int>    insert_b(std::vector<int> a, std::vector<int> b)
     size_t smaller_index = 1;
     size_t jacob_order = 1;
 
+    int index_b;
     while (f < b.size())
     {
+        // uses the jacobshtal number to get the index of the
+        // next element of b to insert in a
         aux = get_jacobsthal(aux, &jacob_order, &smaller_index);
         while (aux > b.size())
             aux--;
-        std::cout << "b: "<< b[aux - 1] << "\n";
+        index_b = aux - 1;
+
+        // inserts the element of b in a
+        size_t i = 0;
+        while (i < a.size())
+        {
+            if (b[index_b] < a[i])
+            {
+                a.insert(a.begin() + i, b[index_b]);
+                break ;
+            }
+            i++;
+        }
         f++;
     }
     return (a);
 }
 
-
 void    PmergeMe::FordJohnson()
 {
-    this->sortPairs();
+    size_t h = 0;
+    std::cout << "vec 0: ";
+    while (h < vec.size())
+    {
+        std::cout << vec[h] << " ";
+        h++;
+    }
+    std::cout << "\n";
+
+    // sort each pair
+    this->sortPair();
+
+    // sort pairs recursively (highest value)
+    size_t i = 0;
+    while (i < vec.size())
+    {
+        size_t g = 1;
+        while (g < vec.size() - 2)
+        {
+            this->sortPairs(g, g + 2);
+            g = g + 2;
+        }
+        i++;
+    }
 
     std::vector<int> a = this->get_a();
     std::vector<int> b = this->get_b();
 
     std::vector<int> vector = insert_b(a, b);
+
+    h = 0;
+    std::cout << "vec f: ";
+    while (h < vector.size())
+    {
+        std::cout << vector[h] << " ";
+        h++;
+    }
+    std::cout << "\n";
 }
 
 PmergeMe::PmergeMe(std::string str)
@@ -146,12 +178,5 @@ PmergeMe::PmergeMe(std::string str)
         this->vec.push_back(nb);
     }
 
-    int i = 0;
-    while(this->vec[i])
-    {
-        std::cout << vec[i] << " ";
-        i++;
-    }
-    std::cout << "\n";
     this->FordJohnson();
 }

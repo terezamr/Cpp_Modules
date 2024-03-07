@@ -1,5 +1,7 @@
 #include "PmergeMe.hpp"
 
+// nmr impar de numeros
+// numeros iguais
 int main(int argc, char **argv)
 {
     if (argc != 2)
