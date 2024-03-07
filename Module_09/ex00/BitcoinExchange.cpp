@@ -232,6 +232,16 @@ bool isPt(int i)
     return 0;
 }
 
+int BitcoinExchange::check_f(std::ifstream f)
+{
+    if (f.peek() ==  std::ifstream::traits_type::eof()) {
+        std::cout << "Error: empty file" << std::endl;
+        f.close();
+        return 0;
+    }
+    return 1;
+}
+
 void    BitcoinExchange::showValues(void)
 {
     std::string str = "data.csv";
@@ -241,32 +251,34 @@ void    BitcoinExchange::showValues(void)
         return ;
     }
 
+    // check that files exists and is not empty
     std::ifstream   f;
     f.open(this->input.c_str(), std::ios::in);
     if (!f) {
         std::cout << "Error: could not open file '" << this->input.c_str() << "'" << std::endl;
         return ;
     }
-
-    std::string aux;
-    std::string tmp;
-
-    getline(f, aux);
-    
-    if (!aux[0]) {
+    if (f.peek() ==  std::ifstream::traits_type::eof()) {
         std::cout << "Error: empty file" << std::endl;
         f.close();
         return ;
     }
 
-    // deleting non printable char after aux
-    aux.erase(aux.size() - 1);
-    if (aux != "data | value")
-    {
-        std::cout << "Error: wrong first line => " << aux << std::endl;
-        f.close();
+    // opens the file again, to check the first line
+    std::ifstream   f0;
+    f0.open(this->input.c_str(), std::ios::in);
+    if (!f0) {
+        std::cout << "Error: could not open file '" << this->input.c_str() << "'" << std::endl;
         return ;
-    }   
+    }
+    
+    // if the 1st line is 'date | value' it goes to the next
+    // if not, starts checking each line 
+    std::string aux;
+    std::string tmp;
+    std::getline(f0, tmp);
+	if (tmp == "date | value")
+		std::getline(f, aux);
 
     while (getline(f, aux)) {
         try {

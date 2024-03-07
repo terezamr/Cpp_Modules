@@ -24,9 +24,10 @@ class BitcoinExchange
         BitcoinExchange(const BitcoinExchange&src);
         BitcoinExchange&    operator=(const BitcoinExchange& src);
 
-        int    populate(std::string str);
-        void    showValues(void);
-        float    find_date(std::string date);
+        int             populate(std::string str);
+        void            showValues(void);
+        float           find_date(std::string date);
+        int             check_f(std::ifstream f);
 };
 
 #endif

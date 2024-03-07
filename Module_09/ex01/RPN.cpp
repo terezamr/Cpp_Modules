@@ -31,41 +31,44 @@ int RPN::populate_st(std::string str)
 
 float   ft_stof(std::string str)
 {
-    int f = 0;
-    int m = 0;
     float i = 0;
-    int d = 1;
-    int sig = 1;
+    int f = 0;
 
-    if (str[f] == '-' || str[f] == '+')
-    {
-        if (str[f] == '-')
-            sig = -1;
-        f++;
-    }
+    // implementing negative nbs
+    // int sig = 1;
+    // if (str[f] == '-' || str[f] == '+')
+    // {
+    //     if (str[f] == '-')
+    //         sig = -1;
+    //     f++;
+    // }
+    // implementing decimal nbs
+    // int m = 0;
+    // int d = 1;
+
     while (str[f])
     {
         if (str[f] >= '0' && str[f] <= '9')
             i = i * 10 + (str[f] - '0');
-        else if (str[f] == '.')
-        {
-            f++;
-            if (!str[f] || !isdigit(str[f]))
-                return -1;
-            while (str[f] >= '0' && str[f] <= '9')
-            {
-                m = m * 10 + (str[f] - '0');
-                d *= 10;
-                f++;
-            }
-            if (str[f] == '.')
-                throw(std::invalid_argument("Error: bad input"));
-            continue ;
-        }
+        // else if (str[f] == '.')
+        // {
+        //     f++;
+        //     if (!str[f] || !isdigit(str[f]))
+        //         return -1;
+        //     while (str[f] >= '0' && str[f] <= '9')
+        //     {
+        //         m = m * 10 + (str[f] - '0');
+        //         d *= 10;
+        //         f++;
+        //     }
+        //     if (str[f] == '.')
+        //         throw(std::invalid_argument("Error: bad input"));
+        //     continue ;
+        // }
         f++;
     }
-    float final = (i + static_cast<float>(m)/d) * sig;
-    return (final);
+    //float final = (i + static_cast<float>(m)/d) * sig;
+    return (i);
 }
 
 std::pair<std::string,std::string> split(std::string str)
@@ -79,10 +82,23 @@ std::pair<std::string,std::string> split(std::string str)
 
 int isNum(std::string str)
 {
-    if ((str[0] == '+' || str[0] == '-') && isdigit(str[1]))
-        return 1;
     if (isdigit(str[0]) && !str[1])
         return 1;
+    // implementing decimal numbers
+    // else if (str[1])
+    // {
+    //     int i = 0;
+    //     while (str[i])
+    //     {
+    //         if (!isdigit(str[i]) && str[i] != '.')
+    //             return 0;
+    //         i++;
+    //     }
+    //     return 1;
+    // }
+    // implementing negative nbs
+    // if ((str[0] == '+' || str[0] == '-') && isdigit(str[1]))
+    //     return 1;
     return 0;
 }
 
@@ -121,7 +137,7 @@ void    RPN::run(std::string str)
         if (isNum(aux))
         {
             float nb = ft_stof(aux);
-            if (nb < -9 || nb > 9)
+            if (nb < 0 || nb > 9)
                 throw(std::invalid_argument("Error: bad input"));
             this->st.push(nb);
         }
