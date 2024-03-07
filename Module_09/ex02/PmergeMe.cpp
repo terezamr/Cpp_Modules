@@ -125,17 +125,8 @@ std::vector<int>    insert_b(std::vector<int> a, std::vector<int> b)
     return (a);
 }
 
-void    PmergeMe::FordJohnson()
+void    PmergeMe::FordJohnson_vec()
 {
-    size_t h = 0;
-    std::cout << "vec 0: ";
-    while (h < vec.size())
-    {
-        std::cout << vec[h] << " ";
-        h++;
-    }
-    std::cout << "\n";
-
     // sort each pair
     this->sortPair();
 
@@ -156,27 +147,43 @@ void    PmergeMe::FordJohnson()
     std::vector<int> b = this->get_b();
 
     std::vector<int> vector = insert_b(a, b);
+    this->vec = vector;
+}
 
-    h = 0;
-    std::cout << "vec f: ";
-    while (h < vector.size())
+void    PmergeMe::print_v()
+{
+    size_t h = 0;
+    while (h < this->vec.size())
     {
-        std::cout << vector[h] << " ";
+        std::cout << this->vec[h] << " ";
         h++;
     }
     std::cout << "\n";
 }
 
-PmergeMe::PmergeMe(std::string str)
+PmergeMe::PmergeMe(char **argv)
 {
-
-    std::string aux;
-	std::stringstream stream(str);
-	while(stream >> aux)
+    gettimeofday(&start, NULL);
+    int i = 1;
+    while (argv[i])
     {
-        int nb = ft_stoi(aux);
+        int nb = ft_stoi(argv[i]);
         this->vec.push_back(nb);
+        i++;
     }
 
-    this->FordJohnson();
+    // std::string aux;
+	// std::stringstream stream(str);
+	// while(stream >> aux)
+    // {
+    //     int nb = ft_stoi(aux);
+    //     this->vec.push_back(nb);
+    // }
+    this->FordJohnson_vec();
+}
+
+double  PmergeMe::getTime()
+{
+    gettimeofday(&end, NULL);
+    return (double(end.tv_usec - start.tv_usec));
 }

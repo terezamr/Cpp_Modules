@@ -7,7 +7,6 @@ int main(int argc, char **argv)
         std::cout << "Wrong input" << std::endl;
         return 0;
     }
-
     RPN rpn;
     std::string s = argv[1];
     try
@@ -18,6 +17,5 @@ int main(int argc, char **argv)
     {
         std::cerr << e.what() << '\n';
     }
-
     return 0;
 }
