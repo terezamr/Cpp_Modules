@@ -12,9 +12,10 @@ int   ft_stoi(std::string str)
             sig = -1;
         f++;
     }
-    while (str[f] >= '0' && str[f] <= '9')
+    while (str[f])
     {
-        i = i * 10 + (str[f] - '0');
+        if (str[f] >= '0' && str[f] <= '9')
+            i = i * 10 + (str[f] - '0');
         f++;
     }
     return (i * sig);
@@ -22,8 +23,8 @@ int   ft_stoi(std::string str)
 
 void    PmergeMe::sortPair()
 {
-    int i = 0;
-    while (this->vec[i])
+    size_t i = 0;
+    while (i < vec.size())
     {
         if (this->vec[i + 1] && this->vec[i] > this->vec[i + 1])
             iter_swap(vec.begin() + i, vec.begin() + i + 1);
@@ -49,8 +50,8 @@ void    PmergeMe::sortPairs(size_t i0, size_t i1)
 std::vector<int>    PmergeMe::get_a()
 {
     std::vector<int> a;
-    int i = 1;
-    while (this->vec[i])
+    size_t i = 1;
+    while (i < vec.size())
     {
         a.push_back(this->vec[i]);
         i = i + 2;
@@ -161,25 +162,45 @@ void    PmergeMe::print_v()
     std::cout << "\n";
 }
 
+std::string ft_trim(std::string str)
+{
+    std::string final;
+    size_t start = str.find_first_not_of(" \t\v\f\r");
+    size_t end = str.find_last_not_of(" \t\v\f\r");
+
+    if (start == std::string::npos)
+       throw(std::invalid_argument("Error: empty str"));
+
+    final = str.substr(start, end - start + 1);
+    return final;
+}
+
 PmergeMe::PmergeMe(char **argv)
 {
     gettimeofday(&start, NULL);
     int i = 1;
     while (argv[i])
     {
-        int nb = ft_stoi(argv[i]);
+        std::string aux = argv[i];
+        int nb = ft_stoi(ft_trim(aux.c_str()));
         this->vec.push_back(nb);
         i++;
     }
-
-    // std::string aux;
-	// std::stringstream stream(str);
-	// while(stream >> aux)
-    // {
-    //     int nb = ft_stoi(aux);
-    //     this->vec.push_back(nb);
-    // }
     this->FordJohnson_vec();
+}
+
+PmergeMe::PmergeMe(char **argv, int opt)
+{
+    gettimeofday(&start, NULL);
+    int i = 1;
+    while (argv[i])
+    {
+        std::string aux = argv[i];
+        int nb = ft_stoi(ft_trim(aux.c_str()));
+        this->lst.push_back(nb);
+        i++;
+    }
+    this->FordJohnson_lst();
 }
 
 double  PmergeMe::getTime()

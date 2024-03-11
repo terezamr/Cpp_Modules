@@ -9,6 +9,7 @@
 // b 3
 // '' 3
 // empty
+// tempo depois de guardar o vetor / lista
 
 int main(int argc, char **argv)
 {
@@ -25,10 +26,9 @@ int main(int argc, char **argv)
             PmergeMe obj(argv);
             time(&end);
 
-            std::cout << "VECTOR\n";
-            std::cout << "After:  ";
             obj.print_v();
             std::cout << "Time to process with vector: " << obj.getTime() << std::setprecision(20) << " ns." << std::endl;
+            std::cout << "\n";
         }
         catch(const std::exception& e)
         {
@@ -36,7 +36,21 @@ int main(int argc, char **argv)
         }
     }
     {
+        try
+        {
+            time_t start, end;
+            time(&start);
+            PmergeMe obj1(argv, 1);
+            time(&end);
 
+            obj1.print_l();
+            std::cout << "Time to process with list: " << obj1.getTime() << std::setprecision(20) << " ns." << std::endl;
+            std::cout << "\n";
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
     }
 
     // std::string str = argv[1];
