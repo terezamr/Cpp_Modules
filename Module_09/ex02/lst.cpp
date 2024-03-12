@@ -1,29 +1,42 @@
 #include "PmergeMe.hpp"
 
+std::list<int>::iterator    next_lst(std::list<int> &lst, size_t i)
+{
+    size_t f = 0;
+    std::list<int>::iterator it = lst.begin();
+    //std::advance(it, i);
+    while (it != lst.end() && f < i)
+    {
+        it++;
+        f++;
+    }
+    return it;
+}
+
 void    PmergeMe::sortPairs_lst(size_t i0, size_t i1)
 {
-    if (i1 >= lst.size())
+    if (i1 >= this->lst.size())
         return ;
-    std::list<int>::iterator aux0 = std::next(this->lst.begin(), i0);
-    std::list<int>::iterator aux1 = std::next(this->lst.begin(), i1);
+    std::list<int>::iterator aux0 = next_lst(this->lst, i0);
+    std::list<int>::iterator aux1 = next_lst(this->lst, i1);
     if (*aux0 < *aux1)
         sortPairs_lst(i1, i1 + 2);
     else if (*aux0 > *aux1)
     {
-        iter_swap(aux0, aux1);
-        iter_swap(std::next(this->lst.begin(), i0 - 1), std::next(this->lst.begin(), i1 - 1));
+        std::iter_swap(aux0, aux1);
+        std::iter_swap(next_lst(this->lst, i0 - 1), next_lst(this->lst, i1 - 1));
     }
 }
 
 void    PmergeMe::sortPair_lst()
 {
     size_t i = 0;
-    while (i < lst.size())
+    while (i < this->lst.size())
     {
-        std::list<int>::iterator aux0 = std::next(this->lst.begin(), i);
-        std::list<int>::iterator aux1 = std::next(this->lst.begin(), i + 1);
-        if (aux1 != lst.end() && *aux0 > *aux1)
-            iter_swap(aux0, aux1);
+        std::list<int>::iterator aux0 = next_lst(this->lst, i);
+        std::list<int>::iterator aux1 = next_lst(this->lst, i + 1);
+        if (*aux0 > *aux1)
+            std::iter_swap(aux0, aux1);
         i = i + 2;
     }
 }
@@ -80,8 +93,8 @@ std::list<int>    insert_b(std::list<int> a, std::list<int> b)
         size_t i = 0;
         while (i < a.size())
         {
-            std::list<int>::iterator aux0 = std::next(b.begin(), index_b);
-            std::list<int>::iterator aux1 = std::next(a.begin(), i);
+            std::list<int>::iterator aux0 = next_lst(b, index_b);
+            std::list<int>::iterator aux1 = next_lst(a, i);
             if (*aux0 < *aux1)
             {
                 a.insert(aux1, *aux0);
@@ -121,11 +134,14 @@ void    PmergeMe::FordJohnson_lst()
 
 void    PmergeMe::print_l()
 {
+    int i = 0;
     std::list<int>::iterator it = lst.begin();
-    while (it != lst.end())
+    while (it != lst.end() && i < 5)
     {
         std::cout << *it << " ";
         it++;
+        i++;
     }
-    std::cout << "\n";
+    if (it != lst.end())
+        std::cout << " [...]\n";
 }

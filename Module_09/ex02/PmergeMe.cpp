@@ -23,15 +23,12 @@ int   ft_stoi(std::string str)
 
 void    PmergeMe::sortPair()
 {
-    size_t i = 0;
-    while (i < vec.size())
+    for (size_t i = 0; i + 1 < vec.size(); i += 2)
     {
         if (this->vec[i + 1] && this->vec[i] > this->vec[i + 1])
             iter_swap(vec.begin() + i, vec.begin() + i + 1);
-        i = i + 2;
     }
 }
-
 
 void    PmergeMe::sortPairs(size_t i0, size_t i1)
 {
@@ -50,11 +47,14 @@ void    PmergeMe::sortPairs(size_t i0, size_t i1)
 std::vector<int>    PmergeMe::get_a()
 {
     std::vector<int> a;
-    size_t i = 1;
-    while (i < vec.size())
+    // std::copy_if(vec.begin(), vec.end(), std::back_inserter(evenNumbers),
+    //     [](int num){ return num % 2 == 0; });
+
+    std::vector<int>::iterator it = vec.begin();
+    while (it != vec.end())
     {
-        a.push_back(this->vec[i]);
-        i = i + 2;
+        a.push_back(*it);
+        std::advance(it, 2);
     }
     return a;
 }
@@ -63,13 +63,28 @@ std::vector<int>    PmergeMe::get_a()
 std::vector<int>    PmergeMe::get_b()
 {
     std::vector<int> b;
-    size_t i = 0;
-    while (i < this->vec.size())
+    std::vector<int>::iterator it = vec.begin();
+    while (it != vec.end())
     {
-        b.push_back(this->vec[i]);
-        i = i + 2;
+        b.push_back(*it);
+        std::advance(it, 2);
     }
     return b;
+}
+
+std::pair<std::vector<int>,std::vector<int> > PmergeMe::get_a_b()
+{
+    std::vector<int> a;
+    std::vector<int> b;
+    std::vector<int>::iterator it = vec.begin();
+    while (it + 1 != vec.end() && it != vec.end())
+    {
+        std::cout << *it << " ";
+        b.push_back(*it);
+        a.push_back(*(it + 1));
+        std::advance(it, 2);
+    }
+    return std::make_pair(a, b);
 }
 
 size_t jacobsthal_equation(int order)
@@ -93,6 +108,23 @@ size_t    get_jacobsthal(size_t i, size_t *jacob_order, size_t *smaller_index)
     return i;
 }
 
+size_t insertion_index(std::vector<int> v, int target)
+{
+    int high = v.size() - 1;
+    int low = 0;
+    while (low <= high)
+    {
+        size_t mid = std::floor((high + low) / 2);
+        if (v[mid] == target)
+            return mid;
+        else if (v[mid] > target)
+            high = mid - 1;
+        else
+            low = mid + 1;
+    }
+    return low;
+}
+
 std::vector<int>    insert_b(std::vector<int> a, std::vector<int> b)
 {
     size_t aux = 1;
@@ -110,17 +142,22 @@ std::vector<int>    insert_b(std::vector<int> a, std::vector<int> b)
             aux--;
         index_b = aux - 1;
 
+        // binary search and insertion
+        size_t index = insertion_index(a, b[index_b]);
+        a.insert(a.begin() + index, b[index_b]);
+
         // inserts the element of b in a
-        size_t i = 0;
-        while (i < a.size())
-        {
-            if (b[index_b] < a[i])
-            {
-                a.insert(a.begin() + i, b[index_b]);
-                break ;
-            }
-            i++;
-        }
+        // size_t i = 0;
+        // while (i < a.size())
+        // {
+        //     //std::cout << "i: " << i << std::endl;
+        //     if (b[index_b] < a[i])
+        //     {
+        //         a.insert(a.begin() + i, b[index_b]);
+        //         break ;
+        //     }
+        //     i++;
+        // }
         f++;
     }
     return (a);
@@ -133,7 +170,16 @@ void    PmergeMe::FordJohnson_vec()
 
     // sort pairs recursively (highest value)
     size_t i = 0;
-    while (i < vec.size())
+
+    int odd = 0;
+    int last = vec[vec.size() - 1];
+    if (vec.size() % 2 != 0)
+    {
+        odd = 1;
+        vec.erase(vec.end() - 1);
+    }
+
+    while (i < vec.size() - 1)
     {
         size_t g = 1;
         while (g < vec.size() - 2)
@@ -143,23 +189,36 @@ void    PmergeMe::FordJohnson_vec()
         }
         i++;
     }
+    if (odd == 1)
+        vec.insert(vec.end(), last);
 
-    std::vector<int> a = this->get_a();
-    std::vector<int> b = this->get_b();
+    std::cout << "vec 1: ";
+    print_v();
+    std::cout << "\n";
 
-    std::vector<int> vector = insert_b(a, b);
+
+    std::pair<std::vector<int>,std::vector<int> > ab = get_a_b();
+    
+    
+    // std::vector<int> a = this->get_a();
+    // std::vector<int> b = this->get_b();
+
+    std::vector<int> vector = insert_b(ab.first, ab.second);
     this->vec = vector;
 }
 
 void    PmergeMe::print_v()
 {
+    int i = 0;
     size_t h = 0;
-    while (h < this->vec.size())
+    while (h < this->vec.size() && i < 5)
     {
         std::cout << this->vec[h] << " ";
         h++;
+        //i++;
     }
-    std::cout << "\n";
+    // if (h != vec.size())
+    //     std::cout << " [...]\n";
 }
 
 std::string ft_trim(std::string str)
@@ -191,6 +250,7 @@ PmergeMe::PmergeMe(char **argv)
 
 PmergeMe::PmergeMe(char **argv, int opt)
 {
+    (void)opt;
     gettimeofday(&start, NULL);
     int i = 1;
     while (argv[i])
@@ -201,6 +261,21 @@ PmergeMe::PmergeMe(char **argv, int opt)
         i++;
     }
     this->FordJohnson_lst();
+}
+
+PmergeMe::PmergeMe(char **argv, char *str)
+{
+    (void)str;
+    gettimeofday(&start, NULL);
+    int i = 1;
+    while (argv[i])
+    {
+        std::string aux = argv[i];
+        int nb = ft_stoi(ft_trim(aux.c_str()));
+        this->dq.push_back(nb);
+        i++;
+    }
+    this->FordJohnson_dq();
 }
 
 double  PmergeMe::getTime()
