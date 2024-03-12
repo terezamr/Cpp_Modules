@@ -24,65 +24,6 @@ void    PmergeMe::sortPair_dq()
     }
 }
 
-// main chain deque: high values of each pair
-std::deque<int>    PmergeMe::get_a_dq()
-{
-    std::deque<int> a;
-    size_t i = 1;
-    while (i < dq.size())
-    {
-        a.push_back(dq[i]);
-        i = i + 2;
-    }
-    return a;
-}
-
-// pend elements deque: low values of each pair
-std::deque<int>    PmergeMe::get_b_dq()
-{
-    std::deque<int> b;
-    size_t i = 0;
-    while (i < dq.size())
-    {
-        b.push_back(dq[i]);
-        i = i + 2;
-    }
-    return b;
-}
-
-std::deque<int>    insert_b_dq(std::deque<int> a, std::deque<int> b)
-{
-    size_t aux = 1;
-    size_t f = 0;
-    size_t smaller_index = 1;
-    size_t jacob_order = 1;
-
-    int index_b;
-    while (f < b.size())
-    {
-        // uses the jacobshtal number to get the index of the
-        // next element of b to insert in a
-        aux = get_jacobsthal(aux, &jacob_order, &smaller_index);
-        while (aux > b.size())
-            aux--;
-        index_b = aux - 1;
-
-        // inserts the element of b in a
-        size_t i = 0;
-        while (i < a.size())
-        {
-            if (b[index_b] < a[i])
-            {
-                a.insert(a.begin() + i, b[index_b]);
-                break ;
-            }
-            i++;
-        }
-        f++;
-    }
-    return a;
-}
-
 void    PmergeMe::FordJohnson_dq()
 {
     // sort each pair
@@ -101,23 +42,7 @@ void    PmergeMe::FordJohnson_dq()
         i++;
     }
     
-    std::deque<int> a = this->get_a_dq();
-    std::deque<int> b = this->get_b_dq();
-    std::deque<int> final_dq = insert_b_dq(a, b);
-
+    std::pair<std::deque<int>,std::deque<int> > ab = get_a_b(dq);
+    std::deque<int> final_dq = insert_b(ab.first, ab.second);
     this->dq = final_dq;
-}
-
-void    PmergeMe::print_dq()
-{
-    int i = 0;
-    size_t g = 0;
-    while (g < this->dq.size() && i < 5)
-    {
-        std::cout << dq[g] << " ";
-        g++;
-        i++;
-    }
-    if (g != this->dq.size())
-        std::cout << " [...]\n";
 }

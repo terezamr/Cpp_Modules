@@ -8,6 +8,8 @@
 // empty
 // tempo depois de guardar o vetor / lista
 // numeros negativos?
+// forma canonica
+// transformar numeros
 
 // first pairs of elements are compared; in the second step the larger elements are sorted recursively; as a last step the elements belonging to the smaller half are inserted into the already sorted larger half using binary insertion.
 int main(int argc, char **argv)
@@ -37,17 +39,17 @@ int main(int argc, char **argv)
     {
         try
         {
-            std::cout << "\n";
-            //time_t start, end;
-            clock_t start = clock();
-            //time(&start);
             PmergeMe obj(argv);
-            //time(&end);
+            std::cout << "\nBefore: ";
+            obj.print(obj.getV());
 
-            obj.print_v();
-            //std::cout << "Time to process with vector: " << obj.getTime() << std::setprecision(10) << " ms." << std::endl;
-            std::cout << static_cast<float>(clock() - start) / CLOCKS_PER_SEC * 1000 << " ms" << std::endl;
-            std::cout << "\n";
+            clock_t start = clock();
+            obj.FordJohnson_vec();
+            clock_t time = static_cast<float>(clock() - start) / CLOCKS_PER_SEC * 1000;
+
+            std::cout << "After: ";
+            obj.print(obj.getV());
+            std::cout << "Time to process with vector: " << time << std::setprecision(10) << " ms.\n" << std::endl;
         }
         catch(const std::exception& e)
         {
@@ -57,9 +59,10 @@ int main(int argc, char **argv)
     // {
     //     try
     //     {
+    //         PmergeMe obj(argv);
     //         time_t start, end;
     //         time(&start);
-    //         PmergeMe obj2(argv, argv[1]);
+    //         this->FordJohnson_dq();
     //         time(&end);
 
     //         obj2.print_dq();
