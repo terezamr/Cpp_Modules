@@ -79,7 +79,7 @@ std::pair<std::vector<int>,std::vector<int> > PmergeMe::get_a_b()
     std::vector<int>::iterator it = vec.begin();
     while (it + 1 != vec.end() && it != vec.end())
     {
-        std::cout << *it << " ";
+        // std::cout << *it << " ";
         b.push_back(*it);
         a.push_back(*(it + 1));
         std::advance(it, 2);
@@ -192,13 +192,7 @@ void    PmergeMe::FordJohnson_vec()
     if (odd == 1)
         vec.insert(vec.end(), last);
 
-    std::cout << "vec 1: ";
-    print_v();
-    std::cout << "\n";
-
-
     std::pair<std::vector<int>,std::vector<int> > ab = get_a_b();
-    
     
     // std::vector<int> a = this->get_a();
     // std::vector<int> b = this->get_b();
@@ -215,10 +209,10 @@ void    PmergeMe::print_v()
     {
         std::cout << this->vec[h] << " ";
         h++;
-        //i++;
+        i++;
     }
-    // if (h != vec.size())
-    //     std::cout << " [...]\n";
+    if (h != vec.size())
+        std::cout << " [...]\n";
 }
 
 std::string ft_trim(std::string str)
