@@ -1,5 +1,5 @@
 
-Before: 410 3874 3119 1205 1630  [...]
+Before: 37 90 76 39 41  [...]
 sp
 sp
 sp
@@ -4910,13 +4910,5 @@ sp
 sp
 sp
 sp
-sp
-sp
-sp
-sp
-sp
-sp
-sp
-sp
-After: 0 91 151 189 223  [...]
-Time to process a range with 100 elements with std::vector: 1248 us.
+After: 0 1 2 3 4  [...]
+Time to process a range with 100 elements with std::vector: 2656 us.

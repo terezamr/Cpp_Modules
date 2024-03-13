@@ -28,11 +28,10 @@ int main(int argc, char **argv)
             std::cout << "Time to process a range with " << obj.getN() << " elements with std::vector: " << time << std::setprecision(20) << " us." << std::endl;
 
             // deque
-            // clock_t start_dq = clock();
-            // obj.FordJohnson_dq();
-            // clock_t time_dq = static_cast<float>(clock() - start_dq) / CLOCKS_PER_SEC * 1000000;
-            // std::cout << "Time to process a range with " << obj.getN() << " elements with std::deque: " << time_dq << std::setprecision(20) << " us.\n" << std::endl;
-            
+            clock_t start_dq = clock();
+            obj.FordJohnson_dq();
+            clock_t time_dq = static_cast<float>(clock() - start_dq) / CLOCKS_PER_SEC * 1000000;
+            std::cout << "Time to process a range with " << obj.getN() << " elements with std::deque: " << time_dq << std::setprecision(20) << " us.\n" << std::endl;
         }
         catch(const std::exception& e)
         {

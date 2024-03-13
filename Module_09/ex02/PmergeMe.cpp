@@ -21,7 +21,6 @@ void    PmergeMe::sortPair()
 
 void    PmergeMe::sortPairs(size_t i0, size_t i1)
 {
-    std::cout << "sp\n";
     // if (i1 >= vec.size())
     //     return ;
     // if (vec[i0] < vec[i1])
@@ -37,23 +36,33 @@ void    PmergeMe::sortPairs(size_t i0, size_t i1)
     if (vec[i0] > vec[i1])
     {
         iter_swap(vec.begin() + i0, vec.begin() + i1);
-        iter_swap(vec.begin() + i0 - 1, vec.begin() + i1 - 1);
+        //iter_swap(vec.begin() + i0 - 1, vec.begin() + i1 - 1);
     }
 
     std::vector<size_t> permutation;
-    for (size_t i = i0 + 2; i < vec.size(); i += 2) {
+    size_t i = i0 + 2;
+    while (i < vec.size())
+    {
         if (vec[i] > vec[i + 1])
             permutation.push_back(i);
+        i = i + 2;
     }
 
     // Apply permutation to smaller elements
-    for (size_t i : permutation) {
+    size_t j = 0;
+    while (j < permutation.size())
+    {
+        size_t i = permutation[j];
         std::iter_swap(vec.begin() + i, vec.begin() + i + 1);
+        j++;
     }
 
     // Recursively sort larger elements
-    for (size_t i : permutation) {
+    j = 0;
+    while (j < permutation.size())
+    {
         sortPairs(i, i + 2);
+        j++;
     }
 }
 
