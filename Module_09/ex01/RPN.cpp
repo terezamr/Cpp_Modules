@@ -153,4 +153,3 @@ void    RPN::run(std::string str)
         throw(std::invalid_argument("Error: bad input"));
     std::cout << this->st.top() << std::endl;
 }
-strstr

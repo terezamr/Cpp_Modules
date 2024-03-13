@@ -21,14 +21,39 @@ void    PmergeMe::sortPair()
 
 void    PmergeMe::sortPairs(size_t i0, size_t i1)
 {
+    std::cout << "sp\n";
+    // if (i1 >= vec.size())
+    //     return ;
+    // if (vec[i0] < vec[i1])
+    //     sortPairs(i1, i1 + 2);
+    // else if (vec[i0] > vec[i1])
+    // {
+    //     iter_swap(vec.begin() + i0, vec.begin() + i1);
+    //     iter_swap(vec.begin() + i0 - 1, vec.begin() + i1 - 1);
+    // }
+
     if (i1 >= vec.size())
         return ;
-    if (vec[i0] < vec[i1])
-        sortPairs(i1, i1 + 2);
-    else if (vec[i0] > vec[i1])
+    if (vec[i0] > vec[i1])
     {
         iter_swap(vec.begin() + i0, vec.begin() + i1);
         iter_swap(vec.begin() + i0 - 1, vec.begin() + i1 - 1);
+    }
+
+    std::vector<size_t> permutation;
+    for (size_t i = i0 + 2; i < vec.size(); i += 2) {
+        if (vec[i] > vec[i + 1])
+            permutation.push_back(i);
+    }
+
+    // Apply permutation to smaller elements
+    for (size_t i : permutation) {
+        std::iter_swap(vec.begin() + i, vec.begin() + i + 1);
+    }
+
+    // Recursively sort larger elements
+    for (size_t i : permutation) {
+        sortPairs(i, i + 2);
     }
 }
 
@@ -97,9 +122,11 @@ PmergeMe::PmergeMe(char **argv)
             throw(std::invalid_argument("Invalid argument"));
         }
         this->vec.push_back(n);
+        this->dq.push_back(n);
         i++;
     }
     this->N = vec.size();
     if (isSorted(vec))
         throw(std::invalid_argument("Set of numbers is sorted"));
+
 }

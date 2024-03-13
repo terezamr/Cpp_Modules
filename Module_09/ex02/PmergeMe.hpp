@@ -17,6 +17,7 @@ class PmergeMe
         std::list<int>      lst;
         std::deque<int>     dq;
         size_t              N;
+        size_t              k;
     public:
         // Canonical Form
         PmergeMe(char **argv);

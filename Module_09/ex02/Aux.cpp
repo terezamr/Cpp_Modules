@@ -1,6 +1,5 @@
 #include "PmergeMe.hpp"
 
-
 size_t  jacobsthal_equation(int order)
 {
     if (order == 1)
