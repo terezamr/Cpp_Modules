@@ -5,7 +5,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm -rf
 
-SRC = main.cpp PmergeMe.cpp lst.cpp deque.cpp
+SRC = main.cpp PmergeMe.cpp Deque.cpp Aux.cpp
 
 OBJS = $(SRC:.cpp=.o)
 

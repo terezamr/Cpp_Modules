@@ -5,9 +5,9 @@ std::vector<int>     PmergeMe::getV()
     return (this->vec);
 }
 
-std::deque<int>     PmergeMe::getD()
+size_t  PmergeMe::getN()
 {
-    return (this->dq);
+    return (this->N);
 }
 
 void    PmergeMe::sortPair()
@@ -32,27 +32,6 @@ void    PmergeMe::sortPairs(size_t i0, size_t i1)
     }
 }
 
-size_t  jacobsthal_equation(int order)
-{
-    if (order == 1)
-        return 1;
-    else
-        return ((std::pow(2, order) - std::pow(-1, order)) / 3);
-}
-
-size_t  get_jacobsthal(size_t i, size_t *jacob_order, size_t *smaller_index)
-{
-    if (i - 1 != 0 && i - 1 != jacobsthal_equation(*jacob_order - 1)) // decrementing elements after the jc number
-        i--;
-    else // next jc number and first element cases
-    {
-        (*jacob_order)++;
-        *smaller_index = i;
-        i = jacobsthal_equation(*jacob_order);
-    }
-    return i;
-}
-
 void    PmergeMe::FordJohnson_vec()
 {
     // sort each pair
@@ -60,7 +39,6 @@ void    PmergeMe::FordJohnson_vec()
 
     // sort pairs recursively (highest value)
     size_t i = 0;
-
     int odd = 0;
     int last = vec[vec.size() - 1];
     if (vec.size() % 2 != 0)
@@ -79,25 +57,29 @@ void    PmergeMe::FordJohnson_vec()
         }
         i++;
     }
+
     if (odd == 1)
         vec.insert(vec.end(), last);
 
     std::pair<std::vector<int>,std::vector<int> > ab = get_a_b(vec);
-    std::vector<int> vector = insert_b(ab.first, ab.second);
+    std::vector<int> vector = PmergeMe::insert_b(ab.first, ab.second);
+
     this->vec = vector;
 }
 
-std::string ft_trim(std::string str)
+
+bool isSorted(std::vector<int> &v)
 {
-    std::string final;
-    size_t start = str.find_first_not_of(" \t\v\f\r");
-    size_t end = str.find_last_not_of(" \t\v\f\r");
-
-    if (start == std::string::npos)
-       throw(std::invalid_argument("Error: empty str"));
-
-    final = str.substr(start, end - start + 1);
-    return final;
+    std::vector<int>::iterator it = v.begin();
+    std::vector<int>::iterator aux = v.begin() + 1;
+    while (aux != v.end())
+    {
+        if (*it > *aux)
+            return (false);
+        it++;
+        aux++;
+    }
+    return (true);
 }
 
 PmergeMe::PmergeMe(char **argv)
@@ -107,9 +89,17 @@ PmergeMe::PmergeMe(char **argv)
     {
         std::istringstream iss(argv[i]);
         int n;
-        if (!(iss >> n))
+
+        std::string str = argv[i];
+        size_t nonDigit = str.find_first_not_of("0123456789");
+
+        if (nonDigit != std::string::npos || !(iss >> n)) {
             throw(std::invalid_argument("Invalid argument"));
+        }
         this->vec.push_back(n);
         i++;
     }
+    this->N = vec.size();
+    if (isSorted(vec))
+        throw(std::invalid_argument("Set of numbers is sorted"));
 }
