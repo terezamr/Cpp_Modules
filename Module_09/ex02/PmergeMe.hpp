@@ -116,7 +116,7 @@ class PmergeMe
             {
                 std::cout << ct[h] << " ";
                 h++;
-                //i++;
+                i++;
             }
             if (h != ct.size())
                 std::cout << " [...]";
