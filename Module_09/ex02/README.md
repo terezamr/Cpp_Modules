@@ -14,10 +14,14 @@ Example:
 For every ``k``, we have that b<sub>k</sub> < a<sub>k</sub>
 
 ``43 306 418 765 387 794 ``
+
 a = {306, 765, 794}
+
 b = {43, 418, 387, 1}
 
 **Step 3**: Insert the pend elements into the main chain, following a certain order. Meaning, the elements of the collection b are not inserter in the main chaine a by the natural order (index = 0, 1, 2, ...). The index of the next element to insert is giving by the jacobsthal sequence.
+
+``1 42 306 387 18 765 794 ``
 
 [to be finished by the end of Mar 2024]
 
