@@ -7,8 +7,6 @@ long long getTimeMs() {
 }
 
 // forma canonica
-// check recursao dos pares de acordo com o maior numero
-// check timings outros rep
 
 // first pairs of elements are compared; in the second step the larger elements are sorted recursively; as a last step the elements belonging to the smaller half
 // are inserted into the already sorted larger half using binary insertion.
@@ -22,14 +20,15 @@ int main(int argc, char **argv)
     try
     {
         PmergeMe obj(argv);
-        std::cout << "\nBefore: ";
+
+        std::cout << "Before: ";
         obj.print(obj.getV());
 
         // vector
         long long start_time = getTimeMs();
         obj.FordJohnson_vec();
         long long end_time = getTimeMs();
-
+        
         std::cout << "After: ";
         obj.print(obj.getV());
         std::cout << "Time to process a range with " << obj.getN() << " elements with std::vector: " << end_time - start_time << std::setprecision(20) << " us." << std::endl;
