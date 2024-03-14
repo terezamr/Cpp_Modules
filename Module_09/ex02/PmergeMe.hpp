@@ -107,7 +107,7 @@ class PmergeMe
         }
 
         template <typename T>
-        void print(T ct)
+        static void print(T ct)
         {
             size_t h = 0;
             size_t i = 0;

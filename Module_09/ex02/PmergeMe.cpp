@@ -21,49 +21,15 @@ void    PmergeMe::sortPair()
 
 void    PmergeMe::sortPairs(size_t i0, size_t i1)
 {
-    // if (i1 >= vec.size())
-    //     return ;
-    // if (vec[i0] < vec[i1])
-    //     sortPairs(i1, i1 + 2);
-    // else if (vec[i0] > vec[i1])
-    // {
-    //     iter_swap(vec.begin() + i0, vec.begin() + i1);
-    //     iter_swap(vec.begin() + i0 - 1, vec.begin() + i1 - 1);
-    // }
-
     if (i1 >= vec.size())
         return ;
     if (vec[i0] > vec[i1])
     {
         iter_swap(vec.begin() + i0, vec.begin() + i1);
-        //iter_swap(vec.begin() + i0 - 1, vec.begin() + i1 - 1);
+        iter_swap(vec.begin() + i0 - 1, vec.begin() + i1 - 1);
     }
-
-    std::vector<size_t> permutation;
-    size_t i = i0 + 2;
-    while (i < vec.size())
-    {
-        if (vec[i] > vec[i + 1])
-            permutation.push_back(i);
-        i = i + 2;
-    }
-
-    // Apply permutation to smaller elements
-    size_t j = 0;
-    while (j < permutation.size())
-    {
-        size_t i = permutation[j];
-        std::iter_swap(vec.begin() + i, vec.begin() + i + 1);
-        j++;
-    }
-
-    // Recursively sort larger elements
-    j = 0;
-    while (j < permutation.size())
-    {
-        sortPairs(i, i + 2);
-        j++;
-    }
+    //else if (vec[i0] < vec[i1])
+    //    sortPairs(i1, i1 + 2);
 }
 
 void    PmergeMe::FordJohnson_vec()
@@ -97,10 +63,8 @@ void    PmergeMe::FordJohnson_vec()
 
     std::pair<std::vector<int>,std::vector<int> > ab = get_a_b(vec);
     std::vector<int> vector = PmergeMe::insert_b(ab.first, ab.second);
-
     this->vec = vector;
 }
-
 
 bool isSorted(std::vector<int> &v)
 {
@@ -137,5 +101,4 @@ PmergeMe::PmergeMe(char **argv)
     this->N = vec.size();
     if (isSorted(vec))
         throw(std::invalid_argument("Set of numbers is sorted"));
-
 }

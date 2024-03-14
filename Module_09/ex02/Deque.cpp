@@ -16,49 +16,16 @@ void    PmergeMe::sortPair_dq()
 
 void    PmergeMe::sortPairs_dq(size_t i0, size_t i1)
 {
-    // if (i1 >= this->dq.size())
-    //     return ;
-    // if (dq[i0] < dq[i1])
-    //     sortPairs_dq(i1, i1 + 2);
-    // else if (dq[i0] > dq[i1])
-    // {
-    //     std::swap(dq[i0], dq[i1]);
-    //     std::swap(dq[i0 - 1], dq[i1 - 1]);
-    // }
-
-    if (i1 >= dq.size())
+    if (i1 >= this->dq.size())
         return ;
     if (dq[i0] > dq[i1])
     {
-        iter_swap(dq.begin() + i0, dq.begin() + i1);
-        //iter_swap(dq.begin() + i0 - 1, vdqec.begin() + i1 - 1);
+        std::swap(dq[i0], dq[i1]);
+        std::swap(dq[i0 - 1], dq[i1 - 1]);
     }
+    //if (dq[i0] < dq[i1])
+    //    sortPairs_dq(i1, i1 + 2);
 
-    std::deque<size_t> permutation;
-    size_t i = i0 + 2;
-    while (i < dq.size())
-    {
-        if (dq[i] > dq[i + 1])
-            permutation.push_back(i);
-        i = i + 2;
-    }
-
-    // Apply permutation to smaller elements
-    size_t j = 0;
-    while (j < permutation.size())
-    {
-        size_t i = permutation[j];
-        std::iter_swap(dq.begin() + i, dq.begin() + i + 1);
-        j++;
-    }
-
-    // Recursively sort larger elements
-    j = 0;
-    while (j < permutation.size())
-    {
-        sortPairs_dq(i, i + 2);
-        j++;
-    }
 }
 
 void    PmergeMe::FordJohnson_dq()
@@ -92,6 +59,5 @@ void    PmergeMe::FordJohnson_dq()
     
     std::pair<std::deque<int>,std::deque<int> > ab = get_a_b(dq);
     std::deque<int> final_dq = PmergeMe::insert_b(ab.first, ab.second);
-
     this->dq = final_dq;
 }
