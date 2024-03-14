@@ -28,6 +28,7 @@ class PmergeMe
         // sorting functions
         void                sortPair();
         void                sortPairs(size_t i0, size_t i1);
+
         void                sortPair_dq();
         void                sortPairs_dq(size_t i0, size_t i1);
     
@@ -115,7 +116,7 @@ class PmergeMe
             {
                 std::cout << ct[h] << " ";
                 h++;
-                i++;
+                //i++;
             }
             if (h != ct.size())
                 std::cout << " [...]";

@@ -1,6 +1,7 @@
 #include "PmergeMe.hpp"
+#include <utility>
 
-std::vector<int>     PmergeMe::getV()
+std::vector<int>    PmergeMe::getV()
 {
     return (this->vec);
 }
@@ -19,17 +20,18 @@ void    PmergeMe::sortPair()
     }
 }
 
-void    PmergeMe::sortPairs(size_t i0, size_t i1)
+// recursive function to sort pairs
+void	sortPairs_recursive(std::vector<int> &vec, size_t size)
 {
-    if (i1 >= vec.size())
-        return ;
-    if (vec[i0] > vec[i1])
-    {
-        iter_swap(vec.begin() + i0, vec.begin() + i1);
-        iter_swap(vec.begin() + i0 - 1, vec.begin() + i1 - 1);
-    }
-    //else if (vec[i0] < vec[i1])
-    //    sortPairs(i1, i1 + 2);
+	if (size >= vec.size())
+		return ;
+	for (size_t i = 1; i < vec.size() - 1; i+=2) {
+        if (vec[i] > vec[size]) {
+			std::swap(vec[i], vec[size]);
+			std::swap(vec[i - 1], vec[size - 1]);
+		}
+	}
+	sortPairs_recursive(vec, size + 2);
 }
 
 void    PmergeMe::FordJohnson_vec()
@@ -37,8 +39,6 @@ void    PmergeMe::FordJohnson_vec()
     // sort each pair
     this->sortPair();
 
-    // sort pairs recursively (highest value)
-    size_t i = 0;
     int odd = 0;
     int last = vec[vec.size() - 1];
     if (vec.size() % 2 != 0)
@@ -47,16 +47,8 @@ void    PmergeMe::FordJohnson_vec()
         vec.erase(vec.end() - 1);
     }
 
-    while (i < vec.size() - 1)
-    {
-        size_t g = 1;
-        while (g < vec.size() - 2)
-        {
-            this->sortPairs(g, g + 2);
-            g = g + 2;
-        }
-        i++;
-    }
+    // sort pairs recursively (according to highest value)
+    sortPairs_recursive(this->vec, 1);
 
     if (odd == 1)
         vec.insert(vec.end(), last);

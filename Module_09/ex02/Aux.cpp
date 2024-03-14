@@ -33,3 +33,30 @@ std::string ft_trim(std::string str)
     final = str.substr(start, end - start + 1);
     return final;
 }
+
+
+// not recursive function to sort pairs, according to the highest value
+// void    PmergeMe::sortPairs(size_t i0, size_t i1)
+// {
+//     if (i1 >= vec.size())
+//         return ;
+//     if (vec[i0] > vec[i1])
+//     {
+//         iter_swap(vec.begin() + i0, vec.begin() + i1);
+//         iter_swap(vec.begin() + i0 - 1, vec.begin() + i1 - 1);
+//     }
+//     /*
+//         // to insert in the main loop after sorting each pair of two
+//         size_t i = 0;
+//         while (i < vec.size() - 1)
+//         {
+//             size_t g = 1;
+//             while (g < vec.size() - 2)
+//             {
+//                 this->sortPairs(g, g + 2);
+//                 g = g + 2;
+//             }
+//             i++;
+//         }
+//     */
+// }
