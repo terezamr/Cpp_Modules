@@ -27,14 +27,14 @@ int main(int argc, char **argv)
         obj.print(obj.getV_init());
         std::cout << "After: ";
         obj.print(obj.getV());
-        std::cout << "Time to process a range with " << obj.getN() << " elements with std::vector:  " << end_time - start_time << " us." << std::endl;
+        std::cout << "Time to process a range with " << obj.getN() << " elements with std::vector:    " << end_time - start_time << " us." << std::endl;
 
         // deque
         start_time = getTimeMs();
         PmergeMe obj1(argv, "deque");
         obj1.FordJohnson_dq();
         end_time = getTimeMs();
-        std::cout << "Time to process a range with " << obj1.getN() << " elements with std::deque:   " << end_time - start_time << " us.\n" << std::endl;
+        std::cout << "Time to process a range with " << obj1.getN() << " elements with std::deque:    " << end_time - start_time << " us." << std::endl;
     }
     catch(const std::exception& e)
     {

@@ -255,4 +255,5 @@ void    BitcoinExchange::showValues(void)
         }
     }
     f.close();
+    f0.close();
 }
