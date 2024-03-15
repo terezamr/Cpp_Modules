@@ -34,7 +34,7 @@ int main(int argc, char **argv)
         PmergeMe obj1(argv, "deque");
         obj1.FordJohnson_dq();
         end_time = getTimeMs();
-        std::cout << "Time to process a range with " << obj1.getN() << " elements with std::deque:  " << end_time - start_time << " us.\n" << std::endl;
+        std::cout << "Time to process a range with " << obj1.getN() << " elements with std::deque:   " << end_time - start_time << " us.\n" << std::endl;
     }
     catch(const std::exception& e)
     {

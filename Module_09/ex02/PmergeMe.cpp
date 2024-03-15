@@ -119,6 +119,7 @@ PmergeMe::PmergeMe(char **argv, std::string type)
     {
         this->vec_init = this->vec;
         this->N = vec.size();
+        // for 50000 elements, implementing isSorted doesnt impact the vector program time considerably
         if (isSorted(vec))
             throw(std::invalid_argument("Set of numbers is sorted"));
     }
