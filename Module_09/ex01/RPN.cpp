@@ -29,45 +29,60 @@ int RPN::populate_st(std::string str)
     return 1;
 }
 
+// float   ft_stof_neg_dec(std::string str)
+// {
+//     float i = 0;
+//     int f = 0;
+
+//     // implementing negative nbs
+//     int sig = 1;
+//     if (str[f] == '-' || str[f] == '+')
+//     {
+//         if (str[f] == '-')
+//             sig = -1;
+//         f++;
+//     }
+
+//     // implementing decimal nbs
+//     int m = 0;
+//     int d = 1;
+
+//     while (str[f])
+//     {
+//         if (str[f] >= '0' && str[f] <= '9')
+//             i = i * 10 + (str[f] - '0');
+//         else if (str[f] == '.')
+//         {
+//             f++;
+//             if (!str[f] || !isdigit(str[f]))
+//                 return -1;
+//             while (str[f] >= '0' && str[f] <= '9')
+//             {
+//                 m = m * 10 + (str[f] - '0');
+//                 d *= 10;
+//                 f++;
+//             }
+//             if (str[f] == '.')
+//                 throw(std::invalid_argument("Error: bad input"));
+//             continue ;
+//         }
+//         f++;
+//     }
+//     float final = (i + static_cast<float>(m)/d) * sig;
+//     return (final);
+// }
+
 float   ft_stof(std::string str)
 {
     float i = 0;
     int f = 0;
 
-    // implementing negative nbs
-    // int sig = 1;
-    // if (str[f] == '-' || str[f] == '+')
-    // {
-    //     if (str[f] == '-')
-    //         sig = -1;
-    //     f++;
-    // }
-    // implementing decimal nbs
-    // int m = 0;
-    // int d = 1;
-
     while (str[f])
     {
         if (str[f] >= '0' && str[f] <= '9')
             i = i * 10 + (str[f] - '0');
-        // else if (str[f] == '.')
-        // {
-        //     f++;
-        //     if (!str[f] || !isdigit(str[f]))
-        //         return -1;
-        //     while (str[f] >= '0' && str[f] <= '9')
-        //     {
-        //         m = m * 10 + (str[f] - '0');
-        //         d *= 10;
-        //         f++;
-        //     }
-        //     if (str[f] == '.')
-        //         throw(std::invalid_argument("Error: bad input"));
-        //     continue ;
-        // }
         f++;
     }
-    //float final = (i + static_cast<float>(m)/d) * sig;
     return (i);
 }
 

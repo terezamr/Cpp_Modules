@@ -90,6 +90,8 @@ float    check_rate(std::string str)
         dig++;
     }
     while (str[i]) {
+        if (isspace(str[i]))
+            throw(std::invalid_argument("Error: invalid format => " + str));
         if ((str[i] < '0' || str[i] > '9') && str[i] != '.')
             throw(std::invalid_argument("Error: invalid rate => " + str));
         i++;
@@ -162,26 +164,6 @@ void    check_dates(std::string s1)
         throw(std::invalid_argument("Error: invalid input => " + s1));
 }
 
-// trims whitespaces and checks the necessary spaces (before and after '|')
-std::string ft_trim(std::string str, int opt)
-{
-    std::string final;
-    size_t start = str.find_first_not_of(" \t\v\f\r");
-    size_t end = str.find_last_not_of(" \t\v\f\r");
-
-    if (start == std::string::npos)
-        throw(std::invalid_argument("Error: empty field"));
-    if (opt == 1 && start != 0)
-        throw(std::invalid_argument("Error: invalid input"));
-    if (opt == 1 && end + 1 == str.size())
-        throw(std::invalid_argument("Error: invalid input"));
-    if (opt == 2 && start == 0)
-        throw(std::invalid_argument("Error: invalid input"));
-
-    final = str.substr(start, end - start + 1);
-    return final;
-}
-
 int isWS(std::string s)
 {
     int i = 0;
@@ -199,15 +181,12 @@ std::pair<std::string, float> check_line(std::string str)
     if (str.empty() || isWS(str))
         throw(std::invalid_argument("Error: empty line"));
 
-    size_t pos = str.find('|');
-    if (pos == std::string::npos)
+    if (str.size() < 14 || !isdigit(str[0]) || str[10] != ' ' || str[11] != '|' || str[12] != ' ' || isspace(str[13]))
         throw(std::invalid_argument("Error: invalid input => " + str));
 
-    std::string s1 = ft_trim(str.substr(0, pos), 1);
-    std::string s2 = ft_trim(str.substr(pos + 1, str.size()), 2);
-
-    if (!s2[0])
-        throw(std::invalid_argument("Error: invalid input"));
+    size_t pos = str.find('|');
+    std::string s1 = str.substr(0, pos - 1);
+    std::string s2 = str.substr(pos + 2, str.size());
 
     check_dates(s1);
     float f = check_rate(s2);
@@ -223,25 +202,6 @@ float  BitcoinExchange::find_date(std::string date)
     return (ft_stof(it->second));
 }
 
-#include <bits/stdc++.h>
-
-bool isPt(int i)
-{ 
-    if (isprint(i))
-        return 1;
-    return 0;
-}
-
-int BitcoinExchange::check_f(std::ifstream f)
-{
-    if (f.peek() ==  std::ifstream::traits_type::eof()) {
-        std::cout << "Error: empty file" << std::endl;
-        f.close();
-        return 0;
-    }
-    return 1;
-}
-
 void    BitcoinExchange::showValues(void)
 {
     std::string str = "data.csv";
@@ -251,7 +211,7 @@ void    BitcoinExchange::showValues(void)
         return ;
     }
 
-    // check that files exists and is not empty
+    // check that the file exists and is not empty
     std::ifstream   f;
     f.open(this->input.c_str(), std::ios::in);
     if (!f) {
@@ -282,10 +242,10 @@ void    BitcoinExchange::showValues(void)
 
     while (getline(f, aux)) {
         try {
-            std::pair<std::string, float> pr = check_line(aux);
-            std::cout << pr.first << " => " << pr.second;
-            float closest_value = this->find_date(pr.first);
-            std::cout << " = " << closest_value * pr.second << std::endl;
+            std::pair<std::string, float> date_rate = check_line(aux);
+            std::cout << date_rate.first << " => " << date_rate.second;
+            float closest_value = this->find_date(date_rate.first);
+            std::cout << " = " << closest_value * date_rate.second << std::endl;
         }
         catch(const std::invalid_argument& e) {
             std::cerr << e.what() << '\n';

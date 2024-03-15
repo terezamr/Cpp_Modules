@@ -14,26 +14,30 @@ class PmergeMe
 {
     private:
         std::vector<int>    vec;
-        std::list<int>      lst;
+        std::vector<int>    vec_init;
         std::deque<int>     dq;
         size_t              N;
-        size_t              k;
     public:
         // Canonical Form
-        PmergeMe(char **argv);
+        PmergeMe();
+        ~PmergeMe();
+        PmergeMe(const PmergeMe&src);
+        PmergeMe&   operator=(const PmergeMe& src);
+
+        PmergeMe(char **argv, std::string type);
 
         void                FordJohnson_vec();
         void                FordJohnson_dq();
 
         // sorting functions
         void                sortPair();
-        void                sortPairs(size_t i0, size_t i1);
-
+        void                sortPairs_recursive(size_t size);
         void                sortPair_dq();
-        void                sortPairs_dq(size_t i0, size_t i1);
+        void                sortPairs_recursive_dq(size_t size);
     
         // getters
         std::vector<int>    getV();
+        std::vector<int>    getV_init();
         std::deque<int>     getD();
         size_t              getN();
 

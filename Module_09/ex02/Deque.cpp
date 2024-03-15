@@ -14,19 +14,8 @@ void    PmergeMe::sortPair_dq()
     }
 }
 
-void    PmergeMe::sortPairs_dq(size_t i0, size_t i1)
-{
-    if (i1 >= this->dq.size())
-        return ;
-    if (dq[i0] > dq[i1])
-    {
-        std::swap(dq[i0], dq[i1]);
-        std::swap(dq[i0 - 1], dq[i1 - 1]);
-    }
-}
-
 // recursive function to sort pairs
-void	sortPairs_recursive_dq(std::deque<int> &dq, size_t size)
+void	PmergeMe::sortPairs_recursive_dq(size_t size)
 {
 	if (size >= dq.size())
 		return ;
@@ -36,7 +25,7 @@ void	sortPairs_recursive_dq(std::deque<int> &dq, size_t size)
 			std::swap(dq[i - 1], dq[size - 1]);
 		}
 	}
-	sortPairs_recursive_dq(dq, size + 2);
+	sortPairs_recursive_dq(size + 2);
 }
 
 void    PmergeMe::FordJohnson_dq()
@@ -53,7 +42,7 @@ void    PmergeMe::FordJohnson_dq()
     }
 
     // sort pairs recursively (according to highest value)
-    sortPairs_recursive_dq(this->dq, 1);
+    sortPairs_recursive_dq(1);
 
     if (odd == 1)
         dq.insert(dq.end(), last);

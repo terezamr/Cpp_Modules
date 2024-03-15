@@ -1,9 +1,32 @@
 #include "PmergeMe.hpp"
 #include <utility>
 
+PmergeMe::PmergeMe() {}
+
+PmergeMe::~PmergeMe() {}
+
+PmergeMe::PmergeMe(const PmergeMe& src) : vec(src.vec), vec_init(src.vec_init), dq(src.dq), N(src.N) {}
+
+PmergeMe& PmergeMe::operator=(const PmergeMe& src)
+{
+    if (this != &src)
+    {
+        this->vec = src.vec;
+        this->vec_init = src.vec_init;
+        this->dq = src.dq;
+        this->N = src.N;
+    }
+    return *this;
+}
+
 std::vector<int>    PmergeMe::getV()
 {
     return (this->vec);
+}
+
+std::vector<int>    PmergeMe::getV_init()
+{
+    return (this->vec_init);
 }
 
 size_t  PmergeMe::getN()
@@ -21,7 +44,7 @@ void    PmergeMe::sortPair()
 }
 
 // recursive function to sort pairs
-void	sortPairs_recursive(std::vector<int> &vec, size_t size)
+void	PmergeMe::sortPairs_recursive(size_t size)
 {
 	if (size >= vec.size())
 		return ;
@@ -31,7 +54,7 @@ void	sortPairs_recursive(std::vector<int> &vec, size_t size)
 			std::swap(vec[i - 1], vec[size - 1]);
 		}
 	}
-	sortPairs_recursive(vec, size + 2);
+	sortPairs_recursive(size + 2);
 }
 
 void    PmergeMe::FordJohnson_vec()
@@ -48,7 +71,7 @@ void    PmergeMe::FordJohnson_vec()
     }
 
     // sort pairs recursively (according to highest value)
-    sortPairs_recursive(this->vec, 1);
+    sortPairs_recursive(1);
 
     if (odd == 1)
         vec.insert(vec.end(), last);
@@ -72,7 +95,7 @@ bool isSorted(std::vector<int> &v)
     return (true);
 }
 
-PmergeMe::PmergeMe(char **argv)
+PmergeMe::PmergeMe(char **argv, std::string type)
 {
     int i = 1;
     while (argv[i])
@@ -86,11 +109,19 @@ PmergeMe::PmergeMe(char **argv)
         if (nonDigit != std::string::npos || !(iss >> n)) {
             throw(std::invalid_argument("Invalid argument"));
         }
-        this->vec.push_back(n);
-        this->dq.push_back(n);
+        if (type == "vector")
+            this->vec.push_back(n);
+        else if (type == "deque")
+            this->dq.push_back(n);
         i++;
     }
-    this->N = vec.size();
-    if (isSorted(vec))
-        throw(std::invalid_argument("Set of numbers is sorted"));
+    if (type == "vector")
+    {
+        this->vec_init = this->vec;
+        this->N = vec.size();
+        if (isSorted(vec))
+            throw(std::invalid_argument("Set of numbers is sorted"));
+    }
+    else if (type == "deque")
+        this->N = dq.size();
 }
