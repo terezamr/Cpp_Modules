@@ -116,7 +116,7 @@ class PmergeMe
         {
             size_t h = 0;
             size_t i = 0;
-            while (h < ct.size() && i < 5)
+            while (h < ct.size() && i < 4)
             {
                 std::cout << ct[h] << " ";
                 h++;
