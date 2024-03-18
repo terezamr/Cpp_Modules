@@ -1,6 +1,6 @@
 # Ford-Johnson Algorithm
 
-The Ford-Johnson algorithm, also known as merge-insertion sort, is an 3-step sorting algorithm designed to perform as few comparisons as possible to sort a collection.
+The Ford-Johnson algorithm, also known as merge-insertion sort, is a 3-step sorting algorithm designed to perform as few comparisons as possible to sort a collection.
 
 Example:
 ``794 387 43 306 7654 18 1`` 
