@@ -22,11 +22,16 @@ a = {306, 765, 794}
 
 b = {43, 418, 387, 1}
 
-**Step 3**: Insert the pend elements into the main chain, following a certain order. Meaning, the elements of the collection b are not inserter in the main chaine a by the natural order (index = 0, 1, 2, ...). The index of the next element to insert is giving by the jacobsthal sequence.
+**Step 3**: Insert the pend elements into the main chain, following a certain order. Meaning, the elements of the collection b are not inserted in the main chaine by the natural order (index = 0, 1, 2, ...). The index ``n`` of the next element to insert is given by the jacobsthal sequence (1, 3, 5, 11, 21, ...).
 
-``1 43 306 387 418 765 794``
+ Sequece number           | b element        | main chain a
+| ------------- |:-------------|:-------------|
+| n = 1        |**b**<sub>1</sub> = 43   |  a = {43, 306, 765, 794}
+| n = 3           |**b**<sub>3</sub> = 418   |a = {43, 306, 418, 765, 794}
+| n = 2           | **b**<sub>2</sub> = 387  |a = {43, 306, 387, 418, 765, 794}
+| n = 4         |**b**<sub>4</sub> = 1| a = {1, 43, 306, 387, 418, 765, 794}
 
-``1 43 306 387 418 765 794``
+sorted collection: ``1 43 306 387 418 765 794``
 
 [to be finished by the end of Mar 2024]
 
@@ -39,3 +44,4 @@ b = {43, 418, 387, 1}
 ### References
 
 - https://codereview.stackexchange.com/questions/116367/ford-johnson-merge-insertion-sort
+- https://en.wikipedia.org/wiki/Jacobsthal_number
