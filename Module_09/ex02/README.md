@@ -3,7 +3,7 @@
 The Ford-Johnson algorithm, also known as merge-insertion sort, is a 3-step sorting algorithm designed to perform as few comparisons as possible to sort a collection.
 
 Example:
-``794 387 43 306 7654 18 1`` 
+``794 387 43 306 765 418 1`` 
 
 **Step 1**: Split the collection in n/2 pairs of 2 elements and order these elements pairwise. If the number of elements is odd, the last element of the collection isn't paired with any element. Imagine that your collection is divided in pairs of elements. Sorting every pair of the collection. If the number of elements (N) is odd, the last number wont be sorted.
 
